@@ -131,6 +131,25 @@
         </div>
     </section>
 
+    <!-- Banner Canal de WhatsApp -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-8 mt-6">
+        <div class="bg-gradient-to-r from-emerald-950/80 via-obsidian-900 to-obsidian-950 border border-emerald-500/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl shadow-emerald-950/20">
+            <div class="flex items-center space-x-3.5 text-center sm:text-left">
+                <div class="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xs sm:text-sm font-semibold text-white tracking-wide">¡Recibe avisos de nuevos ingresos y ofertas exclusivas!</h3>
+                    <p class="text-[11px] sm:text-xs text-zinc-400 font-light mt-0.5">Únete a nuestro canal oficial <strong class="text-emerald-400 font-medium">MultiStock Sv</strong> en WhatsApp.</p>
+                </div>
+            </div>
+            <a id="banner-channel-btn" href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-black text-[11px] font-bold py-2.5 px-5 rounded-full tracking-wider uppercase flex items-center justify-center space-x-2 shrink-0 transition-all duration-300 shadow-lg shadow-emerald-500/10">
+                <i class="fa-solid fa-bell text-xs"></i>
+                <span>Unirme al Canal</span>
+            </a>
+        </div>
+    </section>
+
     <!-- NAVEGACIÓN POR CATEGORÍAS & NÚCLEO DE BÚSQUEDA -->
     <main class="max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-12 flex-grow w-full space-y-6 sm:space-y-8">
         
@@ -245,6 +264,12 @@
 
     </div>
 
+    <!-- Botón Flotante Canal de WhatsApp -->
+    <a id="floating-channel-btn" href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank" class="fixed bottom-5 left-5 z-40 bg-emerald-600 hover:bg-emerald-500 text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-2xl flex items-center space-x-2 border border-emerald-400/40 transition-all duration-300 group">
+        <i class="fa-brands fa-whatsapp text-xl"></i>
+        <span class="hidden sm:inline text-xs font-semibold tracking-wide">Canal MultiStock Sv</span>
+    </a>
+
     <!-- Garantías / Puntos Clave -->
     <section class="bg-obsidian-950 border-t border-obsidian-border/50 py-10 px-4 sm:px-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-center text-xs">
@@ -274,6 +299,7 @@
     <!-- SCRIPT LOGIC -->
     <script>
         const WHATSAPP_NUMBER = "+50371323853"; 
+        const WHATSAPP_CHANNEL_URL = "https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42"; 
 
         const PRODUCTS = [
             {
@@ -882,6 +908,10 @@
         // Inicializar sitio
         renderProductsGrid();
         document.getElementById('nav-whatsapp-btn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola! Deseo más información sobre su catálogo digital.')}`;
+        
+        // Enlazar botones del Canal de WhatsApp
+        document.getElementById('banner-channel-btn').href = WHATSAPP_CHANNEL_URL;
+        document.getElementById('floating-channel-btn').href = WHATSAPP_CHANNEL_URL;
     </script>
 </body>
 </html>
