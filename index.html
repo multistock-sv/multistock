@@ -97,7 +97,7 @@
             <!-- Buscador Escritorio -->
             <div class="hidden md:flex items-center flex-1 max-w-md mx-4 relative">
                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 text-zinc-500 text-xs"></i>
-                <input type="text" id="desktop-search" oninput="handleSearch(this.value)" placeholder="Buscar reloj, teclado, cartera..." class="w-full bg-obsidian-950 border border-obsidian-border rounded-full py-2 pl-9 pr-4 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-champagne-500/50 transition">
+                <input type="text" id="desktop-search" oninput="handleSearch(this.value)" placeholder="Buscar reloj, teclado, cable..." class="w-full bg-obsidian-950 border border-obsidian-border rounded-full py-2 pl-9 pr-4 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-champagne-500/50 transition">
             </div>
 
             <a id="nav-whatsapp-btn" href="#" target="_blank" class="bg-gradient-to-r from-champagne-500 to-champagne-600 hover:brightness-110 text-black px-3.5 sm:px-6 py-2 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider sm:tracking-widest uppercase flex items-center space-x-1.5 sm:space-x-2 transition-all duration-300 shadow-lg shadow-champagne-500/10 shrink-0">
@@ -163,7 +163,7 @@
                 <button onclick="filterCategory('combos')" class="cat-btn bg-obsidian-900 hover:bg-obsidian-800 text-zinc-400 border border-obsidian-border text-xs px-3.5 py-1.5 rounded-full transition cursor-pointer whitespace-nowrap">🔥 Sets & Combos</button>
             </div>
             <span id="product-count-badge" class="hidden sm:inline-block text-[10px] tracking-widest uppercase font-light bg-obsidian-900 border border-obsidian-border text-champagne-400 px-3 py-1.5 rounded-full shrink-0">
-                16 Piezas
+                17 Piezas
             </span>
         </div>
 
@@ -219,7 +219,7 @@
                             <span id="modal-shipping-note" class="text-[10px] text-zinc-400 block mt-0.5 font-light"></span>
                         </div>
                         <span id="modal-status-badge" class="text-[9px] text-champagne-400 border border-champagne-500/20 bg-champagne-500/5 px-2.5 py-1 rounded-full font-light uppercase tracking-widest">
-                            <i class="fa-solid fa-truck-fast mr-1"></i>InDrive / Uber
+                            <i class="fa-solid fa-box-open mr-1"></i>Disponible
                         </span>
                     </div>
 
@@ -281,7 +281,7 @@
             <div class="space-y-1.5 p-4 sm:p-5 rounded-2xl bg-obsidian-900/40 border border-obsidian-border/50">
                 <i class="fa-solid fa-route text-champagne-400 text-base sm:text-lg mb-0.5"></i>
                 <h4 class="font-cinzel text-white tracking-widest uppercase text-xs">Envíos Flexibles</h4>
-                <p class="text-zinc-500 font-light leading-relaxed text-[10.5px]">Enviamos hasta la puerta de tu casa vía InDrive / Uber o punto neutro.</p>
+                <p class="text-zinc-500 font-light leading-relaxed text-[10.5px]">Enviamos hasta la puerta de tu casa o punto neutro.</p>
             </div>
             <div class="space-y-1.5 p-4 sm:p-5 rounded-2xl bg-obsidian-900/40 border border-obsidian-border/50">
                 <i class="fa-solid fa-gem text-champagne-400 text-base sm:text-lg mb-0.5"></i>
@@ -304,6 +304,33 @@
         const PRODUCTS = [
             {
                 id: 1,
+                title: "Cable de Carga Rápida USB-C a Tipo C (60W Trenzado)",
+                price: "$3.00",
+                requiresShippingFee: true,
+                badgeLeft: "Carga 60W",
+                badgeRight: "Novedad",
+                tagline: "Fast Charge",
+                category: ["nuevos", "tecnologia"],
+                isNew: true,
+                available: true,
+                shortDesc: "Cable trenzado de nylon de alta resistencia USB-C a Tipo C, carga rápida de 60W para iPhone 15/16/17, iPad, Samsung y laptops.",
+                features: [
+                    "Soporta carga rápida de hasta 60W y transferencia de datos",
+                    "Fabricado en nylon trenzado de alta resistencia contra enredos y desgarros",
+                    "Compatible con iPhone 15/16/17, iPad, Samsung y dispositivos tipo C",
+                    "Envío a domicilio disponible (tarifa según tu zona)"
+                ],
+                variants: [
+                    { name: "Blanco / Plata", image: "cable-c-1.jpg" },
+                    { name: "Negro", image: "cable-c-2.jpg" },
+                    { name: "Azul", image: "cable-c-azul.jpg" },
+                    { name: "Púrpura", image: "cable-c-purpura.jpg" },
+                    { name: "Verde", image: "cable-c-verde.jpg" },
+                    { name: "Rosa", image: "cable-c-rosa.jpg" }
+                ]
+            },
+            {
+                id: 2,
                 title: "Set de Reloj Yolako + Pulsera Elegante de Corazón",
                 price: "$7.00",
                 requiresShippingFee: true,
@@ -327,7 +354,7 @@
                 ]
             },
             {
-                id: 2,
+                id: 3,
                 title: "Cartera Larga Multifuncional (Diseño Triangular)",
                 price: "$8.00",
                 requiresShippingFee: true,
@@ -353,7 +380,7 @@
                 ]
             },
             {
-                id: 3,
+                id: 4,
                 title: "Collar Choker de Perlas de Imitación",
                 price: "$3.50",
                 requiresShippingFee: true,
@@ -376,7 +403,7 @@
                 ]
             },
             {
-                id: 4,
+                id: 5,
                 title: "Set de 2 Delineadores de Ojos en Gel Miss Rose",
                 price: "$3.50",
                 requiresShippingFee: true,
@@ -401,7 +428,7 @@
                 ]
             },
             {
-                id: 5,
+                id: 6,
                 title: "Pulsera Trébol de Moda en Acero Inoxidable",
                 price: "$2.00",
                 requiresShippingFee: true,
@@ -422,7 +449,7 @@
                 ]
             },
             {
-                id: 6,
+                id: 7,
                 title: "Reloj Elegante de Cuarzo para Hombre (Estilo Vintage)",
                 price: "$10.00",
                 requiresShippingFee: true,
@@ -445,7 +472,7 @@
                 ]
             },
             {
-                id: 7,
+                id: 8,
                 title: "Reloj Elegante Ultra Delgado de Dama",
                 price: "$25.00",
                 requiresShippingFee: false,
@@ -471,7 +498,7 @@
                 ]
             },
             {
-                id: 8,
+                id: 9,
                 title: "Cartera Larga Minimalista con Hebilla",
                 price: "$22.00",
                 requiresShippingFee: false,
@@ -501,7 +528,7 @@
                 ]
             },
             {
-                id: 9,
+                id: 10,
                 title: "Teclado Mecánico Gaming MageGee TS91 RGB (60%)",
                 price: "$25.00",
                 requiresShippingFee: false,
@@ -527,7 +554,7 @@
                 ]
             },
             {
-                id: 10,
+                id: 11,
                 title: "Teclado Gaming 60% RGB con Textura Topográfica",
                 price: "$22.00",
                 requiresShippingFee: false,
@@ -552,7 +579,7 @@
                 ]
             },
             {
-                id: 11,
+                id: 12,
                 title: "Teclado Mini XNI 61 Teclas RGB (Blanco y Negro)",
                 price: "$20.00",
                 requiresShippingFee: false,
@@ -575,7 +602,7 @@
                 ]
             },
             {
-                id: 12,
+                id: 13,
                 title: "Teclado Compacto Bicolor AFGVK 65% Membrana",
                 price: "$20.00",
                 requiresShippingFee: false,
@@ -599,7 +626,7 @@
                 ]
             },
             {
-                id: 13,
+                id: 14,
                 title: "Luz LED de Relleno para Videoconferencias (4\")",
                 price: "$28.00",
                 requiresShippingFee: false,
@@ -624,7 +651,7 @@
                 ]
             },
             {
-                id: 14,
+                id: 15,
                 title: "Soporte e Impermeable Celular Moto/Bici (Wheel Up)",
                 price: "$25.00",
                 requiresShippingFee: false,
@@ -649,7 +676,7 @@
                 ]
             },
             {
-                id: 15,
+                id: 16,
                 title: "Cepillo Autolimpiante Quitapelos para Mascotas",
                 price: "$15.00",
                 requiresShippingFee: false,
@@ -676,7 +703,7 @@
                 ]
             },
             {
-                id: 16,
+                id: 17,
                 title: "Botella Térmica de Acero Inoxidable 500ml (Doodle Art)",
                 price: "$12.00",
                 requiresShippingFee: false,
@@ -724,7 +751,7 @@
                 noResults.classList.remove('hidden');
             } else {
                 grid.classList.remove('hidden');
-                noResults.classList.add('hidden');
+                noResults.add && noResults.classList.add('hidden');
             }
 
             filtered.forEach((p) => {
@@ -852,7 +879,7 @@
             const badgeStatus = document.getElementById('modal-status-badge');
             if (product.available) {
                 badgeStatus.className = "text-[9px] text-champagne-400 border border-champagne-500/20 bg-champagne-500/5 px-2.5 py-1 rounded-full font-light uppercase tracking-widest";
-                badgeStatus.innerHTML = `<i class="fa-solid fa-truck-fast mr-1"></i>InDrive / Uber`;
+                badgeStatus.innerHTML = `<i class="fa-solid fa-box-open mr-1"></i>Disponible`;
             } else {
                 badgeStatus.className = "text-[9px] text-red-400 border border-red-500/30 bg-red-950/20 px-2.5 py-1 rounded-full font-light uppercase tracking-widest";
                 badgeStatus.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i>Agotado Temporalmente`;
