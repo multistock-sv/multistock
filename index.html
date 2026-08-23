@@ -73,10 +73,10 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-champagne-500 selection:text-black">
 
-    <!-- Announcement Bar -->
-    <div class="bg-obsidian-950 border-b border-obsidian-border/60 py-2 px-3 text-center text-[10px] sm:text-xs tracking-wider sm:tracking-[0.2em] text-champagne-400 uppercase font-light flex items-center justify-center space-x-2">
-        <i class="fa-solid fa-truck-fast text-[11px] opacity-80 shrink-0"></i>
-        <span>Envíos a Domicilio con Tarifa Según Ubicación</span>
+    <!-- Announcement Bar - Tarifa Plana de Envío -->
+    <div class="bg-gradient-to-r from-obsidian-950 via-champagne-600/20 to-obsidian-950 border-b border-champagne-500/30 py-2 px-3 text-center text-[10px] sm:text-xs tracking-wider sm:tracking-[0.15em] text-champagne-400 uppercase font-medium flex items-center justify-center space-x-2">
+        <i class="fa-solid fa-boxes-packing text-[12px] text-champagne-400 shrink-0"></i>
+        <span><strong>¡Mismo costo de envío!</strong> Pide desde 1 hasta 10 productos por la misma tarifa de entrega</span>
     </div>
 
     <!-- Header / Navigation -->
@@ -131,8 +131,27 @@
         </div>
     </section>
 
-    <!-- Banner Canal de WhatsApp -->
+    <!-- Banner Oferta de Envío Cross-Selling -->
     <section class="max-w-7xl mx-auto px-4 sm:px-8 mt-6">
+        <div class="bg-gradient-to-r from-champagne-600/15 via-obsidian-900 to-obsidian-950 border border-champagne-500/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+            <div class="flex items-center space-x-3.5 text-center sm:text-left">
+                <div class="w-10 h-10 rounded-full bg-champagne-500/10 border border-champagne-500/30 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-truck-ramp-box text-champagne-400 text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="text-xs sm:text-sm font-semibold text-white tracking-wide">💡 ¡Sácale más provecho a tu envío!</h3>
+                    <p class="text-[11px] sm:text-xs text-zinc-300 font-light mt-0.5">Agrega cables, pulseras o accesorios a tu pedido. El envío cuesta exactamente lo mismo si llevas <strong class="text-champagne-400 font-medium">1 producto o 10</strong>.</p>
+                </div>
+            </div>
+            <button onclick="filterCategory('nuevos')" class="w-full sm:w-auto bg-obsidian-950 hover:bg-champagne-500 hover:text-black border border-champagne-500/40 text-champagne-400 text-[11px] font-bold py-2.5 px-5 rounded-full tracking-wider uppercase flex items-center justify-center space-x-2 shrink-0 transition-all duration-300 shadow-lg cursor-pointer">
+                <i class="fa-solid fa-cart-plus text-xs"></i>
+                <span>Ver Novedades de $2-$3</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Banner Canal de WhatsApp -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-8 mt-4">
         <div class="bg-gradient-to-r from-emerald-950/80 via-obsidian-900 to-obsidian-950 border border-emerald-500/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl shadow-emerald-950/20">
             <div class="flex items-center space-x-3.5 text-center sm:text-left">
                 <div class="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0">
@@ -163,7 +182,7 @@
                 <button onclick="filterCategory('combos')" class="cat-btn bg-obsidian-900 hover:bg-obsidian-800 text-zinc-400 border border-obsidian-border text-xs px-3.5 py-1.5 rounded-full transition cursor-pointer whitespace-nowrap">🔥 Sets & Combos</button>
             </div>
             <span id="product-count-badge" class="hidden sm:inline-block text-[10px] tracking-widest uppercase font-light bg-obsidian-900 border border-obsidian-border text-champagne-400 px-3 py-1.5 rounded-full shrink-0">
-                17 Piezas
+                19 Piezas
             </span>
         </div>
 
@@ -180,7 +199,7 @@
         </div>
     </main>
 
-    <!-- MODAL FULLSCREEN ADAPTATIVO -->
+    <!-- MODAL FULLSCREEN ADAPTATIVO CON CROSS-SELLING -->
     <div id="product-modal" class="fixed inset-0 bg-black/95 backdrop-blur-2xl hidden z-50 flex flex-col justify-between overflow-hidden">
         
         <!-- Modal Top Bar -->
@@ -221,6 +240,17 @@
                         <span id="modal-status-badge" class="text-[9px] text-champagne-400 border border-champagne-500/20 bg-champagne-500/5 px-2.5 py-1 rounded-full font-light uppercase tracking-widest">
                             <i class="fa-solid fa-box-open mr-1"></i>Disponible
                         </span>
+                    </div>
+
+                    <!-- Módulo de Cross-Selling Interactivo -->
+                    <div id="cross-selling-box" class="bg-obsidian-950 border border-champagne-500/30 rounded-xl p-3.5 space-y-2">
+                        <div class="flex items-center space-x-2 text-champagne-400 text-xs font-semibold">
+                            <i class="fa-solid fa-piggy-bank"></i>
+                            <span>¡Amortiza tu costo de envío!</span>
+                        </div>
+                        <p class="text-[11px] text-zinc-300 font-light leading-relaxed">
+                            El costo del flete se mantiene igual si agregas más productos. ¿Deseas agregar artículos adicionales de $2.00 o $3.50 a este pedido para aprovechar el mismo viaje?
+                        </p>
                     </div>
 
                     <!-- Galería / Miniaturas -->
@@ -279,9 +309,9 @@
                 <p class="text-zinc-500 font-light leading-relaxed text-[10.5px]">Coordinación directa por WhatsApp. Pagas al recibir o coordinar.</p>
             </div>
             <div class="space-y-1.5 p-4 sm:p-5 rounded-2xl bg-obsidian-900/40 border border-obsidian-border/50">
-                <i class="fa-solid fa-route text-champagne-400 text-base sm:text-lg mb-0.5"></i>
-                <h4 class="font-cinzel text-white tracking-widest uppercase text-xs">Envíos Flexibles</h4>
-                <p class="text-zinc-500 font-light leading-relaxed text-[10.5px]">Enviamos hasta la puerta de tu casa o punto neutro.</p>
+                <i class="fa-solid fa-boxes-packing text-champagne-400 text-base sm:text-lg mb-0.5"></i>
+                <h4 class="font-cinzel text-white tracking-widest uppercase text-xs">Tarifa de Envío Única</h4>
+                <p class="text-zinc-500 font-light leading-relaxed text-[10.5px]">Pide 1 o varios productos por el mismo costo de envío a tu zona.</p>
             </div>
             <div class="space-y-1.5 p-4 sm:p-5 rounded-2xl bg-obsidian-900/40 border border-obsidian-border/50">
                 <i class="fa-solid fa-gem text-champagne-400 text-base sm:text-lg mb-0.5"></i>
@@ -303,7 +333,7 @@
 
         const PRODUCTS = [
             {
-                id: 1,
+                id: 2,
                 title: "Cable de Carga Rápida USB-C a Tipo C (60W Trenzado)",
                 price: "$3.00",
                 requiresShippingFee: true,
@@ -318,7 +348,7 @@
                     "Soporta carga rápida de hasta 60W y transferencia de datos",
                     "Fabricado en nylon trenzado de alta resistencia contra enredos y desgarros",
                     "Compatible con iPhone 15/16/17, iPad, Samsung y dispositivos tipo C",
-                    "Envío a domicilio disponible (tarifa según tu zona)"
+                    "Mismo envío si agregas más productos a tu compra"
                 ],
                 variants: [
                     { name: "Blanco / Plata", image: "cable-c-1.jpg" },
@@ -330,7 +360,57 @@
                 ]
             },
             {
-                id: 2,
+                id: 19,
+                title: "Gafas de Moda Vintage con Montura Geométrica para Hombre",
+                price: "$5.00",
+                requiresShippingFee: true,
+                badgeLeft: "Varios Estilos",
+                badgeRight: "Novedad",
+                tagline: "Vintage Style",
+                category: ["nuevos", "accesorios"],
+                isNew: true,
+                available: true,
+                shortDesc: "Gafas de sol de estilo vintage para hombre con montura geométrica media pasta, ideales para el uso diario y protección estilizada.",
+                features: [
+                    "Diseño vintage de corte geométrico elegante y moderno",
+                    "Montura ligera y resistente con acabados metálicos y oscuros",
+                    "Disponible en varios colores (se consulta existencia al pedir)",
+                    "Mismo envío si agregas más productos a tu compra"
+                ],
+                variants: [
+                    { name: "Marco Dorado/Negro Lente Gris", image: "lentes1-1.jpg" },
+                    { name: "Variante 2", image: "lentes1-2.jpg" },
+                    { name: "Variante 3", image: "lentes1-3.jpg" },
+                    { name: "Variante 4", image: "lentes1-4.jpg" }
+                ]
+            },
+            {
+                id: 1,
+                title: "Gafas de Moda Casual Retro para Mujer",
+                price: "$5.00",
+                requiresShippingFee: true,
+                badgeLeft: "Varios Estilos",
+                badgeRight: "Novedad",
+                tagline: "Retro Streetwear",
+                category: ["nuevos", "accesorios"],
+                isNew: true,
+                available: true,
+                shortDesc: "Gafas de sol para mujer con diseño retro casual, marco resistente y patillas texturizadas de estilo urbano.",
+                features: [
+                    "Diseño retro de corte urbano perfecto para uso diario",
+                    "Marco elegante con acabado traslúcido y patillas estilo madera",
+                    "Disponible en varios colores (se consulta existencia al pedir)",
+                    "Mismo envío si agregas más productos a tu compra"
+                ],
+                variants: [
+                    { name: "Vista Principal", image: "lentes2-1.jpg" },
+                    { name: "Variante 2", image: "lentes2-2.jpg" },
+                    { name: "Variante 3", image: "lentes2-3.jpg" },
+                    { name: "Variante 4", image: "lentes2-4.jpg" }
+                ]
+            },
+            {
+                id: 3,
                 title: "Set de Reloj Yolako + Pulsera Elegante de Corazón",
                 price: "$7.00",
                 requiresShippingFee: true,
@@ -345,7 +425,7 @@
                     "Incluye Reloj Yolako + Pulsera combinada de regalo",
                     "Esfera con acabado esmerilado que destella con la luz",
                     "Correa cómoda de piel sintética suave",
-                    "Envío a domicilio disponible (tarifa según tu zona)"
+                    "Mismo envío si agregas más productos a tu compra"
                 ],
                 variants: [
                     { name: "Set Principal", image: "relog-mujer1-principal.jpg" },
@@ -354,7 +434,7 @@
                 ]
             },
             {
-                id: 3,
+                id: 4,
                 title: "Cartera Larga Multifuncional (Diseño Triangular)",
                 price: "$8.00",
                 requiresShippingFee: true,
@@ -369,7 +449,7 @@
                     "Diseño geométrico moderno con broche metálico resistente",
                     "Compartimentos organizados para celular, tarjetas y billetes",
                     "Bolsillo interno con cremallera para monedas",
-                    "Envío a domicilio disponible (tarifa según tu zona)"
+                    "Mismo envío si agregas más productos a tu compra"
                 ],
                 variants: [
                     { name: "Vista Principal Solapa", image: "cartera2-principal.jpg" },
@@ -380,7 +460,7 @@
                 ]
             },
             {
-                id: 4,
+                id: 5,
                 title: "Collar Choker de Perlas de Imitación",
                 price: "$3.50",
                 requiresShippingFee: true,
@@ -394,7 +474,7 @@
                 features: [
                     "Diseño femenino de alta tendencia",
                     "Broche y cadena de ajuste seguro",
-                    "Envío a domicilio disponible (tarifa según tu zona)"
+                    "Mismo envío si agregas más productos a tu compra"
                 ],
                 variants: [
                     { name: "Vista Principal", image: "collar1-1.jpg" },
@@ -403,7 +483,7 @@
                 ]
             },
             {
-                id: 5,
+                id: 6,
                 title: "Set de 2 Delineadores de Ojos en Gel Miss Rose",
                 price: "$3.50",
                 requiresShippingFee: true,
@@ -418,7 +498,7 @@
                     "Incluye 2 piezas: Tonos Negro y Marrón",
                     "Acabado mate de larga duración y fácil aplicación",
                     "Ideal para ojos de gato y looks ahumados",
-                    "Envío a domicilio disponible (tarifa según tu zona)"
+                    "Mismo envío si agregas más productos a tu compra"
                 ],
                 variants: [
                     { name: "Set 2Pcs Principal", image: "delineador1-1.jpg" },
@@ -428,11 +508,11 @@
                 ]
             },
             {
-                id: 6,
+                id: 7,
                 title: "Pulsera Trébol de Moda en Acero Inoxidable",
                 price: "$2.00",
                 requiresShippingFee: true,
-                badgeLeft: "Variarios Colores",
+                badgeLeft: "Varios Colores",
                 badgeRight: "Novedad",
                 tagline: "Stainless Steel",
                 category: ["nuevos", "accesorios"],
@@ -442,18 +522,18 @@
                 features: [
                     "Material de acero inoxidable resistente y duradero",
                     "Disponible en varios colores (se consulta existencia al pedir)",
-                    "Envío a domicilio disponible (tarifa según tu zona)"
+                    "Mismo envío si agregas más productos a tu compra"
                 ],
                 variants: [
                     { name: "Colores Disponibles", image: "pulsera1-1.jpg" }
                 ]
             },
             {
-                id: 7,
+                id: 8,
                 title: "Reloj Elegante de Cuarzo para Hombre (Estilo Vintage)",
                 price: "$10.00",
                 requiresShippingFee: true,
-                badgeLeft: "Variarios Estilos",
+                badgeLeft: "Varios Estilos",
                 badgeRight: "Novedad",
                 tagline: "SHAARMS / IRLANDY",
                 category: ["nuevos", "accesorios"],
@@ -464,7 +544,7 @@
                     "Mecanismo de cuarzo con correa de aleación metálica",
                     "Diseño retro elegante para uso casual o formal",
                     "Disponible en varios estilos/colores (se consulta existencia al pedir)",
-                    "Envío a domicilio disponible (tarifa según tu zona)"
+                    "Mismo envío si agregas más productos a tu compra"
                 ],
                 variants: [
                     { name: "Esfera Azul Acero", image: "relog-hombre1-1.jpg" },
@@ -472,7 +552,7 @@
                 ]
             },
             {
-                id: 8,
+                id: 9,
                 title: "Reloj Elegante Ultra Delgado de Dama",
                 price: "$25.00",
                 requiresShippingFee: false,
@@ -498,7 +578,7 @@
                 ]
             },
             {
-                id: 9,
+                id: 10,
                 title: "Cartera Larga Minimalista con Hebilla",
                 price: "$22.00",
                 requiresShippingFee: false,
@@ -528,7 +608,7 @@
                 ]
             },
             {
-                id: 10,
+                id: 11,
                 title: "Teclado Mecánico Gaming MageGee TS91 RGB (60%)",
                 price: "$25.00",
                 requiresShippingFee: false,
@@ -554,7 +634,7 @@
                 ]
             },
             {
-                id: 11,
+                id: 12,
                 title: "Teclado Gaming 60% RGB con Textura Topográfica",
                 price: "$22.00",
                 requiresShippingFee: false,
@@ -579,7 +659,7 @@
                 ]
             },
             {
-                id: 12,
+                id: 13,
                 title: "Teclado Mini XNI 61 Teclas RGB (Blanco y Negro)",
                 price: "$20.00",
                 requiresShippingFee: false,
@@ -602,7 +682,7 @@
                 ]
             },
             {
-                id: 13,
+                id: 14,
                 title: "Teclado Compacto Bicolor AFGVK 65% Membrana",
                 price: "$20.00",
                 requiresShippingFee: false,
@@ -626,7 +706,7 @@
                 ]
             },
             {
-                id: 14,
+                id: 15,
                 title: "Luz LED de Relleno para Videoconferencias (4\")",
                 price: "$28.00",
                 requiresShippingFee: false,
@@ -651,7 +731,7 @@
                 ]
             },
             {
-                id: 15,
+                id: 16,
                 title: "Soporte e Impermeable Celular Moto/Bici (Wheel Up)",
                 price: "$25.00",
                 requiresShippingFee: false,
@@ -676,7 +756,7 @@
                 ]
             },
             {
-                id: 16,
+                id: 17,
                 title: "Cepillo Autolimpiante Quitapelos para Mascotas",
                 price: "$15.00",
                 requiresShippingFee: false,
@@ -703,7 +783,7 @@
                 ]
             },
             {
-                id: 17,
+                id: 18,
                 title: "Botella Térmica de Acero Inoxidable 500ml (Doodle Art)",
                 price: "$12.00",
                 requiresShippingFee: false,
@@ -751,7 +831,7 @@
                 noResults.classList.remove('hidden');
             } else {
                 grid.classList.remove('hidden');
-                noResults.add && noResults.classList.add('hidden');
+                if (noResults) noResults.classList.add('hidden');
             }
 
             filtered.forEach((p) => {
@@ -765,7 +845,7 @@
                     : 'bg-red-950/80 text-red-400 border border-red-500/30';
 
                 const shippingBadgeHtml = p.requiresShippingFee 
-                    ? `<span class="text-[9px] text-zinc-400 block font-light">+ envío</span>` 
+                    ? `<span class="text-[9px] text-zinc-400 block font-light">+ envío fijo</span>` 
                     : '';
 
                 card.innerHTML = `
@@ -820,8 +900,11 @@
                 btn.classList.add('bg-obsidian-900', 'text-zinc-400');
             });
 
-            event.target.classList.remove('bg-obsidian-900', 'text-zinc-400');
-            event.target.classList.add('bg-champagne-500', 'text-black', 'font-medium');
+            const currentBtn = Array.from(buttons).find(b => b.getAttribute('onclick').includes(`'${cat}'`));
+            if (currentBtn) {
+                currentBtn.classList.remove('bg-obsidian-900', 'text-zinc-400');
+                currentBtn.classList.add('bg-champagne-500', 'text-black', 'font-medium');
+            }
 
             renderProductsGrid();
         }
@@ -841,8 +924,8 @@
             const btnWhatsApp = document.getElementById('modal-whatsapp-btn');
             
             if (product.available) {
-                const shippingText = product.requiresShippingFee ? " (+ envío)" : "";
-                const message = `Hola! Me interesa coordinar la compra del *${product.title}* [Opción: ${variant.name}] por *${product.price}*${shippingText}. ¿Me indican el costo de entrega a mi ubicación?`;
+                const shippingText = product.requiresShippingFee ? " (+ tarifa de envío)" : "";
+                const message = `Hola MultiStock! Me interesa el *${product.title}* [Opción: ${variant.name}] por *${product.price}*${shippingText}.\n\n💡 Quisiera saber cuánto es el costo de envío a mi ubicación y qué otros productos tienen disponibles para aprovechar el mismo viaje.`;
                 btnWhatsApp.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
                 btnWhatsApp.className = "w-full bg-gradient-to-r from-champagne-500 to-champagne-600 hover:brightness-110 text-black font-semibold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-lg shadow-champagne-500/10 text-xs tracking-widest uppercase cursor-pointer";
                 btnWhatsApp.innerHTML = `<i class="fa-brands fa-whatsapp text-lg"></i><span>Solicitar por WhatsApp</span>`;
@@ -874,7 +957,7 @@
             document.getElementById('modal-short-desc').textContent = product.shortDesc;
 
             const shippingNote = document.getElementById('modal-shipping-note');
-            shippingNote.textContent = product.requiresShippingFee ? "+ Envío según ubicación" : "";
+            shippingNote.textContent = product.requiresShippingFee ? "+ Envío fijo (combina los productos que quieras)" : "";
 
             const badgeStatus = document.getElementById('modal-status-badge');
             if (product.available) {
@@ -934,7 +1017,7 @@
 
         // Inicializar sitio
         renderProductsGrid();
-        document.getElementById('nav-whatsapp-btn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola! Deseo más información sobre su catálogo digital.')}`;
+        document.getElementById('nav-whatsapp-btn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola MultiStock! Deseo más información sobre su catálogo digital.')}`;
         
         // Enlazar botones del Canal de WhatsApp
         document.getElementById('banner-channel-btn').href = WHATSAPP_CHANNEL_URL;
