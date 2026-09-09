@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="dark scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MultiStock | Boutique & Tech Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <script>
         tailwind.config = {
@@ -20,347 +21,437 @@
                     },
                     colors: {
                         studio: {
-                            bg: '#FBFBFD',
-                            card: '#FFFFFF',
-                            text: '#1D1D1F',
-                            subtext: '#86868B',
-                            border: 'rgba(0,0,0,0.08)',
+                            bg: '#0D0D0F',
+                            card: '#1C1C1E',
+                            cardHover: '#242426',
+                            text: '#FFFFFF',
+                            subtext: '#A1A1A6',
                             accent: '#0071E3',
-                            accentHover: '#0077ED',
-                            darkBg: '#000000',
-                            darkCard: '#1C1C1E',
-                            darkText: '#F5F5F7',
-                            darkSubtext: '#A1A1A6',
-                            darkBorder: 'rgba(255,255,255,0.12)',
-                            grayBadge: '#F5F5F7'
+                            accentHover: '#4B9FFF',
+                            border: 'rgba(255,255,255,0.06)',
+                            grayBadge: '#2C2C2E'
                         }
                     }
                 }
             }
         }
     </script>
+
     <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif; 
-            transition: background-color 0.3s ease, color 0.3s ease;
+        /* ===== BASE ===== */
+        html {
+            background-color: #0D0D0F;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+            background-color: #0D0D0F;
+            color: #FFFFFF;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            /* Fondo con degradado sutil + textura de ruido */
+            background-image:
+                radial-gradient(ellipse at 50% 30%, rgba(0, 113, 227, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(0, 113, 227, 0.03) 0%, transparent 40%),
+                radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            background-blend-mode: normal, normal, normal, overlay;
+            background-size: 100% 100%, 100% 100%, 100% 100%, 200px 200px;
         }
 
-        /* --- Estilo de tarjeta premium --- */
+        /* ===== TARJETA DE PRODUCTO ===== */
         .product-card {
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(2px);
+            background: #1C1C1E;
             border-radius: 20px;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                        box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-                        background 0.3s ease;
-            will-change: transform;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04);
-            border: none;
             overflow: hidden;
-        }
-        .dark .product-card {
-            background: rgba(28,28,30,0.9);
-            backdrop-filter: blur(2px);
-            box-shadow: 0 2px 12px rgba(255,255,255,0.02), 0 1px 2px rgba(255,255,255,0.04);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            position: relative;
         }
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px -16px rgba(0,0,0,0.12), 0 4px 20px rgba(0,0,0,0.02);
-        }
-        .dark .product-card:hover {
-            box-shadow: 0 20px 60px -16px rgba(255,255,255,0.05), 0 4px 20px rgba(255,255,255,0.02);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.7);
+            background: #242426;
+            border-color: rgba(255, 255, 255, 0.08);
         }
 
         .product-card-image {
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
-            will-change: transform;
             width: 100%;
-            height: 100%;
+            aspect-ratio: 1 / 1;
             object-fit: contain;
-            padding: 1.5rem;
-            background: #f5f5f7;
-        }
-        .dark .product-card-image {
-            background: #1c1c1e;
+            background: #FFFFFF;
+            padding: 0.5rem;
+            transition: transform 0.4s ease, filter 0.3s ease;
         }
         .product-card:hover .product-card-image {
-            transform: scale(1.04) translateY(-4px);
-            filter: brightness(1.02);
+            transform: scale(1.02);
+            filter: brightness(1.05);
         }
 
+        /* Badge (esquina superior izquierda) */
         .product-badge {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(4px);
-            color: #1D1D1F;
-            font-size: 9px;
-            font-weight: 600;
+            top: 12px;
+            left: 12px;
+            background: rgba(28, 28, 30, 0.85);
+            backdrop-filter: blur(2px);
+            color: #FFFFFF;
+            font-size: 8px;
+            font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             padding: 4px 12px;
             border-radius: 100px;
-            border: 1px solid rgba(0,0,0,0.04);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-            transition: all 0.2s;
-        }
-        .dark .product-badge {
-            background: rgba(28,28,30,0.9);
-            color: #F5F5F7;
-            border-color: rgba(255,255,255,0.06);
-        }
-        .product-card:hover .product-badge {
-            background: rgba(0,0,0,0.9);
-            color: white;
-            border-color: transparent;
-        }
-        .dark .product-card:hover .product-badge {
-            background: rgba(255,255,255,0.95);
-            color: #1D1D1F;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+            z-index: 2;
         }
 
-        .product-badge-left {
+        /* Badge de envío (dentro de la imagen, abajo) */
+        .product-shipping-badge {
             position: absolute;
-            top: 16px;
-            left: 16px;
-            background: rgba(0,0,0,0.02);
-            color: #86868B;
-            font-size: 8px;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 100px;
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: all 0.2s;
-        }
-        .dark .product-badge-left {
-            background: rgba(255,255,255,0.03);
-            color: #A1A1A6;
-            border-color: rgba(255,255,255,0.04);
-        }
-
-        .product-title {
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(2px);
+            color: #FFFFFF;
+            font-size: 7px;
             font-weight: 600;
-            font-size: 1rem;
-            line-height: 1.3;
-            letter-spacing: -0.01em;
-            transition: color 0.2s;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
-        .product-card:hover .product-title {
-            color: #0071E3;
-        }
-        .dark .product-card:hover .product-title {
-            color: #0077ED;
+        .product-shipping-badge i {
+            font-size: 8px;
         }
 
         .product-price {
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             letter-spacing: -0.02em;
             line-height: 1.2;
+            color: #FFFFFF;
         }
 
-        .product-tagline {
-            font-size: 0.6rem;
+        .product-title {
             font-weight: 500;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: #86868B;
-            background: rgba(0,0,0,0.02);
-            padding: 2px 10px;
-            border-radius: 100px;
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-        .dark .product-tagline {
-            color: #A1A1A6;
-            background: rgba(255,255,255,0.02);
-            border-color: rgba(255,255,255,0.02);
-        }
-
-        .product-desc {
-            font-size: 0.8rem;
-            line-height: 1.5;
-            color: #86868B;
+            font-size: 0.9rem;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: #F5F5F7;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            transition: color 0.2s;
         }
-        .dark .product-desc {
-            color: #A1A1A6;
+        .product-card:hover .product-title {
+            color: #4B9FFF;
         }
 
-        .product-btn {
-            background: transparent;
-            border: 1px solid rgba(0,0,0,0.08);
-            color: #1D1D1F;
-            font-weight: 500;
-            font-size: 0.7rem;
+        .product-tagline {
+            font-size: 0.55rem;
+            font-weight: 600;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            padding: 8px 16px;
+            color: #A1A1A6;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 2px 10px;
             border-radius: 100px;
-            transition: all 0.25s;
-            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            white-space: nowrap;
         }
-        .dark .product-btn {
-            border-color: rgba(255,255,255,0.08);
-            color: #F5F5F7;
+
+        /* Botón "Ver Detalles" (aparece en hover) */
+        .product-btn-wrapper {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            pointer-events: none;
+        }
+        .product-card:hover .product-btn-wrapper {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .product-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: #0071E3;
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 0.65rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: none;
+            transition: background 0.2s, transform 0.2s;
+            width: 100%;
+            cursor: pointer;
         }
         .product-btn:hover {
-            background: #1D1D1F;
-            color: white;
-            border-color: #1D1D1F;
+            background: #4B9FFF;
             transform: scale(1.02);
         }
-        .dark .product-btn:hover {
-            background: #F5F5F7;
-            color: #1D1D1F;
-            border-color: #F5F5F7;
+
+        /* ===== FILTROS VISUALES ===== */
+        .filter-btn {
+            background: #1C1C1E;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #F5F5F7;
+            transition: all 0.2s;
+            border-radius: 16px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .filter-btn:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: #242426;
+        }
+        .filter-btn.active {
+            background: #0071E3;
+            border-color: #0071E3;
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+        }
+        .filter-btn .count {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0 8px;
+            border-radius: 999px;
+            font-size: 9px;
+            font-weight: 700;
+        }
+        .filter-btn.active .count {
+            background: rgba(255, 255, 255, 0.2);
         }
 
-        /* --- Modal --- */
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            background: #1C1C1E;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
+        }
         .modal-image-container {
-            background: #f5f5f7;
-            transition: background 0.3s;
+            background: #FFFFFF;
+            border-radius: 24px 0 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .modal-image-container img {
+            max-height: 70vh;
+            max-width: 100%;
+            object-fit: contain;
         }
         .dark .modal-image-container {
-            background: #1c1c1e;
+            background: #0D0D0F;
         }
 
-        /* --- Animación de entrada --- */
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #424245;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5A5A5E;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* ===== ANIMACIONES ===== */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .animate-fade-up {
-            animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* --- Scrollbar --- */
-        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
-        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #d2d2d7; border-radius: 999px; }
-        .dark .custom-scroll::-webkit-scrollbar-thumb { background: #424245; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* --- Formulario sugerencias --- */
-        .modal-suggestion input, .modal-suggestion textarea {
-            background-color: #F5F5F7;
-            border: 1px solid rgba(0,0,0,0.08);
-            color: #1D1D1F;
+        /* ===== FORMULARIO SUGERENCIAS ===== */
+        .modal-suggestion input,
+        .modal-suggestion textarea {
+            background: #2C2C2E;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #FFFFFF;
             border-radius: 14px;
             padding: 0.75rem 1rem;
             font-size: 0.85rem;
             width: 100%;
-            transition: all 0.2s;
+            transition: border 0.2s;
         }
-        .dark .modal-suggestion input, .dark .modal-suggestion textarea {
-            background-color: #2C2C2E;
-            border-color: rgba(255,255,255,0.12);
-            color: #F5F5F7;
-        }
-        .modal-suggestion input:focus, .modal-suggestion textarea:focus {
+        .modal-suggestion input:focus,
+        .modal-suggestion textarea:focus {
             outline: none;
             border-color: #0071E3;
             box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
         }
+
+        /* ===== BANNERS ===== */
+        .banner-card {
+            background: #1C1C1E;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .banner-card:hover {
+            border-color: rgba(255, 255, 255, 0.08);
+            background: #242426;
+        }
+        .banner-card .icon-circle {
+            background: #2C2C2E;
+            border-radius: 999px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0071E3;
+        }
+
+        /* ===== HEADER ===== */
+        .glass-header {
+            background: rgba(13, 13, 15, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* ===== UTILIDADES ===== */
+        .text-subtle {
+            color: #A1A1A6;
+        }
+        .border-subtle {
+            border-color: rgba(255, 255, 255, 0.06);
+        }
     </style>
 </head>
-<body class="bg-studio-bg dark:bg-studio-darkBg text-studio-text dark:text-studio-darkText min-h-screen flex flex-col justify-between selection:bg-studio-accent selection:text-white">
 
-    <!-- Top Banner Shipping -->
-    <div class="bg-studio-grayBadge dark:bg-studio-darkCard border-b border-black/[0.06] dark:border-white/[0.08] py-2.5 px-3 text-center text-[10px] sm:text-xs tracking-tight text-studio-subtext dark:text-studio-darkSubtext font-medium flex items-center justify-center space-x-2">
-        <i class="fa-solid fa-boxes-packing text-studio-accent shrink-0 animate-bounce"></i>
-        <span><strong>Mismo costo de envío:</strong> Pide desde 1 hasta 10 productos por la misma tarifa de entrega</span>
+<body>
+
+    <!-- ===== TOP BANNER ===== -->
+    <div class="bg-[#1C1C1E] border-b border-white/5 py-2.5 px-3 text-center text-[10px] sm:text-xs tracking-tight text-[#A1A1A6] font-medium flex items-center justify-center space-x-2">
+        <i class="fa-solid fa-boxes-packing text-[#0071E3] shrink-0 animate-bounce"></i>
+        <span><strong class="text-white">Mismo costo de envío:</strong> Pide desde 1 hasta 10 productos por la misma tarifa de entrega</span>
     </div>
 
-    <!-- Header -->
-    <header class="bg-white/75 dark:bg-black/75 backdrop-blur-xl sticky top-0 z-40 border-b border-black/[0.06] dark:border-white/[0.08] transition-all duration-300">
+    <!-- ===== HEADER ===== -->
+    <header class="glass-header sticky top-0 z-40 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4">
             <div class="flex items-center space-x-3 shrink-0">
-                <div class="w-8 h-8 rounded-full bg-studio-text dark:bg-studio-darkText text-white dark:text-black flex items-center justify-center font-bold text-xs tracking-tighter shadow-sm hover:scale-105 transition-transform">
+                <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold text-xs tracking-tighter shadow-sm hover:scale-105 transition-transform">
                     M
                 </div>
                 <div>
-                    <h1 class="text-base sm:text-lg font-bold tracking-tight leading-none">MULTISTOCK</h1>
-                    <p class="text-[8px] uppercase tracking-widest text-studio-subtext dark:text-studio-darkSubtext font-semibold mt-0.5">Catálogo Oficial</p>
+                    <h1 class="text-base sm:text-lg font-bold tracking-tight leading-none text-white">MULTISTOCK</h1>
+                    <p class="text-[8px] uppercase tracking-widest text-[#A1A1A6] font-semibold mt-0.5">Catálogo Oficial</p>
                 </div>
             </div>
 
             <!-- Buscador Desktop -->
             <div class="hidden md:flex items-center flex-1 max-w-md mx-6 relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 text-studio-subtext dark:text-studio-darkSubtext text-xs"></i>
-                <input type="text" id="desktop-search" oninput="debouncedSearch(this.value)" placeholder="Buscar reloj, teclado, gafas..." class="w-full bg-studio-grayBadge dark:bg-studio-darkCard border border-transparent dark:border-white/[0.08] rounded-full py-2 pl-9 pr-4 text-xs text-studio-text dark:text-studio-darkText placeholder-studio-subtext dark:placeholder-studio-darkSubtext focus:outline-none focus:bg-white dark:focus:bg-black focus:border-studio-accent focus:ring-2 focus:ring-studio-accent/20 transition-all duration-300">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 text-[#A1A1A6] text-xs"></i>
+                <input type="text" id="desktop-search" oninput="debouncedSearch(this.value)" placeholder="Buscar reloj, teclado, gafas..." class="w-full bg-[#1C1C1E] border border-white/5 rounded-full py-2 pl-9 pr-4 text-xs text-white placeholder-[#A1A1A6] focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] transition-all duration-300">
             </div>
 
             <div class="flex items-center space-x-3">
-                <button onclick="toggleDarkMode()" class="w-8 h-8 rounded-full bg-studio-grayBadge dark:bg-studio-darkCard border border-black/[0.06] dark:border-white/[0.08] text-studio-text dark:text-studio-darkText flex items-center justify-center text-xs transition hover:scale-105" title="Cambiar Tema">
-                    <i id="theme-icon" class="fa-solid fa-moon"></i>
-                </button>
-
-                <a id="nav-whatsapp-btn" href="#" target="_blank" class="bg-studio-text dark:bg-studio-darkText hover:bg-black dark:hover:bg-white text-white dark:text-black px-4 sm:px-5 py-2 rounded-full text-[11px] font-semibold tracking-tight flex items-center space-x-2 transition shrink-0 shadow-sm hover:shadow-md">
+                <a id="nav-whatsapp-btn" href="#" target="_blank" class="bg-white hover:bg-gray-200 text-black px-4 sm:px-5 py-2 rounded-full text-[11px] font-semibold tracking-tight flex items-center space-x-2 transition shrink-0 shadow-sm hover:shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span>Contactar</span>
                 </a>
             </div>
         </div>
-        
+
         <!-- Buscador Móvil -->
         <div class="px-4 pb-3 md:hidden">
             <div class="relative w-full">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-studio-subtext dark:text-studio-darkSubtext text-xs"></i>
-                <input type="text" id="mobile-search" oninput="debouncedSearch(this.value)" placeholder="Buscar producto..." class="w-full bg-studio-grayBadge dark:bg-studio-darkCard border border-transparent dark:border-white/[0.08] rounded-full py-2 pl-9 pr-4 text-xs text-studio-text dark:text-studio-darkText placeholder-studio-subtext dark:placeholder-studio-darkSubtext focus:outline-none focus:bg-white dark:focus:bg-black focus:border-studio-accent transition-all duration-300">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-[#A1A1A6] text-xs"></i>
+                <input type="text" id="mobile-search" oninput="debouncedSearch(this.value)" placeholder="Buscar producto..." class="w-full bg-[#1C1C1E] border border-white/5 rounded-full py-2 pl-9 pr-4 text-xs text-white placeholder-[#A1A1A6] focus:outline-none focus:border-[#0071E3] transition-all duration-300">
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="bg-white dark:bg-black py-10 sm:py-16 px-4 sm:px-6 border-b border-black/[0.06] dark:border-white/[0.08] transition-colors">
+    <!-- ===== HERO ===== -->
+    <section class="py-10 sm:py-16 px-4 sm:px-6 border-b border-white/5">
         <div class="max-w-3xl mx-auto text-center space-y-3">
-            <span class="text-studio-accent text-[10px] font-semibold tracking-wider uppercase bg-studio-accent/10 px-3 py-1 rounded-full inline-block pulse-badge">
+            <span class="text-[#0071E3] text-[10px] font-semibold tracking-wider uppercase bg-[#0071E3]/10 px-3 py-1 rounded-full inline-block border border-[#0071E3]/20">
                 Novedades 2026
             </span>
-            <h2 class="text-2xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+            <h2 class="text-2xl sm:text-5xl font-extrabold tracking-tight leading-tight text-white">
                 Diseño. Calidad. Directo a tu puerta.
             </h2>
-            <p class="text-studio-subtext dark:text-studio-darkSubtext text-xs sm:text-base font-normal max-w-lg mx-auto leading-relaxed">
+            <p class="text-[#A1A1A6] text-xs sm:text-base font-normal max-w-lg mx-auto leading-relaxed">
                 Explora productos seleccionados con entrega rápida y la misma tarifa de flete.
             </p>
         </div>
     </section>
 
-    <!-- Banners Promocionales -->
+    <!-- ===== BANNERS PROMOCIONALES ===== -->
     <section class="max-w-7xl mx-auto px-4 sm:px-8 mt-6 space-y-3">
-        <div class="bg-white dark:bg-studio-darkCard border border-black/[0.06] dark:border-white/[0.08] rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm hover:border-studio-accent/40 transition-all duration-300">
+        <div class="banner-card flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3.5 text-center sm:text-left">
-                <div class="w-10 h-10 rounded-full bg-studio-grayBadge dark:bg-studio-darkBg text-studio-text dark:text-studio-darkText flex items-center justify-center shrink-0">
+                <div class="icon-circle">
                     <i class="fa-solid fa-truck-ramp-box text-base"></i>
                 </div>
                 <div>
-                    <h3 class="text-xs sm:text-sm font-semibold tracking-tight">Aprovecha al máximo tu flete</h3>
-                    <p class="text-[11px] sm:text-xs text-studio-subtext dark:text-studio-darkSubtext font-normal mt-0.5">El envío cuesta lo mismo si llevas <strong class="text-studio-text dark:text-studio-darkText font-semibold">1 o 10 productos</strong>.</p>
+                    <h3 class="text-xs sm:text-sm font-semibold text-white tracking-tight">Aprovecha al máximo tu flete</h3>
+                    <p class="text-[11px] sm:text-xs text-[#A1A1A6] font-normal mt-0.5">El envío cuesta lo mismo si llevas <strong class="text-white font-semibold">1 o 10 productos</strong>.</p>
                 </div>
             </div>
-            <button onclick="filterCategory('nuevos')" class="w-full sm:w-auto bg-studio-grayBadge dark:bg-studio-darkBg hover:bg-black/5 dark:hover:bg-white/10 text-studio-text dark:text-studio-darkText text-xs font-semibold py-2.5 px-5 rounded-full flex items-center justify-center space-x-2 shrink-0 transition cursor-pointer">
+            <button onclick="filterCategory('nuevos')" class="w-full sm:w-auto bg-[#2C2C2E] hover:bg-[#3A3A3C] text-white text-xs font-semibold py-2.5 px-5 rounded-full flex items-center justify-center space-x-2 shrink-0 transition cursor-pointer border border-white/5">
                 <i class="fa-solid fa-cart-plus text-xs"></i>
                 <span>Ver accesorios desde $2-$3</span>
             </button>
         </div>
 
-        <div class="bg-gradient-to-r from-emerald-50/50 to-white dark:from-emerald-950/20 dark:to-studio-darkCard border border-emerald-500/20 dark:border-emerald-500/10 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm hover:border-emerald-500/40 transition-all duration-300">
+        <div class="banner-card flex flex-col sm:flex-row items-center justify-between gap-4 bg-gradient-to-r from-[#0A2A1A] to-[#1C1C1E] border-emerald-500/20 hover:border-emerald-500/40">
             <div class="flex items-center space-x-3.5 text-center sm:text-left">
-                <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                <div class="icon-circle bg-emerald-900/40 text-emerald-400 border border-emerald-500/20">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                 </div>
                 <div>
-                    <h3 class="text-xs sm:text-sm font-semibold text-emerald-950 dark:text-emerald-200 tracking-tight">Canal Oficial MultiStock Sv</h3>
-                    <p class="text-[11px] sm:text-xs text-emerald-800/80 dark:text-emerald-400/80 font-normal mt-0.5">Entérate de nuevos ingresos y ofertas antes que nadie.</p>
+                    <h3 class="text-xs sm:text-sm font-semibold text-emerald-200 tracking-tight">Canal Oficial MultiStock Sv</h3>
+                    <p class="text-[11px] sm:text-xs text-emerald-400/80 font-normal mt-0.5">Entérate de nuevos ingresos y ofertas antes que nadie.</p>
                 </div>
             </div>
             <a id="banner-channel-btn" href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold py-2.5 px-5 rounded-full flex items-center justify-center space-x-2 shrink-0 transition shadow-sm hover:shadow-md">
@@ -370,19 +461,19 @@
         </div>
     </section>
 
-    <!-- Main Content -->
+    <!-- ===== MAIN CONTENT ===== -->
     <main class="max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-10 flex-grow w-full space-y-8">
-        
-        <!-- Filtros -->
+
+        <!-- FILTROS -->
         <section class="space-y-4">
             <div class="flex items-center justify-between">
                 <div>
-                    <h3 class="text-[11px] uppercase font-bold text-studio-subtext dark:text-studio-darkSubtext tracking-wider flex items-center space-x-2">
-                        <i class="fa-solid fa-compass text-studio-accent"></i>
+                    <h3 class="text-[11px] uppercase font-bold text-[#A1A1A6] tracking-wider flex items-center space-x-2">
+                        <i class="fa-solid fa-compass text-[#0071E3]"></i>
                         <span>Explorar por Categoría</span>
                     </h3>
                 </div>
-                <button id="clear-filters-btn" onclick="clearAllFilters()" class="hidden text-xs text-studio-accent hover:underline font-semibold flex items-center space-x-1 transition">
+                <button id="clear-filters-btn" onclick="clearAllFilters()" class="hidden text-xs text-[#0071E3] hover:underline font-semibold flex items-center space-x-1 transition">
                     <i class="fa-solid fa-rotate-left text-[10px]"></i>
                     <span>Restablecer Filtros</span>
                 </button>
@@ -393,128 +484,125 @@
             </div>
         </section>
 
-        <!-- Barra de Controles -->
-        <div class="flex flex-col sm:flex-row items-center justify-between border-b border-black/[0.06] dark:border-white/[0.08] pb-4 gap-4">
+        <!-- BARRA DE CONTROLES -->
+        <div class="flex flex-col sm:flex-row items-center justify-between border-b border-white/5 pb-4 gap-4">
             <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-start">
-                <span id="product-count-badge" class="text-xs font-semibold text-studio-text dark:text-studio-darkText bg-studio-grayBadge dark:bg-studio-darkCard border border-black/[0.06] dark:border-white/[0.08] px-3.5 py-1.5 rounded-full shrink-0 shadow-sm">
+                <span id="product-count-badge" class="text-xs font-semibold text-white bg-[#1C1C1E] border border-white/5 px-3.5 py-1.5 rounded-full shrink-0 shadow-sm">
                     Cargando productos...
                 </span>
 
                 <div class="relative shrink-0">
-                    <select id="sort-select" onchange="handleSortChange(this.value)" class="bg-studio-grayBadge dark:bg-studio-darkCard text-studio-text dark:text-studio-darkText text-xs font-semibold py-1.5 pl-3 pr-8 rounded-full border border-black/[0.06] dark:border-white/[0.08] appearance-none focus:outline-none focus:border-studio-accent cursor-pointer transition">
+                    <select id="sort-select" onchange="handleSortChange(this.value)" class="bg-[#1C1C1E] text-white text-xs font-semibold py-1.5 pl-3 pr-8 rounded-full border border-white/5 appearance-none focus:outline-none focus:border-[#0071E3] cursor-pointer transition">
                         <option value="default">Destacados</option>
                         <option value="price-asc">Precio: Menor a Mayor</option>
                         <option value="price-desc">Precio: Mayor a Menor</option>
                     </select>
-                    <i class="fa-solid fa-chevron-down absolute right-3 top-2.5 text-[9px] text-studio-subtext pointer-events-none"></i>
+                    <i class="fa-solid fa-chevron-down absolute right-3 top-2.5 text-[9px] text-[#A1A1A6] pointer-events-none"></i>
                 </div>
             </div>
         </div>
 
-        <!-- Grid de productos -->
-        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- GRID DE PRODUCTOS (3 columnas en escritorio) -->
+        <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
         </div>
 
-        <!-- Estado vacío -->
+        <!-- ESTADO VACÍO -->
         <div id="no-results" class="hidden text-center py-16 space-y-3">
-            <i class="fa-solid fa-magnifying-glass text-3xl text-studio-subtext animate-pulse"></i>
-            <h4 class="text-base text-studio-text dark:text-studio-darkText font-semibold">No encontramos resultados</h4>
-            <p class="text-xs text-studio-subtext dark:text-studio-darkSubtext">Intenta buscar con otra palabra clave o limpia los filtros visuales.</p>
-            <button onclick="clearAllFilters()" class="mt-3 bg-studio-accent text-white text-xs px-4 py-2 rounded-full font-semibold inline-block">
+            <i class="fa-solid fa-magnifying-glass text-3xl text-[#A1A1A6] animate-pulse"></i>
+            <h4 class="text-base text-white font-semibold">No encontramos resultados</h4>
+            <p class="text-xs text-[#A1A1A6]">Intenta buscar con otra palabra clave o limpia los filtros visuales.</p>
+            <button onclick="clearAllFilters()" class="mt-3 bg-[#0071E3] text-white text-xs px-4 py-2 rounded-full font-semibold inline-block hover:bg-[#4B9FFF] transition">
                 Ver todos los productos
             </button>
         </div>
     </main>
 
-    <!-- Modal Detalle Producto -->
-    <div id="product-modal" class="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-md hidden z-50 flex flex-col justify-between overflow-hidden transition-opacity duration-300 opacity-0 perspective-1000">
-        
-        <div class="modal-animate-content flex flex-col h-full w-full justify-between">
-            <div class="flex items-center justify-between px-4 sm:px-8 py-3.5 border-b border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-studio-darkCard shrink-0 z-20">
+    <!-- ===== MODAL DETALLE PRODUCTO ===== -->
+    <div id="product-modal" class="fixed inset-0 modal-overlay hidden z-50 flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div class="modal-content w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col lg:flex-row">
+
+            <!-- Cabecera del modal -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-white/5 shrink-0">
                 <div class="flex items-center space-x-2.5 overflow-hidden pr-2">
-                    <span class="text-studio-accent text-[10px] font-bold uppercase tracking-wider bg-studio-accent/10 px-2.5 py-0.5 rounded-full shrink-0">
+                    <span class="text-[#0071E3] text-[10px] font-bold uppercase tracking-wider bg-[#0071E3]/10 px-2.5 py-0.5 rounded-full shrink-0">
                         Detalles
                     </span>
-                    <h3 id="modal-title" class="text-sm sm:text-base font-semibold truncate">Título Producto</h3>
+                    <h3 id="modal-title" class="text-sm sm:text-base font-semibold truncate text-white">Título Producto</h3>
                 </div>
-                
-                <button onclick="closeProductModal()" class="bg-studio-grayBadge dark:bg-studio-darkBg hover:bg-black/5 text-studio-text dark:text-studio-darkText px-3 py-1.5 rounded-full transition flex items-center space-x-1 text-xs font-semibold cursor-pointer shrink-0">
+                <button onclick="closeProductModal()" class="bg-[#2C2C2E] hover:bg-[#3A3A3C] text-white px-3 py-1.5 rounded-full transition flex items-center space-x-1 text-xs font-semibold cursor-pointer shrink-0">
                     <span class="hidden sm:inline">Cerrar</span>
                     <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
             </div>
 
-            <div class="flex-grow flex flex-col lg:grid lg:grid-cols-12 bg-white dark:bg-black overflow-y-auto lg:overflow-hidden">
-                
-                <div class="w-full lg:col-span-7 xl:col-span-8 modal-image-container flex items-center justify-center p-4 sm:p-8 min-h-[40vh] sm:min-h-[50vh] lg:min-h-0 relative border-b lg:border-b-0 lg:border-r border-black/[0.06] dark:border-white/[0.08] shrink-0">
-                    <img id="modal-main-image" src="" alt="Vista Previa" class="max-w-full max-h-[38vh] sm:max-h-[48vh] lg:max-h-[70vh] object-contain drop-shadow-md transition-all duration-300">
+            <!-- Cuerpo del modal -->
+            <div class="flex flex-col lg:flex-row flex-grow overflow-y-auto">
+                <!-- Imagen -->
+                <div class="modal-image-container w-full lg:w-3/5 p-6 flex items-center justify-center min-h-[300px]">
+                    <img id="modal-main-image" src="" alt="Vista Previa" class="max-w-full max-h-[50vh] object-contain drop-shadow-lg">
                 </div>
 
-                <div class="w-full lg:col-span-5 xl:col-span-4 bg-white dark:bg-studio-darkCard p-5 sm:p-8 flex flex-col justify-between overflow-y-auto custom-scroll space-y-6">
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.08] pb-4">
-                            <div>
-                                <span id="modal-price" class="text-2xl sm:text-3xl font-extrabold">$0.00</span>
-                                <span id="modal-shipping-note" class="text-xs text-studio-subtext dark:text-studio-darkSubtext block mt-0.5 font-normal"></span>
-                            </div>
-                            <span id="modal-status-badge" class="text-[10px] text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 px-3 py-1 rounded-full font-semibold uppercase tracking-wider">
-                                Disponible
-                            </span>
-                        </div>
-
-                        <div id="cross-selling-box" class="bg-studio-grayBadge dark:bg-studio-darkBg rounded-2xl p-4 space-y-1.5 border border-black/[0.04] dark:border-white/[0.04]">
-                            <div class="flex items-center space-x-2 text-studio-accent text-xs font-semibold">
-                                <i class="fa-solid fa-piggy-bank"></i>
-                                <span>¡Sácale provecho a tu flete!</span>
-                            </div>
-                            <p class="text-xs text-studio-subtext dark:text-studio-darkSubtext font-normal leading-relaxed">
-                                El envío no cambia de precio si sumas productos extra de $2.00 o $3.50 a este pedido.
-                            </p>
-                        </div>
-
+                <!-- Detalles -->
+                <div class="w-full lg:w-2/5 p-6 space-y-6 overflow-y-auto">
+                    <div class="flex items-baseline justify-between border-b border-white/5 pb-4">
                         <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[11px] uppercase font-bold text-studio-subtext dark:text-studio-darkSubtext tracking-wider">Variante:</span>
-                                <span class="text-xs font-medium" id="selected-variant-name">-</span>
-                            </div>
-                            <div id="modal-thumbs-container" class="flex lg:grid lg:grid-cols-4 gap-2 overflow-x-auto no-scrollbar sm:custom-scroll pb-1 lg:pb-0">
-                            </div>
+                            <span id="modal-price" class="text-2xl sm:text-3xl font-extrabold text-white">$0.00</span>
+                            <span id="modal-shipping-note" class="text-xs text-[#A1A1A6] block mt-0.5 font-normal"></span>
                         </div>
+                        <span id="modal-status-badge" class="text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1 rounded-full font-semibold uppercase tracking-wider">
+                            Disponible
+                        </span>
+                    </div>
 
-                        <div class="space-y-1">
-                            <h4 class="text-[11px] uppercase font-bold text-studio-subtext dark:text-studio-darkSubtext tracking-wider">Descripción:</h4>
-                            <p id="modal-short-desc" class="text-xs leading-relaxed text-studio-text dark:text-studio-darkText font-normal">Descripción...</p>
+                    <div class="bg-[#2C2C2E] rounded-2xl p-4 space-y-1.5 border border-white/5">
+                        <div class="flex items-center space-x-2 text-[#0071E3] text-xs font-semibold">
+                            <i class="fa-solid fa-piggy-bank"></i>
+                            <span>¡Sácale provecho a tu flete!</span>
                         </div>
+                        <p class="text-xs text-[#A1A1A6] font-normal leading-relaxed">
+                            El envío no cambia de precio si sumas productos extra de $2.00 o $3.50 a este pedido.
+                        </p>
+                    </div>
 
-                        <div class="space-y-2">
-                            <h4 class="text-[11px] uppercase font-bold text-studio-subtext dark:text-studio-darkSubtext tracking-wider">Características:</h4>
-                            <ul id="modal-features-list" class="space-y-2">
-                            </ul>
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] uppercase font-bold text-[#A1A1A6] tracking-wider">Variante:</span>
+                            <span class="text-xs font-medium text-white" id="selected-variant-name">-</span>
+                        </div>
+                        <div id="modal-thumbs-container" class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+                            <!-- Generado por JS -->
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t border-black/[0.06] dark:border-white/[0.08] space-y-2">
-                        <a id="modal-whatsapp-btn" href="#" target="_blank" class="w-full bg-studio-accent hover:bg-studio-accentHover text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition text-xs tracking-wider uppercase shadow-md shadow-studio-accent/20">
+                    <div class="space-y-1">
+                        <h4 class="text-[11px] uppercase font-bold text-[#A1A1A6] tracking-wider">Descripción:</h4>
+                        <p id="modal-short-desc" class="text-xs leading-relaxed text-white font-normal">Descripción...</p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="text-[11px] uppercase font-bold text-[#A1A1A6] tracking-wider">Características:</h4>
+                        <ul id="modal-features-list" class="space-y-2">
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/5 space-y-2">
+                        <a id="modal-whatsapp-btn" href="#" target="_blank" class="w-full bg-[#0071E3] hover:bg-[#4B9FFF] text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition text-xs tracking-wider uppercase shadow-lg shadow-[#0071E3]/20">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
                             <span>Solicitar por WhatsApp</span>
                         </a>
-                        <p class="text-[10px] text-center text-studio-subtext dark:text-studio-darkSubtext font-normal">Coordinación directa para entrega y tarifa de envío.</p>
+                        <p class="text-[10px] text-center text-[#A1A1A6] font-normal">Coordinación directa para entrega y tarifa de envío.</p>
                     </div>
-
                 </div>
-
             </div>
         </div>
-
     </div>
 
-    <!-- Modal Buzón de Sugerencias -->
-    <div id="suggestion-modal" class="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-md hidden z-[60] flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 perspective-1000">
-        <div class="modal-animate-content bg-white dark:bg-studio-darkCard border border-black/[0.06] dark:border-white/[0.08] rounded-3xl max-w-lg w-full shadow-2xl overflow-hidden">
-            <div class="flex items-center justify-between px-6 py-4 border-b border-black/[0.06] dark:border-white/[0.08]">
-                <h2 class="text-base font-semibold">📬 Buzón de Sugerencias</h2>
-                <button onclick="closeSuggestionModal()" class="text-studio-subtext hover:text-studio-text dark:hover:text-studio-darkText transition text-lg">
+    <!-- ===== MODAL BUZÓN DE SUGERENCIAS ===== -->
+    <div id="suggestion-modal" class="fixed inset-0 modal-overlay hidden z-[60] flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div class="modal-content w-full max-w-lg">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-white/5">
+                <h2 class="text-base font-semibold text-white">📬 Buzón de Sugerencias</h2>
+                <button onclick="closeSuggestionModal()" class="text-[#A1A1A6] hover:text-white transition text-lg">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -522,18 +610,18 @@
                 <form id="suggestion-form" onsubmit="sendSuggestion(event)">
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-[10px] uppercase tracking-wider text-studio-subtext dark:text-studio-darkSubtext font-bold mb-1.5">Tu nombre</label>
+                            <label class="block text-[10px] uppercase tracking-wider text-[#A1A1A6] font-bold mb-1.5">Tu nombre</label>
                             <input type="text" id="sug-name" placeholder="Ej: Carlos" required>
                         </div>
                         <div>
-                            <label class="block text-[10px] uppercase tracking-wider text-studio-subtext dark:text-studio-darkSubtext font-bold mb-1.5">Producto que sugieres</label>
+                            <label class="block text-[10px] uppercase tracking-wider text-[#A1A1A6] font-bold mb-1.5">Producto que sugieres</label>
                             <input type="text" id="sug-product" placeholder="Ej: Reloj deportivo con GPS" required>
                         </div>
                         <div>
-                            <label class="block text-[10px] uppercase tracking-wider text-studio-subtext dark:text-studio-darkSubtext font-bold mb-1.5">Detalles</label>
+                            <label class="block text-[10px] uppercase tracking-wider text-[#A1A1A6] font-bold mb-1.5">Detalles</label>
                             <textarea id="sug-desc" rows="3" placeholder="Por qué te gustaría encontrarlo, color, precio estimado..." required class="resize-none"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-studio-text dark:bg-studio-darkText hover:bg-black text-white dark:text-black font-semibold py-3 rounded-xl flex items-center justify-center space-x-2 transition text-xs tracking-wider uppercase shadow-md">
+                        <button type="submit" class="w-full bg-white hover:bg-gray-200 text-black font-semibold py-3 rounded-xl flex items-center justify-center space-x-2 transition text-xs tracking-wider uppercase shadow-md">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
                             <span>Enviar por WhatsApp</span>
                         </button>
@@ -543,47 +631,49 @@
         </div>
     </div>
 
-    <!-- Botones Flotantes -->
+    <!-- ===== BOTONES FLOTANTES ===== -->
     <a id="floating-channel-btn" href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank" class="fixed bottom-5 left-5 z-40 bg-emerald-600 hover:bg-emerald-700 text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-xl flex items-center space-x-2 transition hover:scale-105 active:scale-95">
         <i class="fa-brands fa-whatsapp text-lg"></i>
         <span class="hidden sm:inline text-xs font-semibold">Canal MultiStock</span>
     </a>
 
-    <button onclick="openSuggestionModal()" class="fixed bottom-5 right-5 z-40 bg-studio-text dark:bg-studio-darkText hover:bg-black text-white dark:text-black p-3 sm:px-4 sm:py-3 rounded-full shadow-xl flex items-center space-x-2 transition hover:scale-105 active:scale-95">
+    <button onclick="openSuggestionModal()" class="fixed bottom-5 right-5 z-40 bg-white hover:bg-gray-200 text-black p-3 sm:px-4 sm:py-3 rounded-full shadow-xl flex items-center space-x-2 transition hover:scale-105 active:scale-95">
         <i class="fa-regular fa-pen-to-square text-lg"></i>
         <span class="hidden sm:inline text-xs font-semibold">Sugerir producto</span>
     </button>
 
-    <!-- Footer Features -->
-    <section class="bg-white dark:bg-black border-t border-black/[0.06] dark:border-white/[0.08] py-10 px-4 sm:px-6">
+    <!-- ===== FOOTER FEATURES ===== -->
+    <section class="border-t border-white/5 py-10 px-4 sm:px-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-xs">
-            <div class="space-y-1.5 p-5 rounded-2xl bg-studio-grayBadge/50 dark:bg-studio-darkCard/50 border border-black/[0.04] dark:border-white/[0.04] hover:border-studio-accent/30 transition-all duration-300">
-                <i class="fa-solid fa-shield-halved text-studio-accent text-lg mb-1"></i>
-                <h4 class="font-bold uppercase text-[11px] tracking-wider">Compra Segura</h4>
-                <p class="text-studio-subtext dark:text-studio-darkSubtext font-normal leading-relaxed text-[11px]">Coordinación directa por WhatsApp. Pagas al recibir o coordinar.</p>
+            <div class="space-y-1.5 p-5 rounded-2xl bg-[#1C1C1E] border border-white/5 hover:border-[#0071E3]/30 transition-all duration-300">
+                <i class="fa-solid fa-shield-halved text-[#0071E3] text-lg mb-1"></i>
+                <h4 class="font-bold uppercase text-[11px] tracking-wider text-white">Compra Segura</h4>
+                <p class="text-[#A1A1A6] font-normal leading-relaxed text-[11px]">Coordinación directa por WhatsApp. Pagas al recibir o coordinar.</p>
             </div>
-            <div class="space-y-1.5 p-5 rounded-2xl bg-studio-grayBadge/50 dark:bg-studio-darkCard/50 border border-black/[0.04] dark:border-white/[0.04] hover:border-studio-accent/30 transition-all duration-300">
-                <i class="fa-solid fa-boxes-packing text-studio-accent text-lg mb-1"></i>
-                <h4 class="font-bold uppercase text-[11px] tracking-wider">Envío Único</h4>
-                <p class="text-studio-subtext dark:text-studio-darkSubtext font-normal leading-relaxed text-[11px]">Pide 1 o varios artículos por la misma tarifa de flete a tu zona.</p>
+            <div class="space-y-1.5 p-5 rounded-2xl bg-[#1C1C1E] border border-white/5 hover:border-[#0071E3]/30 transition-all duration-300">
+                <i class="fa-solid fa-boxes-packing text-[#0071E3] text-lg mb-1"></i>
+                <h4 class="font-bold uppercase text-[11px] tracking-wider text-white">Envío Único</h4>
+                <p class="text-[#A1A1A6] font-normal leading-relaxed text-[11px]">Pide 1 o varios artículos por la misma tarifa de flete a tu zona.</p>
             </div>
-            <div class="space-y-1.5 p-5 rounded-2xl bg-studio-grayBadge/50 dark:bg-studio-darkCard/50 border border-black/[0.04] dark:border-white/[0.04] hover:border-studio-accent/30 transition-all duration-300">
-                <i class="fa-solid fa-gem text-studio-accent text-lg mb-1"></i>
-                <h4 class="font-bold uppercase text-[11px] tracking-wider">Garantía de Calidad</h4>
-                <p class="text-studio-subtext dark:text-studio-darkSubtext font-normal leading-relaxed text-[11px]">Revisamos y probamos cada artículo antes de despacharlo.</p>
+            <div class="space-y-1.5 p-5 rounded-2xl bg-[#1C1C1E] border border-white/5 hover:border-[#0071E3]/30 transition-all duration-300">
+                <i class="fa-solid fa-gem text-[#0071E3] text-lg mb-1"></i>
+                <h4 class="font-bold uppercase text-[11px] tracking-wider text-white">Garantía de Calidad</h4>
+                <p class="text-[#A1A1A6] font-normal leading-relaxed text-[11px]">Revisamos y probamos cada artículo antes de despacharlo.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer Copyright -->
-    <footer class="bg-studio-grayBadge dark:bg-studio-darkCard border-t border-black/[0.06] dark:border-white/[0.08] py-6 text-center text-[10px] tracking-widest text-studio-subtext dark:text-studio-darkSubtext uppercase font-semibold">
+    <!-- ===== FOOTER COPYRIGHT ===== -->
+    <footer class="border-t border-white/5 py-6 text-center text-[10px] tracking-widest text-[#A1A1A6] uppercase font-semibold">
         <p>© 2026 MULTISTOCK EL SALVADOR. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- ============================================================ -->
     <!-- JAVASCRIPT -->
+    <!-- ============================================================ -->
     <script>
-        const WHATSAPP_NUMBER = "+50371323853"; 
-        const WHATSAPP_CHANNEL_URL = "https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42"; 
+        const WHATSAPP_NUMBER = "+50371323853";
+        const WHATSAPP_CHANNEL_URL = "https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42";
 
         const VISUAL_CATEGORIES = [
             { id: 'todos', label: 'Todos', icon: 'fa-solid fa-border-all', desc: 'Ver catálogo entero' },
@@ -593,507 +683,485 @@
             { id: 'combos', label: 'Sets & Combos', icon: 'fa-solid fa-box-open', desc: 'Packs promocionales' }
         ];
 
-        // PRODUCTOS (eliminado el id 20)
-        const PRODUCTS = [
-            {
-                id: 2,
-                title: "Cable de Carga Rápida USB-C a Tipo C (60W Trenzado)",
-                price: "$3.00",
-                numericPrice: 3.00,
-                requiresShippingFee: true,
-                badgeLeft: "Carga 60W",
-                badgeRight: "Novedad",
-                tagline: "Fast Charge",
-                category: ["nuevos", "tecnologia"],
-                isNew: true,
-                available: true,
-                shortDesc: "Cable trenzado de nylon de alta resistencia USB-C a Tipo C, carga rápida de 60W para iPhone 15/16/17, iPad, Samsung y laptops.",
-                features: [
-                    "Soporta carga rápida de hasta 60W y transferencia de datos",
-                    "Fabricado en nylon trenzado de alta resistencia contra enredos y desgarros",
-                    "Compatible con iPhone 15/16/17, iPad, Samsung y dispositivos tipo C",
-                    "Mismo envío si agregas más productos a tu compra"
-                ],
-                variants: [
-                    { name: "Blanco / Plata", image: "cable-c-1.jpg" },
-                    { name: "Negro", image: "cable-c-2.jpg" },
-                    { name: "Azul", image: "cable-c-azul.jpg" },
-                    { name: "Púrpura", image: "cable-c-purpura.jpg" },
-                    { name: "Verde", image: "cable-c-verde.jpg" },
-                    { name: "Rosa", image: "cable-c-rosa.jpg" }
-                ]
-            },
-            {
-                id: 19,
-                title: "Gafas de Moda Vintage con Montura Geométrica para Hombre",
-                price: "$5.00",
-                numericPrice: 5.00,
-                requiresShippingFee: true,
-                badgeLeft: "Varios Estilos",
-                badgeRight: "Novedad",
-                tagline: "Vintage Style",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Gafas de sol de estilo vintage para hombre con montura geométrica media pasta, ideales para el uso diario y protección estilizada.",
-                features: [
-                    "Diseño vintage de corte geométrico elegante y moderno",
-                    "Montura ligera y resistente con acabados metálicos y oscuros",
-                    "Disponible en varios colores (se consulta existencia al pedir)",
-                    "Mismo envío si agregas más productos a tu compra"
-                ],
-                variants: [
-                    { name: "Marco Dorado/Negro Lente Gris", image: "lentes1-1.jpg" },
-                    { name: "Variante 2", image: "lentes1-2.jpg" },
-                    { name: "Variante 3", image: "lentes1-3.jpg" },
-                    { name: "Variante 4", image: "lentes1-4.jpg" }
-                ]
-            },
-            {
-                id: 1,
-                title: "Gafas de Moda Casual Retro para Mujer",
-                price: "$5.00",
-                numericPrice: 5.00,
-                requiresShippingFee: true,
-                badgeLeft: "Varios Estilos",
-                badgeRight: "Novedad",
-                tagline: "Retro Streetwear",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Gafas de sol para mujer con diseño retro casual, marco resistente y patillas texturizadas de estilo urbano.",
-                features: [
-                    "Diseño retro de corte urbano perfecto para uso diario",
-                    "Marco elegante con acabado traslúcido y patillas estilo madera",
-                    "Disponible en varios colores (se consulta existencia al pedir)",
-                    "Mismo envío si agregas más productos a tu compra"
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "lentes2-1.jpg" },
-                    { name: "Variante 2", image: "lentes2-2.jpg" },
-                    { name: "Variante 3", image: "lentes2-3.jpg" },
-                    { name: "Variante 4", image: "lentes2-4.jpg" }
-                ]
-            },
-            {
-                id: 3,
-                title: "Set de Reloj Yolako + Pulsera Elegante de Corazón",
-                price: "$7.00",
-                numericPrice: 7.00,
-                requiresShippingFee: true,
-                badgeLeft: "Set 2 Piezas",
-                badgeRight: "Novedad",
-                tagline: "Glamour Set",
-                category: ["nuevos", "accesorios", "combos"],
-                isNew: true,
-                available: true,
-                shortDesc: "Juego femenino con esfera efecto esmerilado brillante y pulsera ajustable con dijes de corazón.",
-                features: [
-                    "Incluye Reloj Yolako + Pulsera combinada de regalo",
-                    "Esfera con acabado esmerilado que destella con la luz",
-                    "Correa cómoda de piel sintética suave",
-                    "Mismo envío si agregas más productos a tu compra"
-                ],
-                variants: [
-                    { name: "Set Principal", image: "relog-mujer1-principal.jpg" },
-                    { name: "Detalle Reloj & Esfera", image: "relog-mujer1-2.jpg" },
-                    { name: "Vista Pulsera & Ajuste", image: "relog-mujer1-3.jpg" }
-                ]
-            },
-            {
-                id: 4,
-                title: "Cartera Larga Multifuncional (Diseño Triangular)",
-                price: "$8.00",
-                numericPrice: 8.00,
-                requiresShippingFee: true,
-                badgeLeft: "Elegante",
-                badgeRight: "Novedad",
-                tagline: "Moda Dama",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Billetera espaciosa de PU texturizado con broche de solapa triangular metálico y tarjetero múltiple.",
-                features: [
-                    "Diseño geométrico moderno con broche metálico resistente",
-                    "Compartimentos organizados para celular, tarjetas y billetes",
-                    "Bolsillo interno con cremallera para monedas",
-                    "Mismo envío si agregas más productos a tu compra"
-                ],
-                variants: [
-                    { name: "Vista Principal Solapa", image: "cartera2-principal.jpg" },
-                    { name: "Capacidad Interior", image: "cartera2-2.jpg" },
-                    { name: "Vista Posterior", image: "cartera2-3.jpg" },
-                    { name: "Detalle Broche Metal", image: "cartera2-4.jpg" },
-                    { name: "Perfil Completo", image: "cartera2-5.jpg" }
-                ]
-            },
-            {
-                id: 5,
-                title: "Collar Choker de Perlas de Imitación",
-                price: "$3.50",
-                numericPrice: 3.50,
-                requiresShippingFee: true,
-                badgeLeft: "Moda Dama",
-                badgeRight: "Novedad",
-                tagline: "Pearl Choker",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Elegante gargantilla con perlas de imitación ajustables, ideal para complementar cualquier estilo.",
-                features: [
-                    "Diseño femenino de alta tendencia",
-                    "Broche y cadena de ajuste seguro",
-                    "Mismo envío si agregas más productos a tu compra"
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "collar1-1.jpg" },
-                    { name: "Detalle de Perlas", image: "collar1-2.jpg" },
-                    { name: "Estilo Puesto", image: "collar1-3.jpg" }
-                ]
-            },
-            {
-                id: 6,
-                title: "Set de 2 Delineadores de Ojos en Gel Miss Rose",
-                price: "$3.50",
-                numericPrice: 3.50,
-                requiresShippingFee: true,
-                badgeLeft: "Set de 2",
-                badgeRight: "Novedad",
-                tagline: "Smooth Gel",
-                category: ["nuevos", "accesorios", "combos"],
-                isNew: true,
-                available: true,
-                shortDesc: "Delineador y sombra en gel de larga duración en tonos negro y marrón con acabado mate.",
-                features: [
-                    "Incluye 2 piezas: Tonos Negro y Marrón",
-                    "Acabado mate de larga duración y fácil aplicación",
-                    "Ideal para ojos de gato y looks ahumados",
-                    "Mismo envío si agregas más productos a tu compra"
-                ],
-                variants: [
-                    { name: "Set 2Pcs Principal", image: "delineador1-1.jpg" },
-                    { name: "Presentación Producto", image: "delineador1-2.jpg" },
-                    { name: "Detalle Aplicador", image: "delineador1-3.jpg" },
-                    { name: "Ejemplo de Maquillaje", image: "delineador1-4.jpg" }
-                ]
-            },
-            {
-                id: 7,
-                title: "Pulsera Trébol de Moda en Acero Inoxidable",
-                price: "$2.00",
-                numericPrice: 2.00,
-                requiresShippingFee: true,
-                badgeLeft: "Varios Colores",
-                badgeRight: "Novedad",
-                tagline: "Stainless Steel",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Pulsera estilo trébol de alta gama fabricada en acero inoxidable para uso diario.",
-                features: [
-                    "Material de acero inoxidable resistente y duradero",
-                    "Disponible en varios colores (se consulta existencia al pedir)",
-                    "Mismo envío si agregas más productos a tu compra"
-                ],
-                variants: [
-                    { name: "Colores Disponibles", image: "pulsera1-1.jpg" }
-                ]
-            },
-            {
-                id: 8,
-                title: "Reloj Elegante de Cuarzo para Hombre (Estilo Vintage)",
-                price: "$10.00",
-                numericPrice: 10.00,
-                requiresShippingFee: true,
-                badgeLeft: "Varios Estilos",
-                badgeRight: "Novedad",
-                tagline: "SHAARMS / IRLANDY",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Reloj masculino de esfera redonda con correa de aleación y ventana de fecha/día.",
-                features: [
-                    "Mecanismo de cuarzo con correa de aleación metálica",
-                    "Diseño retro elegante para uso casual o formal",
-                    "Disponible en varios estilos/colores (se consulta existencia al pedir)",
-                    "Mismo envío si agregas más productos a tu compra"
-                ],
-                variants: [
-                    { name: "Esfera Azul Acero", image: "relog-hombre1-1.jpg" },
-                    { name: "Vista Puesto", image: "relog-hombre1-2.jpg" }
-                ]
-            },
-            // id 20 eliminado (humidificador)
-            {
-                id: 9,
-                title: "Reloj Elegante Ultra Delgado de Dama",
-                price: "$25.00",
-                numericPrice: 25.00,
-                requiresShippingFee: false,
-                badgeLeft: "6 Variantes",
-                badgeRight: "Edición Dama",
-                tagline: "Ultra-Slim",
-                category: ["accesorios"],
-                isNew: false,
-                available: true,
-                shortDesc: "Diseño minimalista de alta precisión con caja metálica ultradelgada y acabados de lujo.",
-                features: [
-                    "Grosor ultradelgado de 7 mm con acabado pulido",
-                    "Mecanismo de cuarzo de alta precisión con batería incluida",
-                    "Extensible cómodo y elegante de alta calidad"
-                ],
-                variants: [
-                    { name: "Blanco", image: "blanco.jpg" },
-                    { name: "Vino / Borgoña", image: "marron.jpg" },
-                    { name: "Negro Clásico", image: "negro-carablanca.jpg" },
-                    { name: "Púrpura / Lila", image: "rosa.jpg" },
-                    { name: "Rosa Pastel", image: "rosa2.jpg" },
-                    { name: "Verde Esmeralda", image: "verde.jpg" }
-                ]
-            },
-            {
-                id: 10,
-                title: "Cartera Larga Minimalista con Hebilla",
-                price: "$22.00",
-                numericPrice: 22.00,
-                requiresShippingFee: false,
-                badgeLeft: "10 Fotos",
-                badgeRight: "Estilo Coreano",
-                tagline: "High Sense",
-                category: ["accesorios"],
-                isNew: false,
-                available: true,
-                shortDesc: "Diseño estilo coreano con tarjetero amplio, compartimento con cierre y elegante hebilla a contraste.",
-                features: [
-                    "Múltiples ranuras para tarjetas y amplio espacio para billetes o móvil",
-                    "Cierre de cremallera metálica suave y broche de hebilla seguro",
-                    "Material de cuero sintético (PU) de alta durabilidad"
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "catera-principal.jpg" },
-                    { name: "Rosa Pastel", image: "cartera-rosada.jpg" },
-                    { name: "Negro Clásico", image: "cartera-negra.jpg" },
-                    { name: "Blanco / Crema", image: "cartera-blanca.jpg" },
-                    { name: "Rojo Elegante", image: "cartera-roja.jpg" },
-                    { name: "Azul", image: "cartera-azul.jpg" },
-                    { name: "Amarillo", image: "cartera-amarilla.jpg" },
-                    { name: "Distribución Interior", image: "cartera-interior.jpg" },
-                    { name: "Vista Interior Vacío", image: "cartera-interior-vacio.jpg" },
-                    { name: "Detalle Zipper", image: "cartera-zipper.jpg" }
-                ]
-            },
-            {
-                id: 11,
-                title: "Teclado Mecánico Gaming MageGee TS91 RGB (60%)",
-                price: "$25.00",
-                numericPrice: 25.00,
-                requiresShippingFee: false,
-                badgeLeft: "MageGee TS91",
-                badgeRight: "60% Layout",
-                tagline: "Mechanical RGB",
-                category: ["tecnologia"],
-                isNew: false,
-                available: true,
-                shortDesc: "Teclado ultra compacto de 61 teclas con retroiluminación RGB dinámica y cable tipo C extraíble.",
-                features: [
-                    "Diseño compacto 60% para máximo espacio en el escritorio",
-                    "Múltiples modos de iluminación RGB con ajuste de brillo y velocidad",
-                    "Conexión estable por cable USB Type-C desmontable"
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "teclado2-principal.jpg" },
-                    { name: "Vista Ángulo", image: "teclado2-2.jpg" },
-                    { name: "Detalle Lateral", image: "teclado2-3.jpg" },
-                    { name: "Efecto Iluminación", image: "teclado2-4.jpg" },
-                    { name: "Plano Superior", image: "teclado2-5.jpg" },
-                    { name: "Vista Completa", image: "teclado2-6.jpg" }
-                ]
-            },
-            {
-                id: 12,
-                title: "Teclado Gaming 60% RGB con Textura Topográfica",
-                price: "$22.00",
-                numericPrice: 22.00,
-                requiresShippingFee: false,
-                badgeLeft: "Topo Edition",
-                badgeRight: "61 Teclas",
-                tagline: "Custom Texture",
-                category: ["tecnologia"],
-                isNew: false,
-                available: true,
-                shortDesc: "Edición especial con grabado topográfico artístico en las teclas e iluminación RGB translúcida.",
-                features: [
-                    "Diseño artístico único con líneas de relieve topográfico en blanco",
-                    "Efecto de luz RGB difuso que resalta el grabado",
-                    "Factor de forma 60% portátil e ideal para transporte"
-                ],
-                variants: [
-                    { name: "Textura Blanca Principal", image: "teclado3-principal.jpg" },
-                    { name: "Vista Superior", image: "teclado3-principal2.0.jpg" },
-                    { name: "Detalle Textura", image: "teclado3-2.jpg" },
-                    { name: "Iluminación Nocturna", image: "teclado3-3.jpg" },
-                    { name: "Perfil Lateral", image: "teclado3-4.jpg" }
-                ]
-            },
-            {
-                id: 13,
-                title: "Teclado Mini XNI 61 Teclas RGB (Blanco y Negro)",
-                price: "$20.00",
-                numericPrice: 20.00,
-                requiresShippingFee: false,
-                badgeLeft: "XNI Series",
-                badgeRight: "Dual Tone",
-                tagline: "Mini RGB",
-                category: ["tecnologia"],
-                isNew: false,
-                available: true,
-                shortDesc: "Diseño moderno bicolor blanco y negro con iluminación ambiental personalizable.",
-                features: [
-                    "Esquema de color contraste blanco y negro súper elegante",
-                    "Soporte de control de iluminación libre",
-                    "Diseño mini ultraligero ideal para oficina y gaming"
-                ],
-                variants: [
-                    { name: "Vista Principal Bicolor", image: "teclado1-principal.jpg" },
-                    { name: "Plano Diagonal", image: "teclado1-2.jpg" },
-                    { name: "Vista Frontal", image: "teclado1-3.jpg" }
-                ]
-            },
-            {
-                id: 14,
-                title: "Teclado Compacto Bicolor AFGVK 65% Membrana",
-                price: "$20.00",
-                numericPrice: 20.00,
-                requiresShippingFee: false,
-                badgeLeft: "AFGVK",
-                badgeRight: "65% Layout",
-                tagline: "Quiet Typing",
-                category: ["tecnologia"],
-                isNew: false,
-                available: true,
-                shortDesc: "Teclado de membrana silenciosa de perfil delgado en combinación de teclas blanco/negro.",
-                features: [
-                    "Membrana Ultra-Thin para un tecleo silencioso y confortable",
-                    "Layout 65% que ahorra espacio con máximo rendimiento",
-                    "Estructura duradera con retroiluminación LED moderada"
-                ],
-                variants: [
-                    { name: "Vista Principal Bicolor", image: "teclado4-principal.jpg" },
-                    { name: "Vista Frontal", image: "teclado4-2.jpg" },
-                    { name: "Ángulo de Escritorio", image: "teclado4-3.jpg" },
-                    { name: "Detalle de Teclas", image: "teclado4-4.jpg" }
-                ]
-            },
-            {
-                id: 15,
-                title: "Luz LED de Relleno para Videoconferencias (4\")",
-                price: "$28.00",
-                numericPrice: 28.00,
-                requiresShippingFee: false,
-                badgeLeft: "5 Vistas",
-                badgeRight: "Desk Setup",
-                tagline: "3 Modos USB",
-                category: ["tecnologia"],
-                isNew: false,
-                available: true,
-                shortDesc: "Aro de luz compacto con clip para laptop/monitor, 3 temperaturas de color y brillo regulable.",
-                features: [
-                    "3 modos de luz (Cálida, Neutra, Fría) con niveles de intensidad",
-                    "Clip de sujeción firme con cabezal orientable",
-                    "Alimentación directa vía cable USB de 5V"
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "luz-principal.jpg" },
-                    { name: "Temperaturas de Luz", image: "luz-2.jpg" },
-                    { name: "Uso en Laptop", image: "luz-3.jpg" },
-                    { name: "Detalle Clip", image: "luz-4.jpg" },
-                    { name: "Empaque y Accesorios", image: "luz-5.jpg" }
-                ]
-            },
-            {
-                id: 16,
-                title: "Soporte e Impermeable Celular Moto/Bici (Wheel Up)",
-                price: "$25.00",
-                numericPrice: 25.00,
-                requiresShippingFee: false,
-                badgeLeft: "Wheel Up",
-                badgeRight: "Waterproof",
-                tagline: "Urban Rider",
-                category: ["tecnologia", "accesorios"],
-                isNew: false,
-                available: true,
-                shortDesc: "Estuche rígido con protección total contra lluvia, visera antirreflejo y membrana táctil HD.",
-                features: [
-                    "100% Resistente al agua con cremallera laminada sellada",
-                    "Visera parasol integrada para óptima visión GPS",
-                    "Pantalla táctil de alta sensibilidad"
-                ],
-                variants: [
-                    { name: "Negro Principal", image: "soportenegro.jpg" },
-                    { name: "Vista Trasera", image: "traserasoportemoto.jpg" },
-                    { name: "Ejemplo de Uso", image: "ejemplosoportemoto.jpg" },
-                    { name: "Variante Rojo", image: "soporterojo.jpg" },
-                    { name: "Variante Azul", image: "soporteazul.jpg" }
-                ]
-            },
-            {
-                id: 17,
-                title: "Cepillo Autolimpiante Quitapelos para Mascotas",
-                price: "$15.00",
-                numericPrice: 15.00,
-                requiresShippingFee: false,
-                badgeLeft: "1-Click Clean",
-                badgeRight: "Pet Care",
-                tagline: "Ergonomic",
-                category: ["accesorios"],
-                isNew: false,
-                available: true,
-                shortDesc: "Peine de agujas de acero inoxidable con botón de retracción para eliminar el pelo en 1 clic.",
-                features: [
-                    "Sistema de retracción 1-Click: retira todo el pelo atrapado al instante",
-                    "Cerdas de acero inoxidable con puntas protectoras de masaje",
-                    "Estructura 100% lavable para máxima higiene"
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "cepillo-mascotas-principal.jpg" },
-                    { name: "Uso y Agarre", image: "cepillo-mascotas-secundario.jpg" },
-                    { name: "Detalle Cerdas", image: "cepillo-mascotas-3.jpg" },
-                    { name: "Variante Color 1", image: "cepillo-mascotas-4.jpg" },
-                    { name: "Variante Color 2", image: "cepillo-mascotas-5.jpg" },
-                    { name: "Variante Color 3", image: "cepillo-mascotas-6.jpg" },
-                    { name: "Ficha Informativa", image: "cepillo-mascotas-informacion.jpg" }
-                ]
-            },
-            {
-                id: 18,
-                title: "Botella Térmica de Acero Inoxidable 500ml (Doodle Art)",
-                price: "$12.00",
-                numericPrice: 12.00,
-                requiresShippingFee: false,
-                badgeLeft: "500ml / 17oz",
-                badgeRight: "Disponible",
-                tagline: "Doodle Art",
-                category: ["accesorios"],
-                isNew: false,
-                available: true,
-                shortDesc: "Termo de acero inoxidable con aislamiento al vacío de doble pared y acabados gráficos estilo Doodle.",
-                features: [
-                    "Conservación de temperatura: mantiene frío o caliente por horas",
-                    "Construcción en Acero Inoxidable de alta resistencia",
-                    "Diseño gráfico exclusivo Doodle Art"
-                ],
-                variants: [
-                    { name: "Colección Doodle", image: "botella-principal.jpg" },
-                    { name: "Variante Negra", image: "botella-2.jpg" },
-                    { name: "Variante Rosa", image: "botella-3.jpg" },
-                    { name: "Variante Verde", image: "botella-4.jpg" },
-                    { name: "Variante Naranja", image: "botella-5.jpg" },
-                    { name: "Detalle Acabado", image: "botella-6.jpg" }
-                ]
-            }
-        ];
+        const PRODUCTS = [{
+            id: 2,
+            title: "Cable de Carga Rápida USB-C a Tipo C (60W Trenzado)",
+            price: "$3.00",
+            numericPrice: 3.00,
+            requiresShippingFee: true,
+            badgeLeft: "Carga 60W",
+            badgeRight: "Novedad",
+            tagline: "Fast Charge",
+            category: ["nuevos", "tecnologia"],
+            isNew: true,
+            available: true,
+            shortDesc: "Cable trenzado de nylon de alta resistencia USB-C a Tipo C, carga rápida de 60W para iPhone 15/16/17, iPad, Samsung y laptops.",
+            features: [
+                "Soporta carga rápida de hasta 60W y transferencia de datos",
+                "Fabricado en nylon trenzado de alta resistencia contra enredos y desgarros",
+                "Compatible con iPhone 15/16/17, iPad, Samsung y dispositivos tipo C",
+                "Mismo envío si agregas más productos a tu compra"
+            ],
+            variants: [
+                { name: "Blanco / Plata", image: "cable-c-1.jpg" },
+                { name: "Negro", image: "cable-c-2.jpg" },
+                { name: "Azul", image: "cable-c-azul.jpg" },
+                { name: "Púrpura", image: "cable-c-purpura.jpg" },
+                { name: "Verde", image: "cable-c-verde.jpg" },
+                { name: "Rosa", image: "cable-c-rosa.jpg" }
+            ]
+        }, {
+            id: 19,
+            title: "Gafas de Moda Vintage con Montura Geométrica para Hombre",
+            price: "$5.00",
+            numericPrice: 5.00,
+            requiresShippingFee: true,
+            badgeLeft: "Varios Estilos",
+            badgeRight: "Novedad",
+            tagline: "Vintage Style",
+            category: ["nuevos", "accesorios"],
+            isNew: true,
+            available: true,
+            shortDesc: "Gafas de sol de estilo vintage para hombre con montura geométrica media pasta, ideales para el uso diario y protección estilizada.",
+            features: [
+                "Diseño vintage de corte geométrico elegante y moderno",
+                "Montura ligera y resistente con acabados metálicos y oscuros",
+                "Disponible en varios colores (se consulta existencia al pedir)",
+                "Mismo envío si agregas más productos a tu compra"
+            ],
+            variants: [
+                { name: "Marco Dorado/Negro Lente Gris", image: "lentes1-1.jpg" },
+                { name: "Variante 2", image: "lentes1-2.jpg" },
+                { name: "Variante 3", image: "lentes1-3.jpg" },
+                { name: "Variante 4", image: "lentes1-4.jpg" }
+            ]
+        }, {
+            id: 1,
+            title: "Gafas de Moda Casual Retro para Mujer",
+            price: "$5.00",
+            numericPrice: 5.00,
+            requiresShippingFee: true,
+            badgeLeft: "Varios Estilos",
+            badgeRight: "Novedad",
+            tagline: "Retro Streetwear",
+            category: ["nuevos", "accesorios"],
+            isNew: true,
+            available: true,
+            shortDesc: "Gafas de sol para mujer con diseño retro casual, marco resistente y patillas texturizadas de estilo urbano.",
+            features: [
+                "Diseño retro de corte urbano perfecto para uso diario",
+                "Marco elegante con acabado traslúcido y patillas estilo madera",
+                "Disponible en varios colores (se consulta existencia al pedir)",
+                "Mismo envío si agregas más productos a tu compra"
+            ],
+            variants: [
+                { name: "Vista Principal", image: "lentes2-1.jpg" },
+                { name: "Variante 2", image: "lentes2-2.jpg" },
+                { name: "Variante 3", image: "lentes2-3.jpg" },
+                { name: "Variante 4", image: "lentes2-4.jpg" }
+            ]
+        }, {
+            id: 3,
+            title: "Set de Reloj Yolako + Pulsera Elegante de Corazón",
+            price: "$7.00",
+            numericPrice: 7.00,
+            requiresShippingFee: true,
+            badgeLeft: "Set 2 Piezas",
+            badgeRight: "Novedad",
+            tagline: "Glamour Set",
+            category: ["nuevos", "accesorios", "combos"],
+            isNew: true,
+            available: true,
+            shortDesc: "Juego femenino con esfera efecto esmerilado brillante y pulsera ajustable con dijes de corazón.",
+            features: [
+                "Incluye Reloj Yolako + Pulsera combinada de regalo",
+                "Esfera con acabado esmerilado que destella con la luz",
+                "Correa cómoda de piel sintética suave",
+                "Mismo envío si agregas más productos a tu compra"
+            ],
+            variants: [
+                { name: "Set Principal", image: "relog-mujer1-principal.jpg" },
+                { name: "Detalle Reloj & Esfera", image: "relog-mujer1-2.jpg" },
+                { name: "Vista Pulsera & Ajuste", image: "relog-mujer1-3.jpg" }
+            ]
+        }, {
+            id: 4,
+            title: "Cartera Larga Multifuncional (Diseño Triangular)",
+            price: "$8.00",
+            numericPrice: 8.00,
+            requiresShippingFee: true,
+            badgeLeft: "Elegante",
+            badgeRight: "Novedad",
+            tagline: "Moda Dama",
+            category: ["nuevos", "accesorios"],
+            isNew: true,
+            available: true,
+            shortDesc: "Billetera espaciosa de PU texturizado con broche de solapa triangular metálico y tarjetero múltiple.",
+            features: [
+                "Diseño geométrico moderno con broche metálico resistente",
+                "Compartimentos organizados para celular, tarjetas y billetes",
+                "Bolsillo interno con cremallera para monedas",
+                "Mismo envío si agregas más productos a tu compra"
+            ],
+            variants: [
+                { name: "Vista Principal Solapa", image: "cartera2-principal.jpg" },
+                { name: "Capacidad Interior", image: "cartera2-2.jpg" },
+                { name: "Vista Posterior", image: "cartera2-3.jpg" },
+                { name: "Detalle Broche Metal", image: "cartera2-4.jpg" },
+                { name: "Perfil Completo", image: "cartera2-5.jpg" }
+            ]
+        }, {
+            id: 5,
+            title: "Collar Choker de Perlas de Imitación",
+            price: "$3.50",
+            numericPrice: 3.50,
+            requiresShippingFee: true,
+            badgeLeft: "Moda Dama",
+            badgeRight: "Novedad",
+            tagline: "Pearl Choker",
+            category: ["nuevos", "accesorios"],
+            isNew: true,
+            available: true,
+            shortDesc: "Elegante gargantilla con perlas de imitación ajustables, ideal para complementar cualquier estilo.",
+            features: [
+                "Diseño femenino de alta tendencia",
+                "Broche y cadena de ajuste seguro",
+                "Mismo envío si agregas más productos a tu compra"
+            ],
+            variants: [
+                { name: "Vista Principal", image: "collar1-1.jpg" },
+                { name: "Detalle de Perlas", image: "collar1-2.jpg" },
+                { name: "Estilo Puesto", image: "collar1-3.jpg" }
+            ]
+        }, {
+            id: 6,
+            title: "Set de 2 Delineadores de Ojos en Gel Miss Rose",
+            price: "$3.50",
+            numericPrice: 3.50,
+            requiresShippingFee: true,
+            badgeLeft: "Set de 2",
+            badgeRight: "Novedad",
+            tagline: "Smooth Gel",
+            category: ["nuevos", "accesorios", "combos"],
+            isNew: true,
+            available: true,
+            shortDesc: "Delineador y sombra en gel de larga duración en tonos negro y marrón con acabado mate.",
+            features: [
+                "Incluye 2 piezas: Tonos Negro y Marrón",
+                "Acabado mate de larga duración y fácil aplicación",
+                "Ideal para ojos de gato y looks ahumados",
+                "Mismo envío si agregas más productos a tu compra"
+            ],
+            variants: [
+                { name: "Set 2Pcs Principal", image: "delineador1-1.jpg" },
+                { name: "Presentación Producto", image: "delineador1-2.jpg" },
+                { name: "Detalle Aplicador", image: "delineador1-3.jpg" },
+                { name: "Ejemplo de Maquillaje", image: "delineador1-4.jpg" }
+            ]
+        }, {
+            id: 7,
+            title: "Pulsera Trébol de Moda en Acero Inoxidable",
+            price: "$2.00",
+            numericPrice: 2.00,
+            requiresShippingFee: true,
+            badgeLeft: "Varios Colores",
+            badgeRight: "Novedad",
+            tagline: "Stainless Steel",
+            category: ["nuevos", "accesorios"],
+            isNew: true,
+            available: true,
+            shortDesc: "Pulsera estilo trébol de alta gama fabricada en acero inoxidable para uso diario.",
+            features: [
+                "Material de acero inoxidable resistente y duradero",
+                "Disponible en varios colores (se consulta existencia al pedir)",
+                "Mismo envío si agregas más productos a tu compra"
+            ],
+            variants: [
+                { name: "Colores Disponibles", image: "pulsera1-1.jpg" }
+            ]
+        }, {
+            id: 8,
+            title: "Reloj Elegante de Cuarzo para Hombre (Estilo Vintage)",
+            price: "$10.00",
+            numericPrice: 10.00,
+            requiresShippingFee: true,
+            badgeLeft: "Varios Estilos",
+            badgeRight: "Novedad",
+            tagline: "SHAARMS / IRLANDY",
+            category: ["nuevos", "accesorios"],
+            isNew: true,
+            available: true,
+            shortDesc: "Reloj masculino de esfera redonda con correa de aleación y ventana de fecha/día.",
+            features: [
+                "Mecanismo de cuarzo con correa de aleación metálica",
+                "Diseño retro elegante para uso casual o formal",
+                "Disponible en varios estilos/colores (se consulta existencia al pedir)",
+                "Mismo envío si agregas más productos a tu compra"
+            ],
+            variants: [
+                { name: "Esfera Azul Acero", image: "relog-hombre1-1.jpg" },
+                { name: "Vista Puesto", image: "relog-hombre1-2.jpg" }
+            ]
+        }, {
+            id: 9,
+            title: "Reloj Elegante Ultra Delgado de Dama",
+            price: "$25.00",
+            numericPrice: 25.00,
+            requiresShippingFee: false,
+            badgeLeft: "6 Variantes",
+            badgeRight: "Edición Dama",
+            tagline: "Ultra-Slim",
+            category: ["accesorios"],
+            isNew: false,
+            available: true,
+            shortDesc: "Diseño minimalista de alta precisión con caja metálica ultradelgada y acabados de lujo.",
+            features: [
+                "Grosor ultradelgado de 7 mm con acabado pulido",
+                "Mecanismo de cuarzo de alta precisión con batería incluida",
+                "Extensible cómodo y elegante de alta calidad"
+            ],
+            variants: [
+                { name: "Blanco", image: "blanco.jpg" },
+                { name: "Vino / Borgoña", image: "marron.jpg" },
+                { name: "Negro Clásico", image: "negro-carablanca.jpg" },
+                { name: "Púrpura / Lila", image: "rosa.jpg" },
+                { name: "Rosa Pastel", image: "rosa2.jpg" },
+                { name: "Verde Esmeralda", image: "verde.jpg" }
+            ]
+        }, {
+            id: 10,
+            title: "Cartera Larga Minimalista con Hebilla",
+            price: "$22.00",
+            numericPrice: 22.00,
+            requiresShippingFee: false,
+            badgeLeft: "10 Fotos",
+            badgeRight: "Estilo Coreano",
+            tagline: "High Sense",
+            category: ["accesorios"],
+            isNew: false,
+            available: true,
+            shortDesc: "Diseño estilo coreano con tarjetero amplio, compartimento con cierre y elegante hebilla a contraste.",
+            features: [
+                "Múltiples ranuras para tarjetas y amplio espacio para billetes o móvil",
+                "Cierre de cremallera metálica suave y broche de hebilla seguro",
+                "Material de cuero sintético (PU) de alta durabilidad"
+            ],
+            variants: [
+                { name: "Vista Principal", image: "catera-principal.jpg" },
+                { name: "Rosa Pastel", image: "cartera-rosada.jpg" },
+                { name: "Negro Clásico", image: "cartera-negra.jpg" },
+                { name: "Blanco / Crema", image: "cartera-blanca.jpg" },
+                { name: "Rojo Elegante", image: "cartera-roja.jpg" },
+                { name: "Azul", image: "cartera-azul.jpg" },
+                { name: "Amarillo", image: "cartera-amarilla.jpg" },
+                { name: "Distribución Interior", image: "cartera-interior.jpg" },
+                { name: "Vista Interior Vacío", image: "cartera-interior-vacio.jpg" },
+                { name: "Detalle Zipper", image: "cartera-zipper.jpg" }
+            ]
+        }, {
+            id: 11,
+            title: "Teclado Mecánico Gaming MageGee TS91 RGB (60%)",
+            price: "$25.00",
+            numericPrice: 25.00,
+            requiresShippingFee: false,
+            badgeLeft: "MageGee TS91",
+            badgeRight: "60% Layout",
+            tagline: "Mechanical RGB",
+            category: ["tecnologia"],
+            isNew: false,
+            available: true,
+            shortDesc: "Teclado ultra compacto de 61 teclas con retroiluminación RGB dinámica y cable tipo C extraíble.",
+            features: [
+                "Diseño compacto 60% para máximo espacio en el escritorio",
+                "Múltiples modos de iluminación RGB con ajuste de brillo y velocidad",
+                "Conexión estable por cable USB Type-C desmontable"
+            ],
+            variants: [
+                { name: "Vista Principal", image: "teclado2-principal.jpg" },
+                { name: "Vista Ángulo", image: "teclado2-2.jpg" },
+                { name: "Detalle Lateral", image: "teclado2-3.jpg" },
+                { name: "Efecto Iluminación", image: "teclado2-4.jpg" },
+                { name: "Plano Superior", image: "teclado2-5.jpg" },
+                { name: "Vista Completa", image: "teclado2-6.jpg" }
+            ]
+        }, {
+            id: 12,
+            title: "Teclado Gaming 60% RGB con Textura Topográfica",
+            price: "$22.00",
+            numericPrice: 22.00,
+            requiresShippingFee: false,
+            badgeLeft: "Topo Edition",
+            badgeRight: "61 Teclas",
+            tagline: "Custom Texture",
+            category: ["tecnologia"],
+            isNew: false,
+            available: true,
+            shortDesc: "Edición especial con grabado topográfico artístico en las teclas e iluminación RGB translúcida.",
+            features: [
+                "Diseño artístico único con líneas de relieve topográfico en blanco",
+                "Efecto de luz RGB difuso que resalta el grabado",
+                "Factor de forma 60% portátil e ideal para transporte"
+            ],
+            variants: [
+                { name: "Textura Blanca Principal", image: "teclado3-principal.jpg" },
+                { name: "Vista Superior", image: "teclado3-principal2.0.jpg" },
+                { name: "Detalle Textura", image: "teclado3-2.jpg" },
+                { name: "Iluminación Nocturna", image: "teclado3-3.jpg" },
+                { name: "Perfil Lateral", image: "teclado3-4.jpg" }
+            ]
+        }, {
+            id: 13,
+            title: "Teclado Mini XNI 61 Teclas RGB (Blanco y Negro)",
+            price: "$20.00",
+            numericPrice: 20.00,
+            requiresShippingFee: false,
+            badgeLeft: "XNI Series",
+            badgeRight: "Dual Tone",
+            tagline: "Mini RGB",
+            category: ["tecnologia"],
+            isNew: false,
+            available: true,
+            shortDesc: "Diseño moderno bicolor blanco y negro con iluminación ambiental personalizable.",
+            features: [
+                "Esquema de color contraste blanco y negro súper elegante",
+                "Soporte de control de iluminación libre",
+                "Diseño mini ultraligero ideal para oficina y gaming"
+            ],
+            variants: [
+                { name: "Vista Principal Bicolor", image: "teclado1-principal.jpg" },
+                { name: "Plano Diagonal", image: "teclado1-2.jpg" },
+                { name: "Vista Frontal", image: "teclado1-3.jpg" }
+            ]
+        }, {
+            id: 14,
+            title: "Teclado Compacto Bicolor AFGVK 65% Membrana",
+            price: "$20.00",
+            numericPrice: 20.00,
+            requiresShippingFee: false,
+            badgeLeft: "AFGVK",
+            badgeRight: "65% Layout",
+            tagline: "Quiet Typing",
+            category: ["tecnologia"],
+            isNew: false,
+            available: true,
+            shortDesc: "Teclado de membrana silenciosa de perfil delgado en combinación de teclas blanco/negro.",
+            features: [
+                "Membrana Ultra-Thin para un tecleo silencioso y confortable",
+                "Layout 65% que ahorra espacio con máximo rendimiento",
+                "Estructura duradera con retroiluminación LED moderada"
+            ],
+            variants: [
+                { name: "Vista Principal Bicolor", image: "teclado4-principal.jpg" },
+                { name: "Vista Frontal", image: "teclado4-2.jpg" },
+                { name: "Ángulo de Escritorio", image: "teclado4-3.jpg" },
+                { name: "Detalle de Teclas", image: "teclado4-4.jpg" }
+            ]
+        }, {
+            id: 15,
+            title: "Luz LED de Relleno para Videoconferencias (4\")",
+            price: "$28.00",
+            numericPrice: 28.00,
+            requiresShippingFee: false,
+            badgeLeft: "5 Vistas",
+            badgeRight: "Desk Setup",
+            tagline: "3 Modos USB",
+            category: ["tecnologia"],
+            isNew: false,
+            available: true,
+            shortDesc: "Aro de luz compacto con clip para laptop/monitor, 3 temperaturas de color y brillo regulable.",
+            features: [
+                "3 modos de luz (Cálida, Neutra, Fría) con niveles de intensidad",
+                "Clip de sujeción firme con cabezal orientable",
+                "Alimentación directa vía cable USB de 5V"
+            ],
+            variants: [
+                { name: "Vista Principal", image: "luz-principal.jpg" },
+                { name: "Temperaturas de Luz", image: "luz-2.jpg" },
+                { name: "Uso en Laptop", image: "luz-3.jpg" },
+                { name: "Detalle Clip", image: "luz-4.jpg" },
+                { name: "Empaque y Accesorios", image: "luz-5.jpg" }
+            ]
+        }, {
+            id: 16,
+            title: "Soporte e Impermeable Celular Moto/Bici (Wheel Up)",
+            price: "$25.00",
+            numericPrice: 25.00,
+            requiresShippingFee: false,
+            badgeLeft: "Wheel Up",
+            badgeRight: "Waterproof",
+            tagline: "Urban Rider",
+            category: ["tecnologia", "accesorios"],
+            isNew: false,
+            available: true,
+            shortDesc: "Estuche rígido con protección total contra lluvia, visera antirreflejo y membrana táctil HD.",
+            features: [
+                "100% Resistente al agua con cremallera laminada sellada",
+                "Visera parasol integrada para óptima visión GPS",
+                "Pantalla táctil de alta sensibilidad"
+            ],
+            variants: [
+                { name: "Negro Principal", image: "soportenegro.jpg" },
+                { name: "Vista Trasera", image: "traserasoportemoto.jpg" },
+                { name: "Ejemplo de Uso", image: "ejemplosoportemoto.jpg" },
+                { name: "Variante Rojo", image: "soporterojo.jpg" },
+                { name: "Variante Azul", image: "soporteazul.jpg" }
+            ]
+        }, {
+            id: 17,
+            title: "Cepillo Autolimpiante Quitapelos para Mascotas",
+            price: "$15.00",
+            numericPrice: 15.00,
+            requiresShippingFee: false,
+            badgeLeft: "1-Click Clean",
+            badgeRight: "Pet Care",
+            tagline: "Ergonomic",
+            category: ["accesorios"],
+            isNew: false,
+            available: true,
+            shortDesc: "Peine de agujas de acero inoxidable con botón de retracción para eliminar el pelo en 1 clic.",
+            features: [
+                "Sistema de retracción 1-Click: retira todo el pelo atrapado al instante",
+                "Cerdas de acero inoxidable con puntas protectoras de masaje",
+                "Estructura 100% lavable para máxima higiene"
+            ],
+            variants: [
+                { name: "Vista Principal", image: "cepillo-mascotas-principal.jpg" },
+                { name: "Uso y Agarre", image: "cepillo-mascotas-secundario.jpg" },
+                { name: "Detalle Cerdas", image: "cepillo-mascotas-3.jpg" },
+                { name: "Variante Color 1", image: "cepillo-mascotas-4.jpg" },
+                { name: "Variante Color 2", image: "cepillo-mascotas-5.jpg" },
+                { name: "Variante Color 3", image: "cepillo-mascotas-6.jpg" },
+                { name: "Ficha Informativa", image: "cepillo-mascotas-informacion.jpg" }
+            ]
+        }, {
+            id: 18,
+            title: "Botella Térmica de Acero Inoxidable 500ml (Doodle Art)",
+            price: "$12.00",
+            numericPrice: 12.00,
+            requiresShippingFee: false,
+            badgeLeft: "500ml / 17oz",
+            badgeRight: "Disponible",
+            tagline: "Doodle Art",
+            category: ["accesorios"],
+            isNew: false,
+            available: true,
+            shortDesc: "Termo de acero inoxidable con aislamiento al vacío de doble pared y acabados gráficos estilo Doodle.",
+            features: [
+                "Conservación de temperatura: mantiene frío o caliente por horas",
+                "Construcción en Acero Inoxidable de alta resistencia",
+                "Diseño gráfico exclusivo Doodle Art"
+            ],
+            variants: [
+                { name: "Colección Doodle", image: "botella-principal.jpg" },
+                { name: "Variante Negra", image: "botella-2.jpg" },
+                { name: "Variante Rosa", image: "botella-3.jpg" },
+                { name: "Variante Verde", image: "botella-4.jpg" },
+                { name: "Variante Naranja", image: "botella-5.jpg" },
+                { name: "Detalle Acabado", image: "botella-6.jpg" }
+            ]
+        }];
 
-        // ========== LÓGICA (solo grid) ==========
+        // ========== LÓGICA ==========
         let currentProductIndex = 0;
         let activeCategory = 'todos';
         let searchQuery = '';
@@ -1111,22 +1179,15 @@
             VISUAL_CATEGORIES.forEach(cat => {
                 const count = cat.id === 'todos' ? PRODUCTS.length : PRODUCTS.filter(p => p.category.includes(cat.id)).length;
                 const isActive = activeCategory === cat.id;
-                const card = document.createElement('button');
-                card.onclick = () => filterCategory(cat.id);
-                card.className = `group relative shrink-0 py-3 px-4 sm:px-5 rounded-2xl border transition-all duration-200 flex items-center space-x-3.5 cursor-pointer text-left ${isActive ? 'bg-studio-text text-white dark:bg-studio-darkText dark:text-black border-studio-text dark:border-studio-darkText shadow-lg shadow-black/10 scale-[1.01]' : 'bg-white dark:bg-studio-darkCard text-studio-text dark:text-studio-darkText border-black/[0.06] dark:border-white/[0.08] hover:border-studio-accent/50 hover:bg-studio-grayBadge/50 dark:hover:bg-studio-darkBg'}`;
-                card.innerHTML = `
-                    <div class="w-8 h-8 rounded-xl flex items-center justify-center text-xs transition-transform duration-200 group-hover:scale-105 ${isActive ? 'bg-white/20 text-white dark:bg-black/20 dark:text-black' : 'bg-studio-grayBadge dark:bg-studio-darkBg text-studio-accent'}">
+                const btn = document.createElement('button');
+                btn.onclick = () => filterCategory(cat.id);
+                btn.className = `filter-btn ${isActive ? 'active' : ''}`;
+                btn.innerHTML = `
                         <i class="${cat.icon}"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-xs font-bold tracking-tight">${cat.label}</span>
-                            <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white dark:bg-black/20 dark:text-black' : 'bg-studio-grayBadge dark:bg-studio-darkBg text-studio-subtext dark:text-studio-darkSubtext'}">${count}</span>
-                        </div>
-                        <span class="text-[10px] block opacity-70 font-normal mt-0.5 truncate max-w-[110px] sm:max-w-[130px]">${cat.desc}</span>
-                    </div>
-                `;
-                container.appendChild(card);
+                        <span>${cat.label}</span>
+                        <span class="count">${count}</span>
+                    `;
+                container.appendChild(btn);
             });
             const clearBtn = document.getElementById('clear-filters-btn');
             if (activeCategory !== 'todos' || searchQuery !== '') clearBtn.classList.remove('hidden');
@@ -1142,32 +1203,11 @@
             renderProductsGrid();
         }
 
-        function initTheme() {
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                document.getElementById('theme-icon').className = "fa-solid fa-sun";
-            } else {
-                document.documentElement.classList.remove('dark');
-                document.getElementById('theme-icon').className = "fa-solid fa-moon";
-            }
-        }
-
-        function toggleDarkMode() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-                document.getElementById('theme-icon').className = "fa-solid fa-moon";
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-                document.getElementById('theme-icon').className = "fa-solid fa-sun";
-            }
-        }
-
         function getFilteredProducts() {
             let list = PRODUCTS.filter(p => {
                 const matchCat = activeCategory === 'todos' || p.category.includes(activeCategory);
-                const matchSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || p.shortDesc.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || p.shortDesc.toLowerCase()
+                    .includes(searchQuery.toLowerCase());
                 return matchCat && matchSearch;
             });
             if (sortOption === 'price-asc') list.sort((a, b) => a.numericPrice - b.numericPrice);
@@ -1191,43 +1231,36 @@
                 const originalIndex = PRODUCTS.findIndex(prod => prod.id === p.id);
                 const card = document.createElement('div');
                 card.onclick = () => openProductModal(originalIndex);
-                card.style.animationDelay = `${(idx % 6) * 0.06}s`;
+                card.style.animationDelay = `${(idx % 9) * 0.04}s`;
                 card.className = `product-card animate-fade-up relative ${!p.available ? 'opacity-60' : ''}`;
-                
-                let badgeRightHtml = p.available ? 
-                    `<span class="product-badge">${p.badgeRight}</span>` : 
-                    `<span class="product-badge" style="background:rgba(255,0,0,0.05);color:#d00;border-color:rgba(255,0,0,0.1);">Agotado</span>`;
-                let badgeLeftHtml = p.badgeLeft ? 
-                    `<span class="product-badge-left">${p.badgeLeft}</span>` : '';
-                let shippingHtml = p.requiresShippingFee ? 
-                    `<span class="text-[10px] text-studio-subtext dark:text-studio-darkSubtext font-normal block mt-0.5">+ envío fijo</span>` : '';
+
+                const badgeText = p.badgeRight || p.badgeLeft || '';
+                const badgeHtml = badgeText ? `<span class="product-badge">${badgeText}</span>` : '';
+
+                const shippingHtml = p.requiresShippingFee ?
+                    `<span class="product-shipping-badge"><i class="fa-solid fa-truck-fast"></i> Único flete</span>` :
+                    '';
 
                 card.innerHTML = `
-                    <div class="relative">
-                        ${badgeLeftHtml}
-                        ${badgeRightHtml}
-                        <div class="aspect-square w-full bg-studio-grayBadge dark:bg-studio-darkBg overflow-hidden flex items-center justify-center">
+                        <div class="relative">
+                            ${badgeHtml}
+                            ${shippingHtml}
                             <img src="${p.variants[0].image}" loading="lazy" alt="${p.title}" class="product-card-image">
                         </div>
-                    </div>
-                    <div class="p-5 pt-4 space-y-2">
-                        <div class="flex items-start justify-between">
-                            <div>
+                        <div class="p-4 space-y-1.5">
+                            <div class="flex items-center justify-between">
                                 <span class="product-price">${p.price}</span>
-                                ${shippingHtml}
+                                <span class="product-tagline">${p.tagline}</span>
                             </div>
-                            <span class="product-tagline">${p.tagline}</span>
+                            <h3 class="product-title">${p.title}</h3>
+                            <div class="product-btn-wrapper pt-2">
+                                <button class="product-btn">
+                                    <i class="fa-regular fa-eye text-[10px]"></i>
+                                    <span>Ver Detalles</span>
+                                </button>
+                            </div>
                         </div>
-                        <h3 class="product-title">${p.title}</h3>
-                        <p class="product-desc">${p.shortDesc}</p>
-                    </div>
-                    <div class="px-5 pb-5 pt-1">
-                        <button class="product-btn w-full flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-expand text-[10px]"></i>
-                            <span>${p.available ? 'Ver Detalles' : 'Ver Fotos'}</span>
-                        </button>
-                    </div>
-                `;
+                    `;
                 grid.appendChild(card);
             });
             document.getElementById('product-count-badge').textContent = `${filtered.length} Piezas en Vista`;
@@ -1250,6 +1283,7 @@
             renderProductsGrid();
         }
 
+        // ===== MODAL =====
         function updateModalVariant(variantIndex) {
             const product = PRODUCTS[currentProductIndex];
             const variant = product.variants[variantIndex];
@@ -1265,23 +1299,26 @@
             const btnWhatsApp = document.getElementById('modal-whatsapp-btn');
             if (product.available) {
                 const shippingText = product.requiresShippingFee ? " (+ tarifa de envío)" : "";
-                const message = `Hola MultiStock! Me interesa el *${product.title}* [Opción: ${variant.name}] por *${product.price}*${shippingText}.\n\n💡 Quisiera saber cuánto es el costo de envío a mi ubicación y qué otros productos tienen disponibles para aprovechar el mismo viaje.`;
+                const message =
+                    `Hola MultiStock! Me interesa el *${product.title}* [Opción: ${variant.name}] por *${product.price}*${shippingText}.\n\n💡 Quisiera saber cuánto es el costo de envío a mi ubicación y qué otros productos tienen disponibles para aprovechar el mismo viaje.`;
                 btnWhatsApp.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-                btnWhatsApp.className = "w-full bg-studio-accent hover:bg-studio-accentHover text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md shadow-studio-accent/20 text-xs tracking-wider uppercase cursor-pointer hover:scale-[1.01]";
+                btnWhatsApp.className =
+                    "w-full bg-[#0071E3] hover:bg-[#4B9FFF] text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition text-xs tracking-wider uppercase shadow-lg shadow-[#0071E3]/20";
                 btnWhatsApp.innerHTML = `<i class="fa-brands fa-whatsapp text-lg"></i><span>Solicitar por WhatsApp</span>`;
             } else {
                 btnWhatsApp.href = "javascript:void(0)";
-                btnWhatsApp.className = "w-full bg-studio-grayBadge dark:bg-studio-darkBg text-studio-subtext font-semibold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 text-xs tracking-wider uppercase cursor-not-allowed";
+                btnWhatsApp.className =
+                    "w-full bg-[#2C2C2E] text-[#A1A1A6] font-semibold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 text-xs tracking-wider uppercase cursor-not-allowed";
                 btnWhatsApp.innerHTML = `<i class="fa-solid fa-ban text-sm"></i><span>Producto Agotado</span>`;
             }
             const thumbs = document.querySelectorAll('.thumb-btn');
             thumbs.forEach((btn, idx) => {
                 if (idx === variantIndex) {
-                    btn.classList.add('border-studio-accent', 'ring-2', 'ring-studio-accent/20', 'opacity-100', 'scale-105');
-                    btn.classList.remove('border-black/[0.06]', 'dark:border-white/[0.08]', 'opacity-50');
+                    btn.classList.add('border-[#0071E3]', 'ring-2', 'ring-[#0071E3]/20', 'opacity-100', 'scale-105');
+                    btn.classList.remove('border-white/10', 'opacity-50');
                 } else {
-                    btn.classList.remove('border-studio-accent', 'ring-2', 'ring-studio-accent/20', 'opacity-100', 'scale-105');
-                    btn.classList.add('border-black/[0.06]', 'dark:border-white/[0.08]', 'opacity-50');
+                    btn.classList.remove('border-[#0071E3]', 'ring-2', 'ring-[#0071E3]/20', 'opacity-100', 'scale-105');
+                    btn.classList.add('border-white/10', 'opacity-50');
                 }
             });
         }
@@ -1293,30 +1330,36 @@
             document.getElementById('modal-price').textContent = product.price;
             document.getElementById('modal-short-desc').textContent = product.shortDesc;
             const shippingNote = document.getElementById('modal-shipping-note');
-            shippingNote.textContent = product.requiresShippingFee ? "+ Envío fijo (combina los productos que quieras)" : "";
+            shippingNote.textContent = product.requiresShippingFee ? "+ Envío fijo (combina los productos que quieras)" :
+                "";
             const badgeStatus = document.getElementById('modal-status-badge');
             if (product.available) {
-                badgeStatus.className = "text-[10px] text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 px-3 py-1 rounded-full font-semibold uppercase tracking-wider";
+                badgeStatus.className =
+                    "text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1 rounded-full font-semibold uppercase tracking-wider";
                 badgeStatus.innerHTML = `<i class="fa-solid fa-box-open mr-1"></i>Disponible`;
             } else {
-                badgeStatus.className = "text-[10px] text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full font-semibold uppercase tracking-wider";
-                badgeStatus.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i>Agotado Temporalmente`;
+                badgeStatus.className =
+                    "text-[10px] text-red-400 bg-red-950/60 border border-red-800 px-3 py-1 rounded-full font-semibold uppercase tracking-wider";
+                badgeStatus.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i>Agotado`;
             }
             const featuresList = document.getElementById('modal-features-list');
             featuresList.innerHTML = '';
             product.features.forEach(feat => {
                 const li = document.createElement('li');
-                li.className = 'flex items-start text-xs font-normal';
-                li.innerHTML = `<i class="fa-solid fa-check text-studio-accent mr-2 mt-0.5 text-[10px]"></i><span>${feat}</span>`;
+                li.className = 'flex items-start text-xs font-normal text-[#F5F5F7]';
+                li.innerHTML =
+                    `<i class="fa-solid fa-check text-[#0071E3] mr-2 mt-0.5 text-[10px]"></i><span>${feat}</span>`;
                 featuresList.appendChild(li);
             });
             const thumbsContainer = document.getElementById('modal-thumbs-container');
             thumbsContainer.innerHTML = '';
             product.variants.forEach((v, idx) => {
                 const btn = document.createElement('button');
-                btn.className = `thumb-btn border border-black/[0.06] dark:border-white/[0.08] rounded-lg overflow-hidden h-12 w-12 sm:w-full shrink-0 bg-studio-grayBadge dark:bg-studio-darkBg transition-all focus:outline-none cursor-pointer opacity-50 hover:opacity-100 p-1`;
+                btn.className =
+                    `thumb-btn border border-white/10 rounded-lg overflow-hidden h-12 w-12 sm:w-16 shrink-0 bg-[#2C2C2E] transition-all focus:outline-none cursor-pointer opacity-50 hover:opacity-100 p-1`;
                 btn.innerHTML = `<img src="${v.image}" loading="lazy" alt="${v.name}" class="w-full h-full object-contain">`;
-                btn.onclick = (e) => { e.stopPropagation(); updateModalVariant(idx); };
+                btn.onclick = (e) => { e.stopPropagation();
+                    updateModalVariant(idx); };
                 thumbsContainer.appendChild(btn);
             });
             updateModalVariant(0);
@@ -1329,7 +1372,8 @@
         function closeProductModal() {
             const modal = document.getElementById('product-modal');
             modal.classList.add('opacity-0');
-            setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 250);
+            setTimeout(() => { modal.classList.add('hidden');
+                document.body.style.overflow = 'auto'; }, 250);
         }
 
         function openSuggestionModal() {
@@ -1342,7 +1386,8 @@
         function closeSuggestionModal() {
             const modal = document.getElementById('suggestion-modal');
             modal.classList.add('opacity-0');
-            setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 250);
+            setTimeout(() => { modal.classList.add('hidden');
+                document.body.style.overflow = 'auto'; }, 250);
         }
 
         function sendSuggestion(e) {
@@ -1350,19 +1395,21 @@
             const name = document.getElementById('sug-name').value;
             const product = document.getElementById('sug-product').value;
             const desc = document.getElementById('sug-desc').value;
-            const message = `Hola MultiStock! Me gustaría sugerir un producto:\n\n👤 *Nombre:* ${name}\n📦 *Producto:* ${product}\n📝 *Detalles:* ${desc}`;
+            const message =
+                `Hola MultiStock! Me gustaría sugerir un producto:\n\n👤 *Nombre:* ${name}\n📦 *Producto:* ${product}\n📝 *Detalles:* ${desc}`;
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
             closeSuggestionModal();
         }
 
-        // --- Inicialización ---
+        // ===== INICIALIZACIÓN =====
         document.addEventListener('DOMContentLoaded', () => {
-            initTheme();
             const navBtn = document.getElementById('nav-whatsapp-btn');
-            navBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola MultiStock! Quisiera consultar sobre el catálogo de productos disponibles.")}`;
+            navBtn.href =
+                `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola MultiStock! Quisiera consultar sobre el catálogo de productos disponibles.")}`;
             renderVisualFilters();
             renderProductsGrid();
         });
     </script>
+
 </body>
 </html>
