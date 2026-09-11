@@ -1,1505 +1,1753 @@
 <!DOCTYPE html>
 <html lang="es" class="dark scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MultiStock | Boutique & Tech Store</title>
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MultiStock | Boutique & Tech Store</title>
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Inter"', 'sans-serif'],
-                    },
-                    colors: {
-                        studio: {
-                            bg: '#0D0D0F',
-                            card: '#1C1C1E',
-                            cardHover: '#242426',
-                            text: '#FFFFFF',
-                            subtext: '#A1A1A6',
-                            accent: '#0071E3',
-                            accentHover: '#4B9FFF',
-                            border: 'rgba(255,255,255,0.06)',
-                            grayBadge: '#2C2C2E'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <style>
-        /* ===== BASE ===== */
-        html {
-            background-color: #0D0D0F;
+<script>
+tailwind.config = {
+    darkMode: 'class',
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                display: ['Fraunces', 'Georgia', 'serif'],
+                mono: ['"JetBrains Mono"', 'monospace'],
+            },
         }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
-            background-color: #0D0D0F;
-            color: #FFFFFF;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            min-height: 100vh;
-            background-image:
-                radial-gradient(ellipse at 50% 30%, rgba(0, 113, 227, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 70%, rgba(0, 113, 227, 0.03) 0%, transparent 40%),
-                radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-            background-blend-mode: normal, normal, normal, overlay;
-            background-size: 100% 100%, 100% 100%, 100% 100%, 200px 200px;
-        }
+    }
+}
+</script>
 
-        /* ===== TARJETA DE PRODUCTO ===== */
-        .product-card {
-            background: #1C1C1E;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-                box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            cursor: pointer;
-            position: relative;
-        }
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.7);
-            background: #242426;
-            border-color: rgba(255, 255, 255, 0.08);
-        }
+<style>
+    :root {
+        --bg: #0A0A0C;
+        --bg-2: #0E0E11;
+        --card: #131316;
+        --card-2: #18181C;
+        --line: rgba(255,255,255,0.07);
+        --line-2: rgba(255,255,255,0.12);
+        --text: #F5F2EC;
+        --muted: #8A8578;
+        --muted-2: #5C594F;
+        --gold: #C8A96A;
+        --gold-2: #E3CB96;
+        --gold-3: #8F7440;
+        --emerald: #4ADE80;
+        --emerald-2: #0F3D2E;
+        --copper: #D98861;
+        --rose: #C96B7A;
+        --violet: #8B7BC7;
+    }
 
-        .product-card-image {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: contain;
-            background: #FFFFFF;
-            padding: 0.5rem;
-            transition: transform 0.4s ease, filter 0.3s ease;
-        }
-        .product-card:hover .product-card-image {
-            transform: scale(1.02);
-            filter: brightness(1.05);
-        }
+    html { background: var(--bg); }
 
-        .product-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(28, 28, 30, 0.85);
-            backdrop-filter: blur(2px);
-            color: #FFFFFF;
-            font-size: 8px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 4px 12px;
-            border-radius: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            pointer-events: none;
-            z-index: 2;
-        }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
 
-        .product-shipping-badge {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(2px);
-            color: #FFFFFF;
-            font-size: 7px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            padding: 3px 10px;
-            border-radius: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            pointer-events: none;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .product-shipping-badge i {
-            font-size: 8px;
-        }
+    /* ===== BACKGROUND LAYERS ===== */
+    .bg-orbs {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+    .bg-orbs::before,
+    .bg-orbs::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(120px);
+    }
+    .bg-orbs::before {
+        top: -180px;
+        left: -140px;
+        width: 620px;
+        height: 620px;
+        background: radial-gradient(circle, rgba(200,169,106,0.22), transparent 65%);
+    }
+    .bg-orbs::after {
+        bottom: -220px;
+        right: -140px;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(circle, rgba(139,123,199,0.16), transparent 65%);
+    }
 
-        .product-price {
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            color: #FFFFFF;
-        }
+    .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: .32;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+        background-size: 220px 220px;
+    }
 
-        .product-title {
-            font-weight: 500;
-            font-size: 0.9rem;
-            line-height: 1.3;
-            letter-spacing: -0.01em;
-            color: #F5F5F7;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            transition: color 0.2s;
-        }
-        .product-card:hover .product-title {
-            color: #4B9FFF;
-        }
+    .display {
+        font-family: 'Fraunces', serif;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        line-height: 1.04;
+    }
 
-        .product-tagline {
-            font-size: 0.55rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: #A1A1A6;
-            background: rgba(255, 255, 255, 0.04);
-            padding: 2px 10px;
-            border-radius: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            white-space: nowrap;
-        }
+    .mono {
+        font-family: 'JetBrains Mono', monospace;
+        letter-spacing: 0.06em;
+    }
 
-        .product-btn-wrapper {
-            opacity: 0;
-            transform: translateY(8px);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-            pointer-events: none;
-        }
-        .product-card:hover .product-btn-wrapper {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-        .product-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            background: #0071E3;
-            color: #FFFFFF;
-            font-weight: 600;
-            font-size: 0.65rem;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            padding: 6px 16px;
-            border-radius: 100px;
-            border: none;
-            transition: background 0.2s, transform 0.2s;
-            width: 100%;
-            cursor: pointer;
-        }
-        .product-btn:hover {
-            background: #4B9FFF;
-            transform: scale(1.02);
-        }
+    /* ===== TEXT ACCENTS ===== */
+    .gold-text {
+        background: linear-gradient(100deg, #E3CB96 0%, #C8A96A 48%, #8F7440 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .copper-text {
+        background: linear-gradient(100deg, #E8A583 0%, #D98861 55%, #B36A4F 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .emerald-text {
+        background: linear-gradient(100deg, #7EE7A8 0%, #4ADE80 55%, #1F9A56 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
 
-        .filter-btn {
-            background: #1C1C1E;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            color: #F5F5F7;
-            transition: all 0.2s;
-            border-radius: 16px;
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-        .filter-btn:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: #242426;
-        }
-        .filter-btn.active {
-            background: #0071E3;
-            border-color: #0071E3;
-            color: #FFFFFF;
-            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
-        }
-        .filter-btn .count {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 0 8px;
-            border-radius: 999px;
-            font-size: 9px;
-            font-weight: 700;
-        }
-        .filter-btn.active .count {
-            background: rgba(255, 255, 255, 0.2);
-        }
+    .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: .8rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9.5px;
+        font-weight: 500;
+        letter-spacing: .28em;
+        text-transform: uppercase;
+        color: var(--gold);
+    }
+    .eyebrow::before,
+    .eyebrow::after {
+        content: "";
+        width: 26px;
+        height: 1px;
+    }
+    .eyebrow::before { background: linear-gradient(90deg, transparent, rgba(200,169,106,.7)); }
+    .eyebrow::after  { background: linear-gradient(90deg, rgba(200,169,106,.7), transparent); }
 
-        .modal-overlay {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-        }
-        .modal-content {
-            background: #1C1C1E;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
-        }
-        .modal-image-container {
-            background: #FFFFFF;
-            border-radius: 24px 0 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-        }
-        .modal-image-container img {
-            max-height: 70vh;
-            max-width: 100%;
-            object-fit: contain;
-        }
-        .dark .modal-image-container {
-            background: #0D0D0F;
-        }
+    .eyebrow.em::before { background: linear-gradient(90deg, transparent, rgba(74,222,128,.7)); }
+    .eyebrow.em::after  { background: linear-gradient(90deg, rgba(74,222,128,.7), transparent); }
+    .eyebrow.em { color: var(--emerald); }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #424245;
-            border-radius: 999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #5A5A5E;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+    .eyebrow.co::before { background: linear-gradient(90deg, transparent, rgba(217,136,97,.7)); }
+    .eyebrow.co::after  { background: linear-gradient(90deg, rgba(217,136,97,.7), transparent); }
+    .eyebrow.co { color: var(--copper); }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-up {
-            animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+    .rule {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.08) 20%, rgba(255,255,255,.08) 80%, transparent);
+    }
 
-        .modal-suggestion input,
-        .modal-suggestion textarea {
-            background: #2C2C2E;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #FFFFFF;
-            border-radius: 14px;
-            padding: 0.75rem 1rem;
-            font-size: 0.85rem;
-            width: 100%;
-            transition: border 0.2s;
-        }
-        .modal-suggestion input:focus,
-        .modal-suggestion textarea:focus {
-            outline: none;
-            border-color: #0071E3;
-            box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
-        }
+    /* ===== VERTICAL SIDE LABEL ===== */
+    .vertical-label {
+        position: absolute;
+        left: 32px;
+        top: 50%;
+        transform: translateY(-50%) rotate(-90deg);
+        transform-origin: center;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.42em;
+        text-transform: uppercase;
+        color: rgba(200,169,106,0.5);
+        white-space: nowrap;
+        pointer-events: none;
+    }
+    @media (max-width: 1024px) { .vertical-label { display: none; } }
 
-        .banner-card {
-            background: #1C1C1E;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 20px;
-            padding: 1rem 1.5rem;
-            transition: border-color 0.2s, background 0.2s;
-        }
-        .banner-card:hover {
-            border-color: rgba(255, 255, 255, 0.08);
-            background: #242426;
-        }
-        .banner-card .icon-circle {
-            background: #2C2C2E;
-            border-radius: 999px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0071E3;
-        }
+    /* ===== BUTTONS ===== */
+    .btn-gold {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        background: linear-gradient(100deg, #E3CB96, #C8A96A 55%, #B08F52);
+        color: #0A0A0C;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        padding: .95rem 1.9rem;
+        border-radius: 2px;
+        border: none;
+        cursor: pointer;
+        transition: box-shadow .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1), filter .3s;
+        box-shadow: 0 14px 34px -16px rgba(200,169,106,.7);
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-gold::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+        transition: none;
+    }
+    .btn-gold:hover::after { animation: shine 1.1s cubic-bezier(.16,1,.3,1); }
+    @keyframes shine {
+        from { left: -100%; }
+        to   { left: 200%; }
+    }
+    .btn-gold:hover {
+        box-shadow: 0 22px 46px -16px rgba(200,169,106,.95);
+        transform: translateY(-2px);
+        filter: brightness(1.06);
+    }
 
-        .glass-header {
-            background: rgba(13, 13, 15, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        }
+    .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        border: 1px solid rgba(245,242,236,.16);
+        color: var(--text);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        padding: .95rem 1.9rem;
+        border-radius: 2px;
+        background: rgba(255,255,255,.015);
+        transition: all .4s cubic-bezier(.16,1,.3,1);
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    .btn-ghost:hover {
+        border-color: rgba(200,169,106,.55);
+        color: var(--gold-2);
+        background: rgba(200,169,106,.05);
+    }
 
-        .text-subtle {
-            color: #A1A1A6;
-        }
-        .border-subtle {
-            border-color: rgba(255, 255, 255, 0.06);
-        }
-    </style>
+    .btn-ghost-em {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        border: 1px solid rgba(74,222,128,.3);
+        color: var(--emerald);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        padding: .95rem 1.9rem;
+        border-radius: 2px;
+        background: rgba(74,222,128,.03);
+        transition: all .4s cubic-bezier(.16,1,.3,1);
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    .btn-ghost-em:hover {
+        background: rgba(74,222,128,.1);
+        border-color: rgba(74,222,128,.6);
+        box-shadow: 0 12px 30px -14px rgba(74,222,128,.5);
+    }
+
+    .btn-disabled {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        width: 100%;
+        background: rgba(255,255,255,.035);
+        border: 1px solid rgba(255,255,255,.06);
+        color: var(--muted-2);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        padding: 1rem 1.5rem;
+        border-radius: 2px;
+        cursor: not-allowed;
+    }
+
+    /* ===== TICKER ===== */
+    .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 52s linear infinite;
+    }
+    @keyframes marquee {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+    }
+    .marquee-item {
+        display: inline-flex;
+        align-items: center;
+        gap: .9rem;
+        padding: 0 1.7rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: .32em;
+        text-transform: uppercase;
+        color: rgba(245,242,236,.42);
+        white-space: nowrap;
+    }
+    .marquee-item i { font-size: 5px; color: rgba(200,169,106,.85); }
+    .marquee-item.em i { color: rgba(74,222,128,.8); }
+    .marquee-item.co i { color: rgba(217,136,97,.8); }
+
+    /* ===== HEADER ===== */
+    .glass-header {
+        background: rgba(10,10,12,.75);
+        backdrop-filter: saturate(160%) blur(20px);
+        -webkit-backdrop-filter: saturate(160%) blur(20px);
+    }
+
+    .monogram {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Fraunces', serif;
+        font-size: 19px;
+        font-weight: 500;
+        color: var(--gold-2);
+        border: 1px solid rgba(200,169,106,.45);
+        border-radius: 2px;
+        background: linear-gradient(160deg, rgba(200,169,106,.15), rgba(200,169,106,.02));
+        transition: all .45s cubic-bezier(.16,1,.3,1);
+    }
+    .group:hover .monogram {
+        border-color: rgba(200,169,106,.9);
+        box-shadow: 0 0 24px -4px rgba(200,169,106,.55);
+        background: linear-gradient(160deg, rgba(200,169,106,.24), rgba(200,169,106,.06));
+    }
+
+    .search-field {
+        width: 100%;
+        background: rgba(255,255,255,.028);
+        border: 1px solid rgba(255,255,255,.075);
+        border-radius: 2px;
+        padding: .72rem 1rem .72rem 2.6rem;
+        font-size: 12px;
+        color: var(--text);
+        transition: all .35s cubic-bezier(.16,1,.3,1);
+    }
+    .search-field::placeholder { color: rgba(245,242,236,.3); letter-spacing: .04em; }
+    .search-field:focus {
+        outline: none;
+        border-color: rgba(200,169,106,.55);
+        background: rgba(200,169,106,.04);
+        box-shadow: 0 0 0 3px rgba(200,169,106,.09);
+    }
+
+    /* ===== FILTER CHIPS con color propio por categoría ===== */
+    .chip {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: .6rem;
+        padding: .72rem 1.2rem;
+        border-radius: 2px;
+        border: 1px solid rgba(255,255,255,.075);
+        background: rgba(255,255,255,.018);
+        color: rgba(245,242,236,.68);
+        font-size: 10.5px;
+        font-weight: 500;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: all .4s cubic-bezier(.16,1,.3,1);
+    }
+    .chip i { font-size: 11px; opacity: .8; }
+    .chip .count {
+        font-size: 9px;
+        font-weight: 700;
+        padding: .12rem .45rem;
+        border-radius: 999px;
+        background: rgba(255,255,255,.09);
+    }
+
+    .chip[data-cat="todos"]:hover,
+    .chip[data-cat="todos"].active {
+        border-color: rgba(200,169,106,.5);
+        color: var(--gold-2);
+        background: rgba(200,169,106,.07);
+    }
+    .chip[data-cat="nuevos"]:hover {
+        border-color: rgba(217,136,97,.5);
+        color: #E8A583;
+        background: rgba(217,136,97,.06);
+    }
+    .chip[data-cat="tecnologia"]:hover {
+        border-color: rgba(139,123,199,.5);
+        color: #B2A4E0;
+        background: rgba(139,123,199,.06);
+    }
+    .chip[data-cat="accesorios"]:hover {
+        border-color: rgba(201,107,122,.5);
+        color: #E0A3AF;
+        background: rgba(201,107,122,.06);
+    }
+    .chip[data-cat="combos"]:hover {
+        border-color: rgba(74,222,128,.5);
+        color: #7EE7A8;
+        background: rgba(74,222,128,.06);
+    }
+
+    .chip.active {
+        color: #0A0A0C !important;
+        font-weight: 600;
+    }
+    .chip.active .count { background: rgba(0,0,0,.16); color: inherit; }
+    .chip.active[data-cat="todos"] {
+        background: linear-gradient(100deg, #E3CB96, #C8A96A 58%, #B08F52);
+        border-color: transparent;
+        box-shadow: 0 14px 30px -16px rgba(200,169,106,.85);
+    }
+    .chip.active[data-cat="nuevos"] {
+        background: linear-gradient(100deg, #E8A583, #D98861 58%, #B36A4F);
+        border-color: transparent;
+        box-shadow: 0 14px 30px -16px rgba(217,136,97,.8);
+    }
+    .chip.active[data-cat="tecnologia"] {
+        background: linear-gradient(100deg, #B2A4E0, #8B7BC7 58%, #6D5EA8);
+        border-color: transparent;
+        color: #FFFFFF !important;
+        box-shadow: 0 14px 30px -16px rgba(139,123,199,.85);
+    }
+    .chip.active[data-cat="accesorios"] {
+        background: linear-gradient(100deg, #E0A3AF, #C96B7A 58%, #A34C5C);
+        border-color: transparent;
+        color: #FFFFFF !important;
+        box-shadow: 0 14px 30px -16px rgba(201,107,122,.8);
+    }
+    .chip.active[data-cat="combos"] {
+        background: linear-gradient(100deg, #7EE7A8, #4ADE80 58%, #1F9A56);
+        border-color: transparent;
+        box-shadow: 0 14px 30px -16px rgba(74,222,128,.8);
+    }
+
+    /* ===== PRODUCT CARD con acento por categoría ===== */
+    .product-card {
+        position: relative;
+        background: linear-gradient(180deg, #131316 0%, #0E0E11 100%);
+        border: 1px solid rgba(255,255,255,.06);
+        border-radius: 3px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform .6s cubic-bezier(.16,1,.3,1),
+                    border-color .5s cubic-bezier(.16,1,.3,1),
+                    box-shadow .6s cubic-bezier(.16,1,.3,1);
+        box-shadow: 0 2px 20px -8px rgba(0,0,0,.9);
+    }
+    /* category accent line at top */
+    .product-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        z-index: 4;
+        opacity: .55;
+        transition: opacity .4s ease;
+    }
+    .product-card[data-accent="gold"]::before { background: linear-gradient(90deg, transparent, #C8A96A, #E3CB96, #C8A96A, transparent); }
+    .product-card[data-accent="copper"]::before { background: linear-gradient(90deg, transparent, #D98861, #E8A583, #D98861, transparent); }
+    .product-card[data-accent="violet"]::before { background: linear-gradient(90deg, transparent, #8B7BC7, #B2A4E0, #8B7BC7, transparent); }
+    .product-card[data-accent="rose"]::before { background: linear-gradient(90deg, transparent, #C96B7A, #E0A3AF, #C96B7A, transparent); }
+    .product-card[data-accent="emerald"]::before { background: linear-gradient(90deg, transparent, #4ADE80, #7EE7A8, #4ADE80, transparent); }
+
+    .product-card:hover::before { opacity: 1; }
+
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 30px 60px -28px rgba(0,0,0,1), 0 0 0 1px rgba(255,255,255,.05), 0 18px 50px -30px rgba(200,169,106,.35);
+    }
+    .product-card[data-accent="copper"]:hover {
+        border-color: rgba(217,136,97,.42);
+        box-shadow: 0 30px 60px -28px rgba(0,0,0,1), 0 0 0 1px rgba(217,136,97,.08), 0 18px 50px -30px rgba(217,136,97,.4);
+    }
+    .product-card[data-accent="violet"]:hover {
+        border-color: rgba(139,123,199,.42);
+        box-shadow: 0 30px 60px -28px rgba(0,0,0,1), 0 0 0 1px rgba(139,123,199,.08), 0 18px 50px -30px rgba(139,123,199,.4);
+    }
+    .product-card[data-accent="rose"]:hover {
+        border-color: rgba(201,107,122,.42);
+        box-shadow: 0 30px 60px -28px rgba(0,0,0,1), 0 0 0 1px rgba(201,107,122,.08), 0 18px 50px -30px rgba(201,107,122,.4);
+    }
+    .product-card[data-accent="emerald"]:hover {
+        border-color: rgba(74,222,128,.42);
+        box-shadow: 0 30px 60px -28px rgba(0,0,0,1), 0 0 0 1px rgba(74,222,128,.08), 0 18px 50px -30px rgba(74,222,128,.4);
+    }
+    .product-card[data-accent="gold"]:hover {
+        border-color: rgba(200,169,106,.42);
+    }
+
+    .pc-media {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        background: linear-gradient(160deg, #FBFAF7 0%, #EFECE4 100%);
+    }
+    .pc-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 1.5rem;
+        transition: transform .9s cubic-bezier(.16,1,.3,1);
+    }
+    .product-card:hover .pc-img { transform: scale(1.07); }
+
+    .pc-media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(10,10,12,0) 55%, rgba(10,10,12,.35) 100%);
+        opacity: 0;
+        transition: opacity .5s ease;
+        pointer-events: none;
+    }
+    .product-card:hover .pc-media::after { opacity: 1; }
+
+    .pc-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        z-index: 3;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 7.5px;
+        font-weight: 600;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--gold-2);
+        background: rgba(10,10,12,.8);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(200,169,106,.32);
+        padding: .35rem .7rem;
+        border-radius: 2px;
+        pointer-events: none;
+    }
+    .pc-badge.copper {
+        color: #E8A583;
+        border-color: rgba(217,136,97,.35);
+    }
+    .pc-badge.emerald {
+        color: #7EE7A8;
+        border-color: rgba(74,222,128,.35);
+    }
+
+    .pc-ship {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        z-index: 3;
+        display: inline-flex;
+        align-items: center;
+        gap: .35rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 7.5px;
+        font-weight: 600;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: #7EE7A8;
+        background: rgba(10,10,12,.78);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(74,222,128,.28);
+        padding: .32rem .65rem;
+        border-radius: 2px;
+        pointer-events: none;
+    }
+    .pc-ship i { font-size: 8px; }
+
+    .pc-body { padding: 1.05rem 1.1rem 1.2rem; }
+
+    .pc-tag {
+        display: inline-block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 8px;
+        font-weight: 500;
+        letter-spacing: .26em;
+        text-transform: uppercase;
+        margin-bottom: .6rem;
+    }
+    .product-card[data-accent="gold"] .pc-tag { color: rgba(200,169,106,.85); }
+    .product-card[data-accent="copper"] .pc-tag { color: rgba(217,136,97,.9); }
+    .product-card[data-accent="violet"] .pc-tag { color: rgba(178,164,224,.9); }
+    .product-card[data-accent="rose"] .pc-tag { color: rgba(224,163,175,.9); }
+    .product-card[data-accent="emerald"] .pc-tag { color: rgba(126,231,168,.9); }
+
+    .pc-title {
+        font-size: 13px;
+        line-height: 1.45;
+        font-weight: 400;
+        color: rgba(245,242,236,.82);
+        letter-spacing: -0.005em;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 2.9em;
+        transition: color .4s ease;
+    }
+    .product-card:hover .pc-title { color: #FFFFFF; }
+
+    .pc-foot {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: .75rem;
+        margin-top: 1rem;
+        padding-top: .9rem;
+        border-top: 1px solid rgba(255,255,255,.055);
+    }
+    .pc-price {
+        font-family: 'Fraunces', serif;
+        font-size: 1.25rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: var(--text);
+        white-space: nowrap;
+    }
+    .pc-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 8.5px;
+        font-weight: 600;
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: opacity .45s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.16,1,.3,1);
+        white-space: nowrap;
+    }
+    .product-card[data-accent="gold"] .pc-cta { color: #C8A96A; }
+    .product-card[data-accent="copper"] .pc-cta { color: #D98861; }
+    .product-card[data-accent="violet"] .pc-cta { color: #B2A4E0; }
+    .product-card[data-accent="rose"] .pc-cta { color: #E0A3AF; }
+    .product-card[data-accent="emerald"] .pc-cta { color: #7EE7A8; }
+    .pc-cta i { font-size: 8px; }
+    .product-card:hover .pc-cta { opacity: 1; transform: translateX(0); }
+
+    /* ===== SPOTLIGHT (featured) ===== */
+    .spotlight {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(200,169,106,.18);
+        border-radius: 3px;
+        background: linear-gradient(135deg, #131316 0%, #0D0D10 100%);
+        transition: all .6s cubic-bezier(.16,1,.3,1);
+    }
+    .spotlight:hover {
+        border-color: rgba(200,169,106,.4);
+        box-shadow: 0 30px 70px -30px rgba(0,0,0,1), 0 0 60px -25px rgba(200,169,106,.4);
+    }
+    .spotlight-media {
+        background: linear-gradient(160deg, #FBFAF7 0%, #EFECE4 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    .spotlight-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 2rem;
+        transition: transform 1s cubic-bezier(.16,1,.3,1);
+    }
+    .spotlight:hover .spotlight-media img { transform: scale(1.05); }
+
+    .spotlight-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: .28em;
+        text-transform: uppercase;
+        color: var(--gold);
+        padding: .35rem .75rem;
+        border: 1px solid rgba(200,169,106,.35);
+        background: rgba(200,169,106,.06);
+        border-radius: 2px;
+    }
+    .spotlight-tag i { font-size: 8px; }
+
+    /* ===== STATS BAND ===== */
+    .stat-band {
+        position: relative;
+        overflow: hidden;
+        padding: 3rem 2rem;
+        border-top: 1px solid rgba(255,255,255,.06);
+        border-bottom: 1px solid rgba(255,255,255,.06);
+        background: linear-gradient(180deg, rgba(19,19,22,.5), rgba(14,14,17,.5));
+    }
+    .stat-num {
+        font-family: 'Fraunces', serif;
+        font-size: 3rem;
+        font-weight: 400;
+        letter-spacing: -0.03em;
+        line-height: 1;
+    }
+
+    /* ===== SELECT ===== */
+    .select-lux {
+        appearance: none;
+        -webkit-appearance: none;
+        background: rgba(255,255,255,.028);
+        border: 1px solid rgba(255,255,255,.075);
+        border-radius: 2px;
+        color: var(--text);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        padding: .7rem 2.3rem .7rem .95rem;
+        cursor: pointer;
+        transition: all .35s ease;
+    }
+    .select-lux:hover { border-color: rgba(200,169,106,.4); }
+    .select-lux:focus { outline: none; border-color: rgba(200,169,106,.6); box-shadow: 0 0 0 3px rgba(200,169,106,.09); }
+    .select-lux option { background: #131316; color: var(--text); }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+        background: rgba(4,4,6,.84);
+        backdrop-filter: blur(16px) saturate(140%);
+        -webkit-backdrop-filter: blur(16px) saturate(140%);
+    }
+    .modal-panel {
+        background: linear-gradient(180deg, #131316 0%, #0B0B0E 100%);
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 3px;
+        box-shadow: 0 50px 130px -30px rgba(0,0,0,1), 0 0 0 1px rgba(200,169,106,.06);
+    }
+    .modal-img-panel {
+        background: linear-gradient(160deg, #FBFAF7 0%, #EDEAE2 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    .modal-img-panel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #C8A96A, #E3CB96, #C8A96A, transparent);
+    }
+    .modal-img-panel img {
+        position: relative;
+        max-height: 58vh;
+        max-width: 100%;
+        object-fit: contain;
+        transition: opacity .35s ease, transform .5s cubic-bezier(.16,1,.3,1);
+    }
+
+    .thumb-btn {
+        height: 56px;
+        width: 56px;
+        flex-shrink: 0;
+        padding: 6px;
+        border-radius: 2px;
+        border: 1px solid rgba(255,255,255,.08);
+        background: rgba(255,255,255,.03);
+        opacity: .45;
+        cursor: pointer;
+        transition: all .4s cubic-bezier(.16,1,.3,1);
+    }
+    .thumb-btn img { width: 100%; height: 100%; object-fit: contain; }
+    .thumb-btn:hover { opacity: 1; border-color: rgba(200,169,106,.45); }
+    .thumb-btn.is-active {
+        opacity: 1;
+        border-color: #C8A96A;
+        box-shadow: 0 0 0 1px rgba(200,169,106,.45), 0 8px 20px -10px rgba(200,169,106,.6);
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: flex-start;
+        gap: .65rem;
+        font-size: 12px;
+        line-height: 1.6;
+        color: rgba(245,242,236,.76);
+        font-weight: 300;
+    }
+    .feature-item i {
+        color: #C8A96A;
+        font-size: 8px;
+        margin-top: .5rem;
+        flex-shrink: 0;
+    }
+
+    .modal-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: .3em;
+        text-transform: uppercase;
+        color: rgba(245,242,236,.4);
+    }
+
+    /* ===== INPUTS ===== */
+    .lux-input {
+        width: 100%;
+        background: rgba(255,255,255,.028);
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 2px;
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 300;
+        padding: .85rem 1rem;
+        transition: all .35s ease;
+    }
+    .lux-input::placeholder { color: rgba(245,242,236,.28); }
+    .lux-input:focus {
+        outline: none;
+        border-color: rgba(200,169,106,.55);
+        background: rgba(200,169,106,.035);
+        box-shadow: 0 0 0 3px rgba(200,169,106,.08);
+    }
+
+    /* ===== REVEAL ===== */
+    .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(200,169,106,.28); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(200,169,106,.5); }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* ===== FLOAT ===== */
+    .float-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: .6rem;
+        padding: .85rem 1rem;
+        border-radius: 2px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        transition: all .45s cubic-bezier(.16,1,.3,1);
+        box-shadow: 0 18px 40px -16px rgba(0,0,0,.9);
+    }
+    .float-btn:hover { transform: translateY(-3px); }
+
+    .float-emerald {
+        background: linear-gradient(160deg, #0F3D2E, #0A2A1F);
+        border: 1px solid rgba(74,222,128,.35);
+        color: #D1FAE5;
+    }
+    .float-emerald:hover { border-color: rgba(74,222,128,.65); box-shadow: 0 24px 50px -18px rgba(74,222,128,.5); }
+
+    .float-gold {
+        background: linear-gradient(100deg, #E3CB96, #C8A96A 60%, #B08F52);
+        color: #0A0A0C;
+        border: 1px solid transparent;
+    }
+    .float-gold:hover { box-shadow: 0 24px 50px -18px rgba(200,169,106,.85); }
+
+    @keyframes pulseDot {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: .4; transform: scale(.8); }
+    }
+    .pulse-dot { animation: pulseDot 2.4s ease-in-out infinite; }
+
+    /* ===== SECTION DIVIDERS ===== */
+    .section-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 3rem 0;
+    }
+    .section-divider::before,
+    .section-divider::after {
+        content: "";
+        flex: 1;
+        max-width: 180px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(200,169,106,.4), transparent);
+    }
+    .section-divider span {
+        font-family: 'Fraunces', serif;
+        font-size: 12px;
+        font-style: italic;
+        color: rgba(200,169,106,.65);
+        letter-spacing: .08em;
+    }
+</style>
 </head>
 
 <body>
 
-    <!-- ===== TOP BANNER ===== -->
-    <div class="bg-[#1C1C1E] border-b border-white/5 py-2.5 px-3 text-center text-[10px] sm:text-xs tracking-tight text-[#A1A1A6] font-medium flex items-center justify-center space-x-2">
-        <i class="fa-solid fa-boxes-packing text-[#0071E3] shrink-0 animate-bounce"></i>
-        <span><strong class="text-white">Mismo costo de envío:</strong> Pide desde 1 hasta 10 productos por la misma tarifa de entrega</span>
+<div class="bg-orbs"></div>
+<div class="grain"></div>
+
+<!-- ===== TICKER ===== -->
+<div class="relative z-[3] overflow-hidden border-b border-white/[0.05] bg-[#08080A]">
+    <div class="marquee-track py-2.5">
+        <div class="flex items-center">
+            <span class="marquee-item"><i class="fa-solid fa-diamond"></i> Envío único · De 1 a 10 piezas por la misma tarifa</span>
+            <span class="marquee-item em"><i class="fa-solid fa-leaf"></i> Curado a mano</span>
+            <span class="marquee-item co"><i class="fa-solid fa-fire"></i> Novedades cada semana</span>
+            <span class="marquee-item"><i class="fa-solid fa-diamond"></i> Entrega en todo El Salvador</span>
+            <span class="marquee-item em"><i class="fa-solid fa-shield-halved"></i> Pago contra entrega</span>
+        </div>
+        <div class="flex items-center" aria-hidden="true">
+            <span class="marquee-item"><i class="fa-solid fa-diamond"></i> Envío único · De 1 a 10 piezas por la misma tarifa</span>
+            <span class="marquee-item em"><i class="fa-solid fa-leaf"></i> Curado a mano</span>
+            <span class="marquee-item co"><i class="fa-solid fa-fire"></i> Novedades cada semana</span>
+            <span class="marquee-item"><i class="fa-solid fa-diamond"></i> Entrega en todo El Salvador</span>
+            <span class="marquee-item em"><i class="fa-solid fa-shield-halved"></i> Pago contra entrega</span>
+        </div>
     </div>
+</div>
 
-    <!-- ===== HEADER ===== -->
-    <header class="glass-header sticky top-0 z-40 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4">
-            <div class="flex items-center space-x-3 shrink-0">
-                <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold text-xs tracking-tighter shadow-sm hover:scale-105 transition-transform">
-                    M
-                </div>
-                <div>
-                    <h1 class="text-base sm:text-lg font-bold tracking-tight leading-none text-white">MULTISTOCK</h1>
-                    <p class="text-[8px] uppercase tracking-widest text-[#A1A1A6] font-semibold mt-0.5">Catálogo Oficial</p>
-                </div>
+<!-- ===== HEADER ===== -->
+<header class="glass-header sticky top-0 z-40 border-b border-white/[0.06]">
+    <div class="mx-auto max-w-[1400px] px-5 sm:px-8">
+        <div class="flex h-[74px] items-center justify-between gap-6">
+
+            <a href="#" class="group flex items-center gap-3.5 shrink-0">
+                <span class="monogram">M</span>
+                <span class="leading-none">
+                    <span class="block display text-[17px] font-medium tracking-[0.02em] text-[var(--text)]">MultiStock</span>
+                    <span class="mono mt-1.5 block text-[8px] font-medium tracking-[0.38em] text-[var(--gold)]/85 uppercase">Boutique &amp; Tech</span>
+                </span>
+            </a>
+
+            <div class="relative mx-6 hidden max-w-sm flex-1 md:block">
+                <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[11px] text-white/30"></i>
+                <input type="text" id="desktop-search" oninput="debouncedSearch(this.value)"
+                       placeholder="Buscar reloj, teclado, gafas..."
+                       class="search-field" />
             </div>
 
-            <div class="hidden md:flex items-center flex-1 max-w-md mx-6 relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 text-[#A1A1A6] text-xs"></i>
-                <input type="text" id="desktop-search" oninput="debouncedSearch(this.value)" placeholder="Buscar reloj, teclado, gafas..." class="w-full bg-[#1C1C1E] border border-white/5 rounded-full py-2 pl-9 pr-4 text-xs text-white placeholder-[#A1A1A6] focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3] transition-all duration-300">
-            </div>
-
-            <div class="flex items-center space-x-3">
-                <a id="nav-whatsapp-btn" href="#" target="_blank" class="bg-white hover:bg-gray-200 text-black px-4 sm:px-5 py-2 rounded-full text-[11px] font-semibold tracking-tight flex items-center space-x-2 transition shrink-0 shadow-sm hover:shadow-md">
-                    <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span>Contactar</span>
+            <div class="flex items-center gap-3">
+                <a id="nav-whatsapp-btn" href="#" target="_blank" class="btn-gold !px-5 !py-2.5 !text-[10px]">
+                    <i class="fa-brands fa-whatsapp text-[13px]"></i>
+                    <span class="hidden sm:inline">Contactar</span>
                 </a>
             </div>
         </div>
 
-        <div class="px-4 pb-3 md:hidden">
+        <div class="pb-3 md:hidden">
             <div class="relative w-full">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-[#A1A1A6] text-xs"></i>
-                <input type="text" id="mobile-search" oninput="debouncedSearch(this.value)" placeholder="Buscar producto..." class="w-full bg-[#1C1C1E] border border-white/5 rounded-full py-2 pl-9 pr-4 text-xs text-white placeholder-[#A1A1A6] focus:outline-none focus:border-[#0071E3] transition-all duration-300">
+                <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[11px] text-white/30"></i>
+                <input type="text" id="mobile-search" oninput="debouncedSearch(this.value)"
+                       placeholder="Buscar producto..."
+                       class="search-field" />
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- ===== HERO ===== -->
-    <section class="py-10 sm:py-16 px-4 sm:px-6 border-b border-white/5">
-        <div class="max-w-3xl mx-auto text-center space-y-3">
-            <span class="text-[#0071E3] text-[10px] font-semibold tracking-wider uppercase bg-[#0071E3]/10 px-3 py-1 rounded-full inline-block border border-[#0071E3]/20">
-                Novedades 2026
-            </span>
-            <h2 class="text-2xl sm:text-5xl font-extrabold tracking-tight leading-tight text-white">
-                Diseño. Calidad. Directo a tu puerta.
-            </h2>
-            <p class="text-[#A1A1A6] text-xs sm:text-base font-normal max-w-lg mx-auto leading-relaxed">
-                Explora productos seleccionados con entrega rápida y la misma tarifa de flete.
-            </p>
-        </div>
-    </section>
+<!-- ===== HERO ===== -->
+<section class="relative z-[2] overflow-hidden px-6 pb-24 pt-20 sm:pb-32 sm:pt-28">
+    <span class="vertical-label">Colección 2026 · Vol. 01</span>
 
-    <!-- ===== BANNERS ===== -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-8 mt-6 space-y-3">
-        <div class="banner-card flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center space-x-3.5 text-center sm:text-left">
-                <div class="icon-circle">
-                    <i class="fa-solid fa-truck-ramp-box text-base"></i>
-                </div>
-                <div>
-                    <h3 class="text-xs sm:text-sm font-semibold text-white tracking-tight">Aprovecha al máximo tu flete</h3>
-                    <p class="text-[11px] sm:text-xs text-[#A1A1A6] font-normal mt-0.5">El envío cuesta lo mismo si llevas <strong class="text-white font-semibold">1 o 10 productos</strong>.</p>
-                </div>
-            </div>
-            <button onclick="filterCategory('nuevos')" class="w-full sm:w-auto bg-[#2C2C2E] hover:bg-[#3A3A3C] text-white text-xs font-semibold py-2.5 px-5 rounded-full flex items-center justify-center space-x-2 shrink-0 transition cursor-pointer border border-white/5">
-                <i class="fa-solid fa-cart-plus text-xs"></i>
-                <span>Ver accesorios desde $2-$3</span>
-            </button>
-        </div>
+    <div class="mx-auto max-w-3xl text-center">
+        <span class="eyebrow reveal">Nueva temporada</span>
 
-        <div class="banner-card flex flex-col sm:flex-row items-center justify-between gap-4 bg-gradient-to-r from-[#0A2A1A] to-[#1C1C1E] border-emerald-500/20 hover:border-emerald-500/40">
-            <div class="flex items-center space-x-3.5 text-center sm:text-left">
-                <div class="icon-circle bg-emerald-900/40 text-emerald-400 border border-emerald-500/20">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                </div>
-                <div>
-                    <h3 class="text-xs sm:text-sm font-semibold text-emerald-200 tracking-tight">Canal Oficial MultiStock Sv</h3>
-                    <p class="text-[11px] sm:text-xs text-emerald-400/80 font-normal mt-0.5">Entérate de nuevos ingresos y ofertas antes que nadie.</p>
-                </div>
-            </div>
-            <a id="banner-channel-btn" href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold py-2.5 px-5 rounded-full flex items-center justify-center space-x-2 shrink-0 transition shadow-sm hover:shadow-md">
-                <i class="fa-solid fa-bell text-xs"></i>
-                <span>Unirme al Canal</span>
+        <h1 class="reveal display mt-9 text-[2.6rem] text-[var(--text)] sm:text-6xl lg:text-[4.8rem]" style="transition-delay:.08s">
+            Diseño. Calidad.<br />
+            <em class="gold-text italic">Directo a tu puerta.</em>
+        </h1>
+
+        <p class="reveal mx-auto mt-8 max-w-lg text-[13.5px] font-light leading-relaxed text-white/50 sm:text-[15px]" style="transition-delay:.16s">
+            Una selección curada de piezas para tu estilo de vida. Tecnología, moda y detalles
+            que marcan la diferencia — con entrega rápida y una sola tarifa de envío.
+        </p>
+
+        <div class="reveal mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row" style="transition-delay:.24s">
+            <a href="#catalogo" class="btn-gold w-full sm:w-auto">
+                <i class="fa-solid fa-gem text-[11px]"></i>
+                <span>Explorar catálogo</span>
+            </a>
+            <a href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank" class="btn-ghost w-full sm:w-auto">
+                <i class="fa-brands fa-whatsapp text-[13px]"></i>
+                <span>Canal oficial</span>
             </a>
         </div>
-    </section>
 
-    <!-- ===== MAIN ===== -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-10 flex-grow w-full space-y-8">
-
-        <section class="space-y-4">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h3 class="text-[11px] uppercase font-bold text-[#A1A1A6] tracking-wider flex items-center space-x-2">
-                        <i class="fa-solid fa-compass text-[#0071E3]"></i>
-                        <span>Explorar por Categoría</span>
-                    </h3>
-                </div>
-                <button id="clear-filters-btn" onclick="clearAllFilters()" class="hidden text-xs text-[#0071E3] hover:underline font-semibold flex items-center space-x-1 transition">
-                    <i class="fa-solid fa-rotate-left text-[10px]"></i>
-                    <span>Restablecer Filtros</span>
-                </button>
+        <!-- mini indicators -->
+        <div class="reveal mt-14 flex items-center justify-center gap-6 sm:gap-10" style="transition-delay:.32s">
+            <div class="flex items-center gap-2">
+                <span class="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-[var(--emerald)]"></span>
+                <span class="mono text-[9.5px] font-medium uppercase tracking-[0.22em] text-white/45">Stock activo</span>
             </div>
-            <div class="flex items-center space-x-3 overflow-x-auto no-scrollbar py-2 px-1 -mx-1" id="visual-filter-hub"></div>
-        </section>
-
-        <div class="flex flex-col sm:flex-row items-center justify-between border-b border-white/5 pb-4 gap-4">
-            <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-start">
-                <span id="product-count-badge" class="text-xs font-semibold text-white bg-[#1C1C1E] border border-white/5 px-3.5 py-1.5 rounded-full shrink-0 shadow-sm">
-                    Cargando productos...
-                </span>
-                <div class="relative shrink-0">
-                    <select id="sort-select" onchange="handleSortChange(this.value)" class="bg-[#1C1C1E] text-white text-xs font-semibold py-1.5 pl-3 pr-8 rounded-full border border-white/5 appearance-none focus:outline-none focus:border-[#0071E3] cursor-pointer transition">
-                        <option value="default">Destacados</option>
-                        <option value="price-asc">Precio: Menor a Mayor</option>
-                        <option value="price-desc">Precio: Mayor a Menor</option>
-                    </select>
-                    <i class="fa-solid fa-chevron-down absolute right-3 top-2.5 text-[9px] text-[#A1A1A6] pointer-events-none"></i>
-                </div>
+            <span class="hidden h-4 w-px bg-white/10 sm:block"></span>
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-star text-[9px] text-[var(--gold)]"></i>
+                <span class="mono text-[9.5px] font-medium uppercase tracking-[0.22em] text-white/45">Curado a mano</span>
+            </div>
+            <span class="hidden h-4 w-px bg-white/10 sm:block"></span>
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-truck-fast text-[10px] text-[var(--copper)]"></i>
+                <span class="mono text-[9.5px] font-medium uppercase tracking-[0.22em] text-white/45">Un solo flete</span>
             </div>
         </div>
+    </div>
+</section>
 
-        <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5"></div>
+<!-- ===== SPOTLIGHT / FEATURED ===== -->
+<section class="relative z-[2] mx-auto max-w-[1400px] px-5 pb-8 sm:px-8">
+    <div class="reveal mb-7 flex items-end justify-between gap-4">
+        <div>
+            <span class="eyebrow co">Piezas destacadas</span>
+            <h2 class="display mt-4 text-2xl text-[var(--text)] sm:text-3xl">En <em class="copper-text italic">vitrina</em> esta semana</h2>
+        </div>
+        <span class="mono hidden text-[9.5px] font-medium uppercase tracking-[0.24em] text-white/35 sm:block">
+          // 02 curadas
+        </span>
+    </div>
 
-        <div id="no-results" class="hidden text-center py-16 space-y-3">
-            <i class="fa-solid fa-magnifying-glass text-3xl text-[#A1A1A6] animate-pulse"></i>
-            <h4 class="text-base text-white font-semibold">No encontramos resultados</h4>
-            <p class="text-xs text-[#A1A1A6]">Intenta buscar con otra palabra clave o limpia los filtros visuales.</p>
-            <button onclick="clearAllFilters()" class="mt-3 bg-[#0071E3] text-white text-xs px-4 py-2 rounded-full font-semibold inline-block hover:bg-[#4B9FFF] transition">
-                Ver todos los productos
+    <div class="grid gap-4 lg:grid-cols-2">
+        <!-- Spotlight 1 -->
+        <article class="spotlight reveal cursor-pointer" onclick="openProductModal(4)" style="transition-delay:.06s">
+            <div class="grid grid-cols-1 sm:grid-cols-5">
+                <div class="spotlight-media sm:col-span-3 aspect-square sm:aspect-auto">
+                    <img src="botella-principal.jpg" alt="Botella Doodle" loading="lazy" />
+                </div>
+                <div class="flex flex-col justify-between p-6 sm:col-span-2 sm:p-7">
+                    <div>
+                        <span class="spotlight-tag">
+                            <i class="fa-solid fa-star"></i>
+                            Editor's pick
+                        </span>
+                        <h3 class="display mt-5 text-xl leading-tight text-[var(--text)] sm:text-2xl">
+                            Botella Térmica<br />
+                            <em class="gold-text italic">Doodle Art · 500ml</em>
+                        </h3>
+                        <p class="mt-4 text-[12px] font-light leading-relaxed text-white/50">
+                            Acero inoxidable de doble pared con gráficos estilo Doodle. Mantiene la
+                            temperatura por horas.
+                        </p>
+                    </div>
+                    <div class="mt-6 flex items-end justify-between border-t border-white/[0.06] pt-5">
+                        <span class="pc-price text-[1.4rem]">$12.00</span>
+                        <span class="mono text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--gold)]">
+                            Ver pieza <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Spotlight 2 -->
+        <article class="spotlight reveal cursor-pointer" onclick="openProductModal(16)" style="transition-delay:.12s">
+            <div class="grid grid-cols-1 sm:grid-cols-5">
+                <div class="spotlight-media sm:col-span-3 aspect-square sm:aspect-auto">
+                    <img src="teclado2-principal.jpg" alt="Teclado MageGee" loading="lazy" />
+                </div>
+                <div class="flex flex-col justify-between p-6 sm:col-span-2 sm:p-7">
+                    <div>
+                        <span class="spotlight-tag" style="color:#8B7BC7;border-color:rgba(139,123,199,.35);background:rgba(139,123,199,.06)">
+                            <i class="fa-solid fa-bolt"></i>
+                            Top tech
+                        </span>
+                        <h3 class="display mt-5 text-xl leading-tight text-[var(--text)] sm:text-2xl">
+                            Teclado MageGee<br />
+                            <em style="font-style:italic;color:#B2A4E0">TS91 · RGB 60%</em>
+                        </h3>
+                        <p class="mt-4 text-[12px] font-light leading-relaxed text-white/50">
+                            61 teclas mecánicas con retroiluminación RGB dinámica y cable Type-C
+                            desmontable.
+                        </p>
+                    </div>
+                    <div class="mt-6 flex items-end justify-between border-t border-white/[0.06] pt-5">
+                        <span class="pc-price text-[1.4rem]">$25.00</span>
+                        <span class="mono text-[9px] font-semibold uppercase tracking-[0.2em]" style="color:#B2A4E0">
+                            Ver pieza <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- ===== STATS BAND ===== -->
+<section class="relative z-[2] mt-16">
+    <div class="stat-band">
+        <div class="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-5 sm:grid-cols-4 sm:px-8">
+            <div class="reveal text-center">
+                <span class="stat-num gold-text">23</span>
+                <p class="mono mt-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/40">Piezas curadas</p>
+            </div>
+            <div class="reveal text-center" style="transition-delay:.08s">
+                <span class="stat-num" style="color:#7EE7A8">1</span>
+                <p class="mono mt-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/40">Envío único</p>
+            </div>
+            <div class="reveal text-center" style="transition-delay:.16s">
+                <span class="stat-num copper-text">48h</span>
+                <p class="mono mt-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/40">Despacho promedio</p>
+            </div>
+            <div class="reveal text-center" style="transition-delay:.24s">
+                <span class="stat-num" style="color:#B2A4E0">100%</span>
+                <p class="mono mt-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/40">Verificado a mano</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CHANNEL CTA ===== -->
+<section class="relative z-[2] mx-auto mt-16 max-w-[1400px] px-5 sm:px-8">
+    <div class="reveal relative overflow-hidden border border-[rgba(74,222,128,0.2)] bg-gradient-to-r from-[#0C1A14] via-[#0D0F0D] to-[#0D0D10] px-6 py-7 sm:px-10">
+        <div class="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-emerald-500/10 blur-3xl"></div>
+        <div class="relative flex flex-col items-center justify-between gap-6 sm:flex-row">
+            <div class="flex items-center gap-5 text-center sm:text-left">
+                <span class="hidden h-12 w-12 shrink-0 items-center justify-center rounded-full border border-emerald-400/25 bg-emerald-500/10 sm:flex">
+                    <i class="fa-brands fa-whatsapp text-lg text-emerald-300"></i>
+                </span>
+                <div>
+                    <span class="eyebrow em !text-[8px] !tracking-[0.3em]">Canal oficial</span>
+                    <h3 class="display mt-2 text-lg text-[var(--text)]">MultiStock Sv</h3>
+                    <p class="mt-1.5 flex items-center justify-center gap-2 text-[11.5px] font-light text-white/45 sm:justify-start">
+                        <span class="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                        Nuevos ingresos y ofertas antes que nadie.
+                    </p>
+                </div>
+            </div>
+            <a id="banner-channel-btn" href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank"
+               class="btn-ghost-em w-full sm:w-auto">
+                <i class="fa-solid fa-bell text-[11px]"></i>
+                <span>Unirme al canal</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CATALOG ===== -->
+<main id="catalogo" class="relative z-[2] mx-auto w-full max-w-[1400px] flex-grow px-5 py-20 sm:px-8 sm:py-24">
+
+    <section class="mb-10">
+        <div class="mb-7 flex flex-wrap items-end justify-between gap-6">
+            <div class="reveal">
+                <span class="eyebrow">Explorar</span>
+                <h2 class="display mt-4 text-3xl text-[var(--text)] sm:text-4xl">Por categoría</h2>
+            </div>
+            <button id="clear-filters-btn" onclick="clearAllFilters()"
+                    class="mono hidden shrink-0 items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--gold)] transition hover:text-[var(--gold-2)]">
+                <i class="fa-solid fa-rotate-left text-[10px]"></i>
+                <span>Restablecer</span>
             </button>
         </div>
-    </main>
+        <div id="visual-filter-hub" class="no-scrollbar -mx-1 flex items-center gap-2.5 overflow-x-auto px-1 py-1"></div>
+    </section>
 
-    <!-- ===== MODAL ===== -->
-    <div id="product-modal" class="fixed inset-0 modal-overlay hidden z-50 flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
-        <div class="modal-content w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col lg:flex-row">
-            <div class="flex items-center justify-between px-6 py-4 border-b border-white/5 shrink-0">
-                <div class="flex items-center space-x-2.5 overflow-hidden pr-2">
-                    <span class="text-[#0071E3] text-[10px] font-bold uppercase tracking-wider bg-[#0071E3]/10 px-2.5 py-0.5 rounded-full shrink-0">Detalles</span>
-                    <h3 id="modal-title" class="text-sm sm:text-base font-semibold truncate text-white">Título Producto</h3>
-                </div>
-                <button onclick="closeProductModal()" class="bg-[#2C2C2E] hover:bg-[#3A3A3C] text-white px-3 py-1.5 rounded-full transition flex items-center space-x-1 text-xs font-semibold cursor-pointer shrink-0">
-                    <span class="hidden sm:inline">Cerrar</span>
-                    <i class="fa-solid fa-xmark text-sm"></i>
-                </button>
+    <div class="mb-8 flex flex-col items-center justify-between gap-4 border-b border-white/[0.06] pb-5 sm:flex-row">
+        <span id="product-count-badge" class="mono text-[10px] font-semibold uppercase tracking-[0.24em] text-white/45">
+            Cargando…
+        </span>
+        <div class="relative shrink-0">
+            <select id="sort-select" onchange="handleSortChange(this.value)" class="select-lux">
+                <option value="default">Destacados</option>
+                <option value="price-asc">Precio · Menor a Mayor</option>
+                <option value="price-desc">Precio · Mayor a Menor</option>
+            </select>
+            <i class="fa-solid fa-chevron-down pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[8px] text-[var(--gold)]/70"></i>
+        </div>
+    </div>
+
+    <div id="products-grid" class="grid grid-cols-2 gap-3.5 sm:gap-5 md:grid-cols-3 lg:grid-cols-4"></div>
+
+    <div id="no-results" class="hidden py-24 text-center">
+        <i class="fa-regular fa-gem mb-5 block text-3xl text-[var(--gold)]/40"></i>
+        <h4 class="display text-2xl text-[var(--text)]">Sin resultados</h4>
+        <p class="mx-auto mt-3 max-w-xs text-[12.5px] font-light leading-relaxed text-white/40">
+            No encontramos piezas con esos criterios. Prueba otra palabra clave o restablece los filtros.
+        </p>
+        <button onclick="clearAllFilters()" class="btn-ghost mt-8">
+            <i class="fa-solid fa-rotate-left text-[10px]"></i>
+            <span>Ver todo el catálogo</span>
+        </button>
+    </div>
+
+    <!-- Editorial divider -->
+    <div class="section-divider mt-20 reveal">
+        <span>« La diferencia está en los detalles que eliges conservar. »</span>
+    </div>
+</main>
+
+<!-- ===== PRODUCT MODAL ===== -->
+<div id="product-modal" class="modal-overlay fixed inset-0 z-[100] hidden items-center justify-center p-3 opacity-0 transition-opacity duration-300 sm:p-6">
+    <div class="modal-panel flex max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden">
+
+        <div class="flex shrink-0 items-center justify-between gap-4 border-b border-white/[0.06] px-5 py-4 sm:px-8">
+            <div class="flex min-w-0 items-center gap-3">
+                <span class="mono hidden text-[9px] font-semibold uppercase tracking-[0.3em] text-[var(--gold)] sm:inline">Detalle</span>
+                <span class="hidden h-3 w-px bg-white/10 sm:inline"></span>
+                <h3 id="modal-title" class="display truncate text-sm text-[var(--text)] sm:text-base">Título Producto</h3>
             </div>
-            <div class="flex flex-col lg:flex-row flex-grow overflow-y-auto">
-                <div class="modal-image-container w-full lg:w-3/5 p-6 flex items-center justify-center min-h-[300px]">
-                    <img id="modal-main-image" src="" alt="Vista Previa" class="max-w-full max-h-[50vh] object-contain drop-shadow-lg">
-                </div>
-                <div class="w-full lg:w-2/5 p-6 space-y-6 overflow-y-auto">
-                    <div class="flex items-baseline justify-between border-b border-white/5 pb-4">
-                        <div>
-                            <span id="modal-price" class="text-2xl sm:text-3xl font-extrabold text-white">$0.00</span>
-                            <span id="modal-shipping-note" class="text-xs text-[#A1A1A6] block mt-0.5 font-normal"></span>
-                        </div>
-                        <span id="modal-status-badge" class="text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1 rounded-full font-semibold uppercase tracking-wider">Disponible</span>
+            <button onclick="closeProductModal()"
+                    class="flex shrink-0 cursor-pointer items-center gap-2 border border-white/10 px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60 transition hover:border-[var(--gold)]/50 hover:text-[var(--gold)]">
+                <span class="hidden sm:inline">Cerrar</span>
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+        </div>
+
+        <div class="flex min-h-0 flex-1 flex-col overflow-y-auto lg:flex-row lg:overflow-hidden">
+
+            <div class="modal-img-panel flex min-h-[300px] w-full items-center justify-center p-8 lg:w-[58%] lg:p-14">
+                <img id="modal-main-image" src="" alt="Vista Previa" />
+            </div>
+
+            <div class="w-full overflow-y-auto p-6 sm:p-8 lg:w-[42%]">
+
+                <div class="flex items-start justify-between gap-4 border-b border-white/[0.06] pb-6">
+                    <div>
+                        <span id="modal-price" class="display block text-4xl font-medium tracking-tight text-[var(--text)]">$0.00</span>
+                        <span id="modal-shipping-note" class="mt-2 block text-[10.5px] font-light tracking-wide text-white/40"></span>
                     </div>
-                    <div class="bg-[#2C2C2E] rounded-2xl p-4 space-y-1.5 border border-white/5">
-                        <div class="flex items-center space-x-2 text-[#0071E3] text-xs font-semibold">
-                            <i class="fa-solid fa-piggy-bank"></i>
-                            <span>¡Sácale provecho a tu flete!</span>
-                        </div>
-                        <p class="text-xs text-[#A1A1A6] font-normal leading-relaxed">El envío no cambia de precio si sumas productos extra de $2.00 o $3.50 a este pedido.</p>
+                    <span id="modal-status-badge"
+                          class="shrink-0 border border-emerald-800/60 bg-emerald-950/50 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-emerald-400">
+                        Disponible
+                    </span>
+                </div>
+
+                <div class="mt-7">
+                    <div class="mb-3 flex items-center justify-between">
+                        <span class="modal-label">Variante</span>
+                        <span id="selected-variant-name" class="mono text-[11px] font-medium text-[var(--gold-2)]">-</span>
+                    </div>
+                    <div id="modal-thumbs-container" class="no-scrollbar flex gap-2.5 overflow-x-auto pb-1"></div>
+                </div>
+
+                <div class="mt-7">
+                    <span class="modal-label">Descripción</span>
+                    <p id="modal-short-desc" class="mt-3 text-[12.5px] font-light leading-relaxed text-white/65">Descripción...</p>
+                </div>
+
+                <div class="mt-7">
+                    <span class="modal-label">Características</span>
+                    <ul id="modal-features-list" class="mt-3.5 space-y-2.5"></ul>
+                </div>
+
+                <div class="mt-7 border-l-2 border-[var(--emerald)] bg-[rgba(74,222,128,0.04)] py-3.5 pl-4 pr-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-piggy-bank text-[10px] text-[var(--emerald)]"></i>
+                        <span class="mono text-[9.5px] font-semibold uppercase tracking-[0.22em] text-[var(--emerald)]">Aprovecha tu flete</span>
+                    </div>
+                    <p class="mt-2 text-[11.5px] font-light leading-relaxed text-white/50">
+                        El envío no cambia de precio si sumas productos extra de $2.00 o $3.50 a este pedido.
+                    </p>
+                </div>
+
+                <div class="mt-7 border-t border-white/[0.06] pt-6">
+                    <a id="modal-whatsapp-btn" href="#" target="_blank" class="btn-gold w-full">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Solicitar por WhatsApp</span>
+                    </a>
+                    <p class="mono mt-3 text-center text-[9.5px] font-light tracking-[0.14em] text-white/30">
+                        // COORDINACIÓN DIRECTA PARA ENTREGA Y ENVÍO
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== SUGGESTION MODAL ===== -->
+<div id="suggestion-modal" class="modal-overlay fixed inset-0 z-[110] hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+    <div class="modal-panel w-full max-w-lg overflow-hidden">
+
+        <div class="flex items-center justify-between border-b border-white/[0.06] px-6 py-5">
+            <div>
+                <span class="eyebrow !text-[8px] !tracking-[0.3em]">Buzón</span>
+                <h2 class="display mt-2 text-lg text-[var(--text)]">Sugerir una pieza</h2>
+            </div>
+            <button onclick="closeSuggestionModal()"
+                    class="flex h-8 w-8 items-center justify-center border border-white/10 text-white/50 transition hover:border-[var(--gold)]/50 hover:text-[var(--gold)]">
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+        </div>
+
+        <div class="p-6 sm:p-7">
+            <form id="suggestion-form" onsubmit="sendSuggestion(event)">
+                <div class="space-y-5">
+                    <div>
+                        <label class="modal-label mb-2 block">Tu nombre</label>
+                        <input type="text" id="sug-name" class="lux-input" placeholder="Ej: Carlos" required />
                     </div>
                     <div>
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-[11px] uppercase font-bold text-[#A1A1A6] tracking-wider">Variante:</span>
-                            <span class="text-xs font-medium text-white" id="selected-variant-name">-</span>
-                        </div>
-                        <div id="modal-thumbs-container" class="flex gap-2 overflow-x-auto no-scrollbar pb-1"></div>
+                        <label class="modal-label mb-2 block">Producto que sugieres</label>
+                        <input type="text" id="sug-product" class="lux-input" placeholder="Ej: Reloj deportivo con GPS" required />
                     </div>
-                    <div class="space-y-1">
-                        <h4 class="text-[11px] uppercase font-bold text-[#A1A1A6] tracking-wider">Descripción:</h4>
-                        <p id="modal-short-desc" class="text-xs leading-relaxed text-white font-normal">Descripción...</p>
+                    <div>
+                        <label class="modal-label mb-2 block">Detalles</label>
+                        <textarea id="sug-desc" rows="3" class="lux-input resize-none"
+                                  placeholder="Por qué te gustaría encontrarlo, color, precio estimado..." required></textarea>
                     </div>
-                    <div class="space-y-2">
-                        <h4 class="text-[11px] uppercase font-bold text-[#A1A1A6] tracking-wider">Características:</h4>
-                        <ul id="modal-features-list" class="space-y-2"></ul>
-                    </div>
-                    <div class="pt-4 border-t border-white/5 space-y-2">
-                        <a id="modal-whatsapp-btn" href="#" target="_blank" class="w-full bg-[#0071E3] hover:bg-[#4B9FFF] text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition text-xs tracking-wider uppercase shadow-lg shadow-[#0071E3]/20">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
-                            <span>Solicitar por WhatsApp</span>
-                        </a>
-                        <p class="text-[10px] text-center text-[#A1A1A6] font-normal">Coordinación directa para entrega y tarifa de envío.</p>
-                    </div>
+                    <button type="submit" class="btn-gold w-full">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Enviar sugerencia</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FLOATING ===== -->
+<a id="floating-channel-btn" href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank"
+   class="float-btn float-emerald fixed bottom-5 left-5 z-40">
+    <i class="fa-brands fa-whatsapp text-base"></i>
+    <span class="hidden sm:inline">Canal</span>
+</a>
+
+<button onclick="openSuggestionModal()" class="float-btn float-gold fixed bottom-5 right-5 z-40">
+    <i class="fa-regular fa-pen-to-square text-sm"></i>
+    <span class="hidden sm:inline">Sugerir</span>
+</button>
+
+<!-- ===== FOOTER ===== -->
+<footer class="relative z-[2] mt-10 border-t border-white/[0.06] bg-[#08080A]">
+    <div class="mx-auto max-w-[1400px] px-5 py-14 sm:px-8">
+        <div class="grid gap-12 lg:grid-cols-12">
+
+            <div class="lg:col-span-5">
+                <div class="flex items-center gap-3.5">
+                    <span class="monogram">M</span>
+                    <span class="text-left leading-none">
+                        <span class="block display text-[17px] font-medium tracking-[0.02em] text-[var(--text)]">MultiStock</span>
+                        <span class="mono mt-1.5 block text-[8px] font-medium tracking-[0.38em] text-[var(--gold)]/85 uppercase">Boutique &amp; Tech</span>
+                    </span>
+                </div>
+                <p class="mt-6 max-w-sm text-[12.5px] font-light leading-relaxed text-white/40">
+                    Objetos seleccionados para durar. Un solo envío, sin importar cuántas piezas
+                    elijas en tu pedido.
+                </p>
+                <div class="mono mt-6 flex items-center gap-2 text-[9.5px] font-medium tracking-[0.2em] text-[var(--emerald)]">
+                    <span class="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-[var(--emerald)]"></span>
+                    <span>ATENDIENDO AHORA</span>
                 </div>
             </div>
+
+            <div class="lg:col-span-3">
+                <span class="mono text-[9.5px] font-semibold uppercase tracking-[0.28em] text-white/35">// Navegar</span>
+                <ul class="mt-5 space-y-3">
+                    <li><a href="#catalogo" class="text-[12.5px] font-light text-white/60 transition hover:text-[var(--gold)]">Catálogo</a></li>
+                    <li><a href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank" class="text-[12.5px] font-light text-white/60 transition hover:text-[var(--emerald)]">Canal WhatsApp</a></li>
+                    <li><button onclick="openSuggestionModal()" class="text-[12.5px] font-light text-white/60 transition hover:text-[var(--copper)]">Buzón de sugerencias</button></li>
+                    <li><a id="footer-wa-btn" href="#" target="_blank" class="text-[12.5px] font-light text-white/60 transition hover:text-[var(--gold)]">Contacto directo</a></li>
+                </ul>
+            </div>
+
+            <div class="lg:col-span-4">
+                <span class="mono text-[9.5px] font-semibold uppercase tracking-[0.28em] text-white/35">// Atención</span>
+                <p class="mono mt-5 text-[11px] font-light leading-relaxed text-white/45">
+                    LUN–SÁB · 09:00–19:00<br />
+                    EL SALVADOR, C.A.
+                </p>
+                <a href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank"
+                   class="btn-ghost mt-6 !px-5 !py-3 !text-[10px]">
+                    <i class="fa-brands fa-whatsapp text-[12px]"></i>
+                    <span>Escribir ahora</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="rule mt-14"></div>
+
+        <div class="mono mt-6 flex flex-col items-center justify-between gap-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/30 sm:flex-row">
+            <span>© 2026 MultiStock El Salvador</span>
+            <span class="flex items-center gap-3">
+                <span class="text-[var(--gold)]">◆</span>
+                Hecho con cuidado · MMXXVI
+                <span class="text-[var(--gold)]">◆</span>
+            </span>
         </div>
     </div>
+</footer>
 
-    <!-- ===== MODAL SUGERENCIAS ===== -->
-    <div id="suggestion-modal" class="fixed inset-0 modal-overlay hidden z-[60] flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
-        <div class="modal-content w-full max-w-lg">
-            <div class="flex items-center justify-between px-6 py-4 border-b border-white/5">
-                <h2 class="text-base font-semibold text-white">📬 Buzón de Sugerencias</h2>
-                <button onclick="closeSuggestionModal()" class="text-[#A1A1A6] hover:text-white transition text-lg">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="p-6 modal-suggestion">
-                <form id="suggestion-form" onsubmit="sendSuggestion(event)">
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-[10px] uppercase tracking-wider text-[#A1A1A6] font-bold mb-1.5">Tu nombre</label>
-                            <input type="text" id="sug-name" placeholder="Ej: Carlos" required>
-                        </div>
-                        <div>
-                            <label class="block text-[10px] uppercase tracking-wider text-[#A1A1A6] font-bold mb-1.5">Producto que sugieres</label>
-                            <input type="text" id="sug-product" placeholder="Ej: Reloj deportivo con GPS" required>
-                        </div>
-                        <div>
-                            <label class="block text-[10px] uppercase tracking-wider text-[#A1A1A6] font-bold mb-1.5">Detalles</label>
-                            <textarea id="sug-desc" rows="3" placeholder="Por qué te gustaría encontrarlo, color, precio estimado..." required class="resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-white hover:bg-gray-200 text-black font-semibold py-3 rounded-xl flex items-center justify-center space-x-2 transition text-xs tracking-wider uppercase shadow-md">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
-                            <span>Enviar por WhatsApp</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+<!-- ============================================================ -->
+<script>
+    const WHATSAPP_NUMBER = "+50371323853";
+    const WHATSAPP_CHANNEL_URL = "https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42";
 
-    <!-- ===== BOTONES FLOTANTES ===== -->
-    <a id="floating-channel-btn" href="https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42" target="_blank" class="fixed bottom-5 left-5 z-40 bg-emerald-600 hover:bg-emerald-700 text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-xl flex items-center space-x-2 transition hover:scale-105 active:scale-95">
-        <i class="fa-brands fa-whatsapp text-lg"></i>
-        <span class="hidden sm:inline text-xs font-semibold">Canal MultiStock</span>
-    </a>
-    <button onclick="openSuggestionModal()" class="fixed bottom-5 right-5 z-40 bg-white hover:bg-gray-200 text-black p-3 sm:px-4 sm:py-3 rounded-full shadow-xl flex items-center space-x-2 transition hover:scale-105 active:scale-95">
-        <i class="fa-regular fa-pen-to-square text-lg"></i>
-        <span class="hidden sm:inline text-xs font-semibold">Sugerir producto</span>
-    </button>
+    const VISUAL_CATEGORIES = [
+        { id: 'todos', label: 'Todos', icon: 'fa-solid fa-border-all' },
+        { id: 'nuevos', label: 'Novedades', icon: 'fa-solid fa-wand-magic-sparkles' },
+        { id: 'tecnologia', label: 'Tecnología', icon: 'fa-solid fa-microchip' },
+        { id: 'accesorios', label: 'Moda & Estilo', icon: 'fa-solid fa-glasses' },
+        { id: 'combos', label: 'Sets & Combos', icon: 'fa-solid fa-box-open' }
+    ];
 
-    <!-- ===== FOOTER ===== -->
-    <section class="border-t border-white/5 py-10 px-4 sm:px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-xs">
-            <div class="space-y-1.5 p-5 rounded-2xl bg-[#1C1C1E] border border-white/5 hover:border-[#0071E3]/30 transition-all duration-300">
-                <i class="fa-solid fa-shield-halved text-[#0071E3] text-lg mb-1"></i>
-                <h4 class="font-bold uppercase text-[11px] tracking-wider text-white">Compra Segura</h4>
-                <p class="text-[#A1A1A6] font-normal leading-relaxed text-[11px]">Coordinación directa por WhatsApp. Pagas al recibir o coordinar.</p>
-            </div>
-            <div class="space-y-1.5 p-5 rounded-2xl bg-[#1C1C1E] border border-white/5 hover:border-[#0071E3]/30 transition-all duration-300">
-                <i class="fa-solid fa-boxes-packing text-[#0071E3] text-lg mb-1"></i>
-                <h4 class="font-bold uppercase text-[11px] tracking-wider text-white">Envío Único</h4>
-                <p class="text-[#A1A1A6] font-normal leading-relaxed text-[11px]">Pide 1 o varios artículos por la misma tarifa de flete a tu zona.</p>
-            </div>
-            <div class="space-y-1.5 p-5 rounded-2xl bg-[#1C1C1E] border border-white/5 hover:border-[#0071E3]/30 transition-all duration-300">
-                <i class="fa-solid fa-gem text-[#0071E3] text-lg mb-1"></i>
-                <h4 class="font-bold uppercase text-[11px] tracking-wider text-white">Garantía de Calidad</h4>
-                <p class="text-[#A1A1A6] font-normal leading-relaxed text-[11px]">Revisamos y probamos cada artículo antes de despacharlo.</p>
-            </div>
-        </div>
-    </section>
-    <footer class="border-t border-white/5 py-6 text-center text-[10px] tracking-widest text-[#A1A1A6] uppercase font-semibold">
-        <p>© 2026 MULTISTOCK EL SALVADOR. Todos los derechos reservados.</p>
-    </footer>
+    const PRODUCTS = [
+        { id: 1, title: "Cepillo Multifuncional de Limpieza para Auriculares, Pantallas y Teclados - Incluye Herramienta para Sacar Teclas", price: "$4.75", numericPrice: 4.75, requiresShippingFee: true, badgeLeft: "Multifunción", badgeRight: "Top Calificado", tagline: "Tech Cleaner", category: ["nuevos", "tecnologia"], isNew: true, available: true, shortDesc: "Cepillo de limpieza multifuncional para eliminar el polvo de pantallas de teléfonos, auriculares y teclados. Incluye herramienta para sacar teclas. Solo disponible en color azul.", features: ["Cepillo de cerdas suaves ideal para pantallas y auriculares.", "Incluye herramienta para extraer teclas de teclados mecánicos.", "Diseño ergonómico y portátil para limpieza en cualquier lugar.", "Elimina el polvo y la suciedad de dispositivos electrónicos.", "Disponible en color azul."], variants: [{ name: "Vista Principal", image: "limpieza1-1.jpg" }, { name: "Vista 2", image: "limpieza1-2.jpg" }, { name: "Azul - Ángulo", image: "limpieza1-azul.jpg" }] },
+        { id: 2, title: "Sellador de Bolsas de Snacks Portátil con Batería de Litio y Cable USB", price: "$4.25", numericPrice: 4.25, requiresShippingFee: true, badgeLeft: "USB Recargable", badgeRight: "Más Vendido", tagline: "Snack Sealer", category: ["nuevos", "tecnologia"], isNew: true, available: true, shortDesc: "Set de sellador de bolsas de snacks con batería de litio incorporada y cable de carga USB. Diseño magnético a presión, silencioso y eficiente. Ideal para casa, picnic, excursiones y viajes.", features: ["Batería de litio incorporada, recargable vía USB (incluye cable).", "Diseño magnético a presión para sellado rápido y seguro.", "Bajo consumo de energía, silencioso y eficiente.", "Portátil y ligero, ideal para casa, picnic, excursiones y viajes.", "Sella bolsas de galletas, chips, snacks y otros alimentos."], variants: [{ name: "Vista Principal", image: "sellador1-1.jpg" }, { name: "Vista 2", image: "sellador1-2.jpg" }, { name: "Vista 3", image: "sellador1-3.jpg" }] },
+        { id: 3, title: "Rociador de Aceite de Oliva 220ml/320ml - Alta Presión a Prueba de Fugas", price: "$4.75 - $6.50", numericPrice: 4.75, requiresShippingFee: true, badgeLeft: "220ml / 320ml", badgeRight: "Más Recomprado", tagline: "Spray & Grill", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Rociador de aceite de alta presión, a prueba de fugas, ideal para barbacoa, freidora de aire y camping. Disponible en 220ml y 320ml, colores blanco y negro.", features: ["Diseño a prueba de fugas con alta presión para un rociado uniforme.", "Capacidad de 220ml o 320ml según elección (consultar disponibilidad).", "Ideal para barbacoa, freidora de aire, sartenes y camping.", "Material plástico resistente, ligero y fácil de limpiar.", "Opción de color: Blanco o Negro."], variants: [{ name: "Vista 1", image: "aceite2-1.jpg" }, { name: "Vista 2", image: "aceite2-2.jpg" }, { name: "Vista 3", image: "aceite2-3.jpg" }, { name: "Vista 4", image: "aceite2-4.jpg" }, { name: "Blanco", image: "aceite2-blanco.jpg" }, { name: "Negro", image: "aceite2-negro.jpg" }] },
+        { id: 4, title: "Dispensador de Aceite 2 en 1 con Pulverizador y Vertido - 470ml", price: "$6.00", numericPrice: 6.00, requiresShippingFee: true, badgeLeft: "470ml", badgeRight: "Novedad", tagline: "Spray & Pour", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Botella de aceite portátil 2 en 1 que pulveriza o vierte con precisión. Ideal para cocinar, asar, freír, hornear y ensaladas. Capacidad de 470 ml.", features: ["Diseño 2 en 1: pulverizador y vertido, controla la cantidad de aceite.", "Ideal para cocinar, asar a la parrilla, freír en aire, hornear y ensaladas.", "Botella de plástico resistente, ligera y fácil de limpiar.", "Tapa sellada para evitar derrames y mantener el aceite fresco.", "Disponible en varios colores: negro, amarillo, blanco y verde."], variants: [{ name: "Negro", image: "aceite1-negro.jpg" }, { name: "Amarillo", image: "aceite1-amarillo.jpg" }, { name: "Blanco", image: "aceite1-blanco.jpg" }, { name: "Verde", image: "aceite1-verde.jpg" }, { name: "Vista en uso", image: "aceite1-2.jpg" }] },
+        { id: 5, title: "Botella Térmica de Acero Inoxidable 500ml (Doodle Art)", price: "$12.00", numericPrice: 12.00, requiresShippingFee: false, badgeLeft: "500ml / 17oz", badgeRight: "Disponible", tagline: "Doodle Art", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Termo de acero inoxidable con aislamiento al vacío de doble pared y acabados gráficos estilo Doodle.", features: ["Conservación de temperatura: mantiene frío o caliente por horas.", "Construcción en Acero Inoxidable de alta resistencia.", "Diseño gráfico exclusivo Doodle Art."], variants: [{ name: "Colección Doodle", image: "botella-principal.jpg" }, { name: "Variante Negra", image: "botella-2.jpg" }, { name: "Variante Rosa", image: "botella-3.jpg" }, { name: "Variante Verde", image: "botella-4.jpg" }, { name: "Variante Naranja", image: "botella-5.jpg" }, { name: "Detalle Acabado", image: "botella-6.jpg" }] },
+        { id: 6, title: "Cable de Carga Rápida USB-C a Tipo C (60W Trenzado)", price: "$3.00", numericPrice: 3.00, requiresShippingFee: true, badgeLeft: "Carga 60W", badgeRight: "Novedad", tagline: "Fast Charge", category: ["nuevos", "tecnologia"], isNew: true, available: true, shortDesc: "Cable trenzado de nylon de alta resistencia USB-C a Tipo C, carga rápida de 60W para iPhone 15/16/17, iPad, Samsung y laptops.", features: ["Soporta carga rápida de hasta 60W y transferencia de datos.", "Fabricado en nylon trenzado de alta resistencia contra enredos y desgarros.", "Compatible con iPhone 15/16/17, iPad, Samsung y dispositivos tipo C.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Blanco / Plata", image: "cable-c-1.jpg" }, { name: "Negro", image: "cable-c-2.jpg" }, { name: "Azul", image: "cable-c-azul.jpg" }, { name: "Púrpura", image: "cable-c-purpura.jpg" }, { name: "Verde", image: "cable-c-verde.jpg" }, { name: "Rosa", image: "cable-c-rosa.jpg" }] },
+        { id: 7, title: "Gafas de Moda Vintage con Montura Geométrica para Hombre", price: "$5.00", numericPrice: 5.00, requiresShippingFee: true, badgeLeft: "Varios Estilos", badgeRight: "Novedad", tagline: "Vintage Style", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Gafas de sol de estilo vintage para hombre con montura geométrica media pasta, ideales para el uso diario y protección estilizada.", features: ["Diseño vintage de corte geométrico elegante y moderno.", "Montura ligera y resistente con acabados metálicos y oscuros.", "Disponible en varios colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Marco Dorado/Negro Lente Gris", image: "lentes1-1.jpg" }, { name: "Variante 2", image: "lentes1-2.jpg" }, { name: "Variante 3", image: "lentes1-3.jpg" }, { name: "Variante 4", image: "lentes1-4.jpg" }] },
+        { id: 8, title: "Gafas de Moda Casual Retro para Mujer", price: "$5.00", numericPrice: 5.00, requiresShippingFee: true, badgeLeft: "Varios Estilos", badgeRight: "Novedad", tagline: "Retro Streetwear", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Gafas de sol para mujer con diseño retro casual, marco resistente y patillas texturizadas de estilo urbano.", features: ["Diseño retro de corte urbano perfecto para uso diario.", "Marco elegante con acabado traslúcido y patillas estilo madera.", "Disponible en varios colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Vista Principal", image: "lentes2-1.jpg" }, { name: "Variante 2", image: "lentes2-2.jpg" }, { name: "Variante 3", image: "lentes2-3.jpg" }, { name: "Variante 4", image: "lentes2-4.jpg" }] },
+        { id: 9, title: "Set de Reloj Yolako + Pulsera Elegante de Corazón", price: "$7.00", numericPrice: 7.00, requiresShippingFee: true, badgeLeft: "Set 2 Piezas", badgeRight: "Novedad", tagline: "Glamour Set", category: ["nuevos", "accesorios", "combos"], isNew: true, available: true, shortDesc: "Juego femenino con esfera efecto esmerilado brillante y pulsera ajustable con dijes de corazón.", features: ["Incluye Reloj Yolako + Pulsera combinada de regalo.", "Esfera con acabado esmerilado que destella con la luz.", "Correa cómoda de piel sintética suave.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Set Principal", image: "relog-mujer1-principal.jpg" }, { name: "Detalle Reloj & Esfera", image: "relog-mujer1-2.jpg" }, { name: "Vista Pulsera & Ajuste", image: "relog-mujer1-3.jpg" }] },
+        { id: 10, title: "Cartera Larga Multifuncional (Diseño Triangular)", price: "$8.00", numericPrice: 8.00, requiresShippingFee: true, badgeLeft: "Elegante", badgeRight: "Novedad", tagline: "Moda Dama", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Billetera espaciosa de PU texturizado con broche de solapa triangular metálico y tarjetero múltiple.", features: ["Diseño geométrico moderno con broche metálico resistente.", "Compartimentos organizados para celular, tarjetas y billetes.", "Bolsillo interno con cremallera para monedas.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Vista Principal Solapa", image: "cartera2-principal.jpg" }, { name: "Capacidad Interior", image: "cartera2-2.jpg" }, { name: "Vista Posterior", image: "cartera2-3.jpg" }, { name: "Detalle Broche Metal", image: "cartera2-4.jpg" }, { name: "Perfil Completo", image: "cartera2-5.jpg" }] },
+        { id: 11, title: "Collar Choker de Perlas de Imitación", price: "$3.50", numericPrice: 3.50, requiresShippingFee: true, badgeLeft: "Moda Dama", badgeRight: "Novedad", tagline: "Pearl Choker", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Elegante gargantilla con perlas de imitación ajustables, ideal para complementar cualquier estilo.", features: ["Diseño femenino de alta tendencia.", "Broche y cadena de ajuste seguro.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Vista Principal", image: "collar1-1.jpg" }, { name: "Detalle de Perlas", image: "collar1-2.jpg" }, { name: "Estilo Puesto", image: "collar1-3.jpg" }] },
+        { id: 12, title: "Set de 2 Delineadores de Ojos en Gel Miss Rose", price: "$3.50", numericPrice: 3.50, requiresShippingFee: true, badgeLeft: "Set de 2", badgeRight: "Novedad", tagline: "Smooth Gel", category: ["nuevos", "accesorios", "combos"], isNew: true, available: true, shortDesc: "Delineador y sombra en gel de larga duración en tonos negro y marrón con acabado mate.", features: ["Incluye 2 piezas: Tonos Negro y Marrón.", "Acabado mate de larga duración y fácil aplicación.", "Ideal para ojos de gato y looks ahumados.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Set 2Pcs Principal", image: "delineador1-1.jpg" }, { name: "Presentación Producto", image: "delineador1-2.jpg" }, { name: "Detalle Aplicador", image: "delineador1-3.jpg" }, { name: "Ejemplo de Maquillaje", image: "delineador1-4.jpg" }] },
+        { id: 13, title: "Pulsera Trébol de Moda en Acero Inoxidable", price: "$2.00", numericPrice: 2.00, requiresShippingFee: true, badgeLeft: "Varios Colores", badgeRight: "Novedad", tagline: "Stainless Steel", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Pulsera estilo trébol de alta gama fabricada en acero inoxidable para uso diario.", features: ["Material de acero inoxidable resistente y duradero.", "Disponible en varios colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Colores Disponibles", image: "pulsera1-1.jpg" }] },
+        { id: 14, title: "Reloj Elegante de Cuarzo para Hombre (Estilo Vintage)", price: "$10.00", numericPrice: 10.00, requiresShippingFee: true, badgeLeft: "Varios Estilos", badgeRight: "Novedad", tagline: "SHAARMS / IRLANDY", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Reloj masculino de esfera redonda con correa de aleación y ventana de fecha/día.", features: ["Mecanismo de cuarzo con correa de aleación metálica.", "Diseño retro elegante para uso casual o formal.", "Disponible en varios estilos/colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Esfera Azul Acero", image: "relog-hombre1-1.jpg" }, { name: "Vista Puesto", image: "relog-hombre1-2.jpg" }] },
+        { id: 15, title: "Reloj Elegante Ultra Delgado de Dama", price: "$25.00", numericPrice: 25.00, requiresShippingFee: false, badgeLeft: "6 Variantes", badgeRight: "Edición Dama", tagline: "Ultra-Slim", category: ["accesorios"], isNew: false, available: true, shortDesc: "Diseño minimalista de alta precisión con caja metálica ultradelgada y acabados de lujo.", features: ["Grosor ultradelgado de 7 mm con acabado pulido.", "Mecanismo de cuarzo de alta precisión con batería incluida.", "Extensible cómodo y elegante de alta calidad."], variants: [{ name: "Blanco", image: "blanco.jpg" }, { name: "Vino / Borgoña", image: "marron.jpg" }, { name: "Negro Clásico", image: "negro-carablanca.jpg" }, { name: "Púrpura / Lila", image: "rosa.jpg" }, { name: "Rosa Pastel", image: "rosa2.jpg" }, { name: "Verde Esmeralda", image: "verde.jpg" }] },
+        { id: 16, title: "Cartera Larga Minimalista con Hebilla", price: "$22.00", numericPrice: 22.00, requiresShippingFee: false, badgeLeft: "10 Fotos", badgeRight: "Estilo Coreano", tagline: "High Sense", category: ["accesorios"], isNew: false, available: true, shortDesc: "Diseño estilo coreano con tarjetero amplio, compartimento con cierre y elegante hebilla a contraste.", features: ["Múltiples ranuras para tarjetas y amplio espacio para billetes o móvil.", "Cierre de cremallera metálica suave y broche de hebilla seguro.", "Material de cuero sintético (PU) de alta durabilidad."], variants: [{ name: "Vista Principal", image: "catera-principal.jpg" }, { name: "Rosa Pastel", image: "cartera-rosada.jpg" }, { name: "Negro Clásico", image: "cartera-negra.jpg" }, { name: "Blanco / Crema", image: "cartera-blanca.jpg" }, { name: "Rojo Elegante", image: "cartera-roja.jpg" }, { name: "Azul", image: "cartera-azul.jpg" }, { name: "Amarillo", image: "cartera-amarilla.jpg" }, { name: "Distribución Interior", image: "cartera-interior.jpg" }, { name: "Vista Interior Vacío", image: "cartera-interior-vacio.jpg" }, { name: "Detalle Zipper", image: "cartera-zipper.jpg" }] },
+        { id: 17, title: "Teclado Mecánico Gaming MageGee TS91 RGB (60%)", price: "$25.00", numericPrice: 25.00, requiresShippingFee: false, badgeLeft: "MageGee TS91", badgeRight: "60% Layout", tagline: "Mechanical RGB", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Teclado ultra compacto de 61 teclas con retroiluminación RGB dinámica y cable tipo C extraíble.", features: ["Diseño compacto 60% para máximo espacio en el escritorio.", "Múltiples modos de iluminación RGB con ajuste de brillo y velocidad.", "Conexión estable por cable USB Type-C desmontable."], variants: [{ name: "Vista Principal", image: "teclado2-principal.jpg" }, { name: "Vista Ángulo", image: "teclado2-2.jpg" }, { name: "Detalle Lateral", image: "teclado2-3.jpg" }, { name: "Efecto Iluminación", image: "teclado2-4.jpg" }, { name: "Plano Superior", image: "teclado2-5.jpg" }, { name: "Vista Completa", image: "teclado2-6.jpg" }] },
+        { id: 18, title: "Teclado Gaming 60% RGB con Textura Topográfica", price: "$22.00", numericPrice: 22.00, requiresShippingFee: false, badgeLeft: "Topo Edition", badgeRight: "61 Teclas", tagline: "Custom Texture", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Edición especial con grabado topográfico artístico en las teclas e iluminación RGB translúcida.", features: ["Diseño artístico único con líneas de relieve topográfico en blanco.", "Efecto de luz RGB difuso que resalta el grabado.", "Factor de forma 60% portátil e ideal para transporte."], variants: [{ name: "Textura Blanca Principal", image: "teclado3-principal.jpg" }, { name: "Vista Superior", image: "teclado3-principal2.0.jpg" }, { name: "Detalle Textura", image: "teclado3-2.jpg" }, { name: "Iluminación Nocturna", image: "teclado3-3.jpg" }, { name: "Perfil Lateral", image: "teclado3-4.jpg" }] },
+        { id: 19, title: "Teclado Mini XNI 61 Teclas RGB (Blanco y Negro)", price: "$20.00", numericPrice: 20.00, requiresShippingFee: false, badgeLeft: "XNI Series", badgeRight: "Dual Tone", tagline: "Mini RGB", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Diseño moderno bicolor blanco y negro con iluminación ambiental personalizable.", features: ["Esquema de color contraste blanco y negro súper elegante.", "Soporte de control de iluminación libre.", "Diseño mini ultraligero ideal para oficina y gaming."], variants: [{ name: "Vista Principal Bicolor", image: "teclado1-principal.jpg" }, { name: "Plano Diagonal", image: "teclado1-2.jpg" }, { name: "Vista Frontal", image: "teclado1-3.jpg" }] },
+        { id: 20, title: "Teclado Compacto Bicolor AFGVK 65% Membrana", price: "$20.00", numericPrice: 20.00, requiresShippingFee: false, badgeLeft: "AFGVK", badgeRight: "65% Layout", tagline: "Quiet Typing", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Teclado de membrana silenciosa de perfil delgado en combinación de teclas blanco/negro.", features: ["Membrana Ultra-Thin para un tecleo silencioso y confortable.", "Layout 65% que ahorra espacio con máximo rendimiento.", "Estructura duradera con retroiluminación LED moderada."], variants: [{ name: "Vista Principal Bicolor", image: "teclado4-principal.jpg" }, { name: "Vista Frontal", image: "teclado4-2.jpg" }, { name: "Ángulo de Escritorio", image: "teclado4-3.jpg" }, { name: "Detalle de Teclas", image: "teclado4-4.jpg" }] },
+        { id: 21, title: 'Luz LED de Relleno para Videoconferencias (4")', price: "$28.00", numericPrice: 28.00, requiresShippingFee: false, badgeLeft: "5 Vistas", badgeRight: "Desk Setup", tagline: "3 Modos USB", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Aro de luz compacto con clip para laptop/monitor, 3 temperaturas de color y brillo regulable.", features: ["3 modos de luz (Cálida, Neutra, Fría) con niveles de intensidad.", "Clip de sujeción firme con cabezal orientable.", "Alimentación directa vía cable USB de 5V."], variants: [{ name: "Vista Principal", image: "luz-principal.jpg" }, { name: "Temperaturas de Luz", image: "luz-2.jpg" }, { name: "Uso en Laptop", image: "luz-3.jpg" }, { name: "Detalle Clip", image: "luz-4.jpg" }, { name: "Empaque y Accesorios", image: "luz-5.jpg" }] },
+        { id: 22, title: "Soporte e Impermeable Celular Moto/Bici (Wheel Up)", price: "$25.00", numericPrice: 25.00, requiresShippingFee: false, badgeLeft: "Wheel Up", badgeRight: "Waterproof", tagline: "Urban Rider", category: ["tecnologia", "accesorios"], isNew: false, available: true, shortDesc: "Estuche rígido con protección total contra lluvia, visera antirreflejo y membrana táctil HD.", features: ["100% Resistente al agua con cremallera laminada sellada.", "Visera parasol integrada para óptima visión GPS.", "Pantalla táctil de alta sensibilidad."], variants: [{ name: "Negro Principal", image: "soportenegro.jpg" }, { name: "Vista Trasera", image: "traserasoportemoto.jpg" }, { name: "Ejemplo de Uso", image: "ejemplosoportemoto.jpg" }, { name: "Variante Rojo", image: "soporterojo.jpg" }, { name: "Variante Azul", image: "soporteazul.jpg" }] },
+        { id: 23, title: "Cepillo Autolimpiante Quitapelos para Mascotas", price: "$15.00", numericPrice: 15.00, requiresShippingFee: false, badgeLeft: "1-Click Clean", badgeRight: "Pet Care", tagline: "Ergonomic", category: ["accesorios"], isNew: false, available: true, shortDesc: "Peine de agujas de acero inoxidable con botón de retracción para eliminar el pelo en 1 clic.", features: ["Sistema de retracción 1-Click: retira todo el pelo atrapado al instante.", "Cerdas de acero inoxidable con puntas protectoras de masaje.", "Estructura 100% lavable para máxima higiene."], variants: [{ name: "Vista Principal", image: "cepillo-mascotas-principal.jpg" }, { name: "Uso y Agarre", image: "cepillo-mascotas-secundario.jpg" }, { name: "Detalle Cerdas", image: "cepillo-mascotas-3.jpg" }, { name: "Variante Color 1", image: "cepillo-mascotas-4.jpg" }, { name: "Variante Color 2", image: "cepillo-mascotas-5.jpg" }, { name: "Variante Color 3", image: "cepillo-mascotas-6.jpg" }, { name: "Ficha Informativa", image: "cepillo-mascotas-informacion.jpg" }] }
+    ];
 
-    <!-- ============================================================ -->
-    <!-- JAVASCRIPT (con PRODUCTS reordenado y nuevos productos) -->
-    <!-- ============================================================ -->
-    <script>
-        const WHATSAPP_NUMBER = "+50371323853";
-        const WHATSAPP_CHANNEL_URL = "https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42";
+    // Category accent mapping
+    const CATEGORY_ACCENT = {
+        tecnologia: 'violet',
+        accesorios: 'rose',
+        combos: 'emerald',
+        nuevos: 'copper'
+    };
 
-        const VISUAL_CATEGORIES = [
-            { id: 'todos', label: 'Todos', icon: 'fa-solid fa-border-all', desc: 'Ver catálogo entero' },
-            { id: 'nuevos', label: 'Novedades', icon: 'fa-solid fa-wand-magic-sparkles', desc: 'Ingresos recientes' },
-            { id: 'tecnologia', label: 'Tecnología', icon: 'fa-solid fa-microchip', desc: 'Teclados, Cables y LED' },
-            { id: 'accesorios', label: 'Moda & Estilo', icon: 'fa-solid fa-glasses', desc: 'Gafas, Relojes, Carteras' },
-            { id: 'combos', label: 'Sets & Combos', icon: 'fa-solid fa-box-open', desc: 'Packs promocionales' }
-        ];
+    function getAccent(product) {
+        // Priority: combos > tecnologia > accesorios > nuevos > gold default
+        if (product.category.includes('combos')) return 'emerald';
+        if (product.category.includes('tecnologia')) return 'violet';
+        if (product.category.includes('accesorios')) return 'rose';
+        if (product.category.includes('nuevos')) return 'copper';
+        return 'gold';
+    }
 
-        const PRODUCTS = [
-            // ===== PRODUCTOS NUEVOS (orden inverso a llegada) =====
-            // 1. Cepillo Multifunción
-            {
-                id: 1,
-                title: "Cepillo Multifuncional de Limpieza para Auriculares, Pantallas y Teclados - Incluye Herramienta para Sacar Teclas",
-                price: "$4.75",
-                numericPrice: 4.75,
-                requiresShippingFee: true,
-                badgeLeft: "Multifunción",
-                badgeRight: "Top Calificado",
-                tagline: "Tech Cleaner",
-                category: ["nuevos", "tecnologia"],
-                isNew: true,
-                available: true,
-                shortDesc: "Cepillo de limpieza multifuncional para eliminar el polvo de pantallas de teléfonos, auriculares y teclados. Incluye herramienta para sacar teclas. Solo disponible en color azul.",
-                features: [
-                    "Cepillo de cerdas suaves ideal para pantallas y auriculares.",
-                    "Incluye herramienta para extraer teclas de teclados mecánicos.",
-                    "Diseño ergonómico y portátil para limpieza en cualquier lugar.",
-                    "Elimina el polvo y la suciedad de dispositivos electrónicos.",
-                    "Disponible en color azul."
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "limpieza1-1.jpg" },
-                    { name: "Vista 2", image: "limpieza1-2.jpg" },
-                    { name: "Azul - Ángulo", image: "limpieza1-azul.jpg" }
-                ]
-            },
-            // 2. Sellador de Snacks
-            {
-                id: 2,
-                title: "Sellador de Bolsas de Snacks Portátil con Batería de Litio y Cable USB",
-                price: "$4.25",
-                numericPrice: 4.25,
-                requiresShippingFee: true,
-                badgeLeft: "USB Recargable",
-                badgeRight: "Más Vendido",
-                tagline: "Snack Sealer",
-                category: ["nuevos", "tecnologia"],
-                isNew: true,
-                available: true,
-                shortDesc: "Set de sellador de bolsas de snacks con batería de litio incorporada y cable de carga USB. Diseño magnético a presión, silencioso y eficiente. Ideal para casa, picnic, excursiones y viajes.",
-                features: [
-                    "Batería de litio incorporada, recargable vía USB (incluye cable).",
-                    "Diseño magnético a presión para sellado rápido y seguro.",
-                    "Bajo consumo de energía, silencioso y eficiente.",
-                    "Portátil y ligero, ideal para casa, picnic, excursiones y viajes.",
-                    "Sella bolsas de galletas, chips, snacks y otros alimentos."
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "sellador1-1.jpg" },
-                    { name: "Vista 2", image: "sellador1-2.jpg" },
-                    { name: "Vista 3", image: "sellador1-3.jpg" }
-                ]
-            },
-            // 3. Rociador de Aceite 220ml/320ml
-            {
-                id: 3,
-                title: "Rociador de Aceite de Oliva 220ml/320ml - Alta Presión a Prueba de Fugas",
-                price: "$4.75 - $6.50",
-                numericPrice: 4.75,
-                requiresShippingFee: true,
-                badgeLeft: "220ml / 320ml",
-                badgeRight: "Más Recomprado",
-                tagline: "Spray & Grill",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Rociador de aceite de alta presión, a prueba de fugas, ideal para barbacoa, freidora de aire y camping. Disponible en 220ml y 320ml, colores blanco y negro.",
-                features: [
-                    "Diseño a prueba de fugas con alta presión para un rociado uniforme.",
-                    "Capacidad de 220ml o 320ml según elección (consultar disponibilidad).",
-                    "Ideal para barbacoa, freidora de aire, sartenes y camping.",
-                    "Material plástico resistente, ligero y fácil de limpiar.",
-                    "Opción de color: Blanco o Negro."
-                ],
-                variants: [
-                    { name: "Vista 1", image: "aceite2-1.jpg" },
-                    { name: "Vista 2", image: "aceite2-2.jpg" },
-                    { name: "Vista 3", image: "aceite2-3.jpg" },
-                    { name: "Vista 4", image: "aceite2-4.jpg" },
-                    { name: "Blanco", image: "aceite2-blanco.jpg" },
-                    { name: "Negro", image: "aceite2-negro.jpg" }
-                ]
-            },
-            // 4. Dispensador de Aceite 2 en 1
-            {
-                id: 4,
-                title: "Dispensador de Aceite 2 en 1 con Pulverizador y Vertido - 470ml",
-                price: "$6.00",
-                numericPrice: 6.00,
-                requiresShippingFee: true,
-                badgeLeft: "470ml",
-                badgeRight: "Novedad",
-                tagline: "Spray & Pour",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Botella de aceite portátil 2 en 1 que pulveriza o vierte con precisión. Ideal para cocinar, asar, freír, hornear y ensaladas. Capacidad de 470 ml.",
-                features: [
-                    "Diseño 2 en 1: pulverizador y vertido, controla la cantidad de aceite.",
-                    "Ideal para cocinar, asar a la parrilla, freír en aire, hornear y ensaladas.",
-                    "Botella de plástico resistente, ligera y fácil de limpiar.",
-                    "Tapa sellada para evitar derrames y mantener el aceite fresco.",
-                    "Disponible en varios colores: negro, amarillo, blanco y verde."
-                ],
-                variants: [
-                    { name: "Negro", image: "aceite1-negro.jpg" },
-                    { name: "Amarillo", image: "aceite1-amarillo.jpg" },
-                    { name: "Blanco", image: "aceite1-blanco.jpg" },
-                    { name: "Verde", image: "aceite1-verde.jpg" },
-                    { name: "Vista en uso", image: "aceite1-2.jpg" }
-                ]
-            },
-            // 5. Botella Doodle (antes ID 18)
-            {
-                id: 5,
-                title: "Botella Térmica de Acero Inoxidable 500ml (Doodle Art)",
-                price: "$12.00",
-                numericPrice: 12.00,
-                requiresShippingFee: false,
-                badgeLeft: "500ml / 17oz",
-                badgeRight: "Disponible",
-                tagline: "Doodle Art",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Termo de acero inoxidable con aislamiento al vacío de doble pared y acabados gráficos estilo Doodle.",
-                features: [
-                    "Conservación de temperatura: mantiene frío o caliente por horas.",
-                    "Construcción en Acero Inoxidable de alta resistencia.",
-                    "Diseño gráfico exclusivo Doodle Art."
-                ],
-                variants: [
-                    { name: "Colección Doodle", image: "botella-principal.jpg" },
-                    { name: "Variante Negra", image: "botella-2.jpg" },
-                    { name: "Variante Rosa", image: "botella-3.jpg" },
-                    { name: "Variante Verde", image: "botella-4.jpg" },
-                    { name: "Variante Naranja", image: "botella-5.jpg" },
-                    { name: "Detalle Acabado", image: "botella-6.jpg" }
-                ]
-            },
+    let currentProductIndex = 0;
+    let activeCategory = 'todos';
+    let searchQuery = '';
+    let sortOption = 'default';
+    let searchTimeout = null;
+    let revealObserver = null;
 
-            // ===== PRODUCTOS EXISTENTES (orden original) =====
-            {
-                id: 6,
-                title: "Cable de Carga Rápida USB-C a Tipo C (60W Trenzado)",
-                price: "$3.00",
-                numericPrice: 3.00,
-                requiresShippingFee: true,
-                badgeLeft: "Carga 60W",
-                badgeRight: "Novedad",
-                tagline: "Fast Charge",
-                category: ["nuevos", "tecnologia"],
-                isNew: true,
-                available: true,
-                shortDesc: "Cable trenzado de nylon de alta resistencia USB-C a Tipo C, carga rápida de 60W para iPhone 15/16/17, iPad, Samsung y laptops.",
-                features: [
-                    "Soporta carga rápida de hasta 60W y transferencia de datos.",
-                    "Fabricado en nylon trenzado de alta resistencia contra enredos y desgarros.",
-                    "Compatible con iPhone 15/16/17, iPad, Samsung y dispositivos tipo C.",
-                    "Mismo envío si agregas más productos a tu compra."
-                ],
-                variants: [
-                    { name: "Blanco / Plata", image: "cable-c-1.jpg" },
-                    { name: "Negro", image: "cable-c-2.jpg" },
-                    { name: "Azul", image: "cable-c-azul.jpg" },
-                    { name: "Púrpura", image: "cable-c-purpura.jpg" },
-                    { name: "Verde", image: "cable-c-verde.jpg" },
-                    { name: "Rosa", image: "cable-c-rosa.jpg" }
-                ]
-            },
-            {
-                id: 7,
-                title: "Gafas de Moda Vintage con Montura Geométrica para Hombre",
-                price: "$5.00",
-                numericPrice: 5.00,
-                requiresShippingFee: true,
-                badgeLeft: "Varios Estilos",
-                badgeRight: "Novedad",
-                tagline: "Vintage Style",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Gafas de sol de estilo vintage para hombre con montura geométrica media pasta, ideales para el uso diario y protección estilizada.",
-                features: [
-                    "Diseño vintage de corte geométrico elegante y moderno.",
-                    "Montura ligera y resistente con acabados metálicos y oscuros.",
-                    "Disponible en varios colores (se consulta existencia al pedir).",
-                    "Mismo envío si agregas más productos a tu compra."
-                ],
-                variants: [
-                    { name: "Marco Dorado/Negro Lente Gris", image: "lentes1-1.jpg" },
-                    { name: "Variante 2", image: "lentes1-2.jpg" },
-                    { name: "Variante 3", image: "lentes1-3.jpg" },
-                    { name: "Variante 4", image: "lentes1-4.jpg" }
-                ]
-            },
-            {
-                id: 8,
-                title: "Gafas de Moda Casual Retro para Mujer",
-                price: "$5.00",
-                numericPrice: 5.00,
-                requiresShippingFee: true,
-                badgeLeft: "Varios Estilos",
-                badgeRight: "Novedad",
-                tagline: "Retro Streetwear",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Gafas de sol para mujer con diseño retro casual, marco resistente y patillas texturizadas de estilo urbano.",
-                features: [
-                    "Diseño retro de corte urbano perfecto para uso diario.",
-                    "Marco elegante con acabado traslúcido y patillas estilo madera.",
-                    "Disponible en varios colores (se consulta existencia al pedir).",
-                    "Mismo envío si agregas más productos a tu compra."
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "lentes2-1.jpg" },
-                    { name: "Variante 2", image: "lentes2-2.jpg" },
-                    { name: "Variante 3", image: "lentes2-3.jpg" },
-                    { name: "Variante 4", image: "lentes2-4.jpg" }
-                ]
-            },
-            {
-                id: 9,
-                title: "Set de Reloj Yolako + Pulsera Elegante de Corazón",
-                price: "$7.00",
-                numericPrice: 7.00,
-                requiresShippingFee: true,
-                badgeLeft: "Set 2 Piezas",
-                badgeRight: "Novedad",
-                tagline: "Glamour Set",
-                category: ["nuevos", "accesorios", "combos"],
-                isNew: true,
-                available: true,
-                shortDesc: "Juego femenino con esfera efecto esmerilado brillante y pulsera ajustable con dijes de corazón.",
-                features: [
-                    "Incluye Reloj Yolako + Pulsera combinada de regalo.",
-                    "Esfera con acabado esmerilado que destella con la luz.",
-                    "Correa cómoda de piel sintética suave.",
-                    "Mismo envío si agregas más productos a tu compra."
-                ],
-                variants: [
-                    { name: "Set Principal", image: "relog-mujer1-principal.jpg" },
-                    { name: "Detalle Reloj & Esfera", image: "relog-mujer1-2.jpg" },
-                    { name: "Vista Pulsera & Ajuste", image: "relog-mujer1-3.jpg" }
-                ]
-            },
-            {
-                id: 10,
-                title: "Cartera Larga Multifuncional (Diseño Triangular)",
-                price: "$8.00",
-                numericPrice: 8.00,
-                requiresShippingFee: true,
-                badgeLeft: "Elegante",
-                badgeRight: "Novedad",
-                tagline: "Moda Dama",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Billetera espaciosa de PU texturizado con broche de solapa triangular metálico y tarjetero múltiple.",
-                features: [
-                    "Diseño geométrico moderno con broche metálico resistente.",
-                    "Compartimentos organizados para celular, tarjetas y billetes.",
-                    "Bolsillo interno con cremallera para monedas.",
-                    "Mismo envío si agregas más productos a tu compra."
-                ],
-                variants: [
-                    { name: "Vista Principal Solapa", image: "cartera2-principal.jpg" },
-                    { name: "Capacidad Interior", image: "cartera2-2.jpg" },
-                    { name: "Vista Posterior", image: "cartera2-3.jpg" },
-                    { name: "Detalle Broche Metal", image: "cartera2-4.jpg" },
-                    { name: "Perfil Completo", image: "cartera2-5.jpg" }
-                ]
-            },
-            {
-                id: 11,
-                title: "Collar Choker de Perlas de Imitación",
-                price: "$3.50",
-                numericPrice: 3.50,
-                requiresShippingFee: true,
-                badgeLeft: "Moda Dama",
-                badgeRight: "Novedad",
-                tagline: "Pearl Choker",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Elegante gargantilla con perlas de imitación ajustables, ideal para complementar cualquier estilo.",
-                features: [
-                    "Diseño femenino de alta tendencia.",
-                    "Broche y cadena de ajuste seguro.",
-                    "Mismo envío si agregas más productos a tu compra."
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "collar1-1.jpg" },
-                    { name: "Detalle de Perlas", image: "collar1-2.jpg" },
-                    { name: "Estilo Puesto", image: "collar1-3.jpg" }
-                ]
-            },
-            {
-                id: 12,
-                title: "Set de 2 Delineadores de Ojos en Gel Miss Rose",
-                price: "$3.50",
-                numericPrice: 3.50,
-                requiresShippingFee: true,
-                badgeLeft: "Set de 2",
-                badgeRight: "Novedad",
-                tagline: "Smooth Gel",
-                category: ["nuevos", "accesorios", "combos"],
-                isNew: true,
-                available: true,
-                shortDesc: "Delineador y sombra en gel de larga duración en tonos negro y marrón con acabado mate.",
-                features: [
-                    "Incluye 2 piezas: Tonos Negro y Marrón.",
-                    "Acabado mate de larga duración y fácil aplicación.",
-                    "Ideal para ojos de gato y looks ahumados.",
-                    "Mismo envío si agregas más productos a tu compra."
-                ],
-                variants: [
-                    { name: "Set 2Pcs Principal", image: "delineador1-1.jpg" },
-                    { name: "Presentación Producto", image: "delineador1-2.jpg" },
-                    { name: "Detalle Aplicador", image: "delineador1-3.jpg" },
-                    { name: "Ejemplo de Maquillaje", image: "delineador1-4.jpg" }
-                ]
-            },
-            {
-                id: 13,
-                title: "Pulsera Trébol de Moda en Acero Inoxidable",
-                price: "$2.00",
-                numericPrice: 2.00,
-                requiresShippingFee: true,
-                badgeLeft: "Varios Colores",
-                badgeRight: "Novedad",
-                tagline: "Stainless Steel",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Pulsera estilo trébol de alta gama fabricada en acero inoxidable para uso diario.",
-                features: [
-                    "Material de acero inoxidable resistente y duradero.",
-                    "Disponible en varios colores (se consulta existencia al pedir).",
-                    "Mismo envío si agregas más productos a tu compra."
-                ],
-                variants: [
-                    { name: "Colores Disponibles", image: "pulsera1-1.jpg" }
-                ]
-            },
-            {
-                id: 14,
-                title: "Reloj Elegante de Cuarzo para Hombre (Estilo Vintage)",
-                price: "$10.00",
-                numericPrice: 10.00,
-                requiresShippingFee: true,
-                badgeLeft: "Varios Estilos",
-                badgeRight: "Novedad",
-                tagline: "SHAARMS / IRLANDY",
-                category: ["nuevos", "accesorios"],
-                isNew: true,
-                available: true,
-                shortDesc: "Reloj masculino de esfera redonda con correa de aleación y ventana de fecha/día.",
-                features: [
-                    "Mecanismo de cuarzo con correa de aleación metálica.",
-                    "Diseño retro elegante para uso casual o formal.",
-                    "Disponible en varios estilos/colores (se consulta existencia al pedir).",
-                    "Mismo envío si agregas más productos a tu compra."
-                ],
-                variants: [
-                    { name: "Esfera Azul Acero", image: "relog-hombre1-1.jpg" },
-                    { name: "Vista Puesto", image: "relog-hombre1-2.jpg" }
-                ]
-            },
-            {
-                id: 15,
-                title: "Reloj Elegante Ultra Delgado de Dama",
-                price: "$25.00",
-                numericPrice: 25.00,
-                requiresShippingFee: false,
-                badgeLeft: "6 Variantes",
-                badgeRight: "Edición Dama",
-                tagline: "Ultra-Slim",
-                category: ["accesorios"],
-                isNew: false,
-                available: true,
-                shortDesc: "Diseño minimalista de alta precisión con caja metálica ultradelgada y acabados de lujo.",
-                features: [
-                    "Grosor ultradelgado de 7 mm con acabado pulido.",
-                    "Mecanismo de cuarzo de alta precisión con batería incluida.",
-                    "Extensible cómodo y elegante de alta calidad."
-                ],
-                variants: [
-                    { name: "Blanco", image: "blanco.jpg" },
-                    { name: "Vino / Borgoña", image: "marron.jpg" },
-                    { name: "Negro Clásico", image: "negro-carablanca.jpg" },
-                    { name: "Púrpura / Lila", image: "rosa.jpg" },
-                    { name: "Rosa Pastel", image: "rosa2.jpg" },
-                    { name: "Verde Esmeralda", image: "verde.jpg" }
-                ]
-            },
-            {
-                id: 16,
-                title: "Cartera Larga Minimalista con Hebilla",
-                price: "$22.00",
-                numericPrice: 22.00,
-                requiresShippingFee: false,
-                badgeLeft: "10 Fotos",
-                badgeRight: "Estilo Coreano",
-                tagline: "High Sense",
-                category: ["accesorios"],
-                isNew: false,
-                available: true,
-                shortDesc: "Diseño estilo coreano con tarjetero amplio, compartimento con cierre y elegante hebilla a contraste.",
-                features: [
-                    "Múltiples ranuras para tarjetas y amplio espacio para billetes o móvil.",
-                    "Cierre de cremallera metálica suave y broche de hebilla seguro.",
-                    "Material de cuero sintético (PU) de alta durabilidad."
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "catera-principal.jpg" },
-                    { name: "Rosa Pastel", image: "cartera-rosada.jpg" },
-                    { name: "Negro Clásico", image: "cartera-negra.jpg" },
-                    { name: "Blanco / Crema", image: "cartera-blanca.jpg" },
-                    { name: "Rojo Elegante", image: "cartera-roja.jpg" },
-                    { name: "Azul", image: "cartera-azul.jpg" },
-                    { name: "Amarillo", image: "cartera-amarilla.jpg" },
-                    { name: "Distribución Interior", image: "cartera-interior.jpg" },
-                    { name: "Vista Interior Vacío", image: "cartera-interior-vacio.jpg" },
-                    { name: "Detalle Zipper", image: "cartera-zipper.jpg" }
-                ]
-            },
-            {
-                id: 17,
-                title: "Teclado Mecánico Gaming MageGee TS91 RGB (60%)",
-                price: "$25.00",
-                numericPrice: 25.00,
-                requiresShippingFee: false,
-                badgeLeft: "MageGee TS91",
-                badgeRight: "60% Layout",
-                tagline: "Mechanical RGB",
-                category: ["tecnologia"],
-                isNew: false,
-                available: true,
-                shortDesc: "Teclado ultra compacto de 61 teclas con retroiluminación RGB dinámica y cable tipo C extraíble.",
-                features: [
-                    "Diseño compacto 60% para máximo espacio en el escritorio.",
-                    "Múltiples modos de iluminación RGB con ajuste de brillo y velocidad.",
-                    "Conexión estable por cable USB Type-C desmontable."
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "teclado2-principal.jpg" },
-                    { name: "Vista Ángulo", image: "teclado2-2.jpg" },
-                    { name: "Detalle Lateral", image: "teclado2-3.jpg" },
-                    { name: "Efecto Iluminación", image: "teclado2-4.jpg" },
-                    { name: "Plano Superior", image: "teclado2-5.jpg" },
-                    { name: "Vista Completa", image: "teclado2-6.jpg" }
-                ]
-            },
-            {
-                id: 18,
-                title: "Teclado Gaming 60% RGB con Textura Topográfica",
-                price: "$22.00",
-                numericPrice: 22.00,
-                requiresShippingFee: false,
-                badgeLeft: "Topo Edition",
-                badgeRight: "61 Teclas",
-                tagline: "Custom Texture",
-                category: ["tecnologia"],
-                isNew: false,
-                available: true,
-                shortDesc: "Edición especial con grabado topográfico artístico en las teclas e iluminación RGB translúcida.",
-                features: [
-                    "Diseño artístico único con líneas de relieve topográfico en blanco.",
-                    "Efecto de luz RGB difuso que resalta el grabado.",
-                    "Factor de forma 60% portátil e ideal para transporte."
-                ],
-                variants: [
-                    { name: "Textura Blanca Principal", image: "teclado3-principal.jpg" },
-                    { name: "Vista Superior", image: "teclado3-principal2.0.jpg" },
-                    { name: "Detalle Textura", image: "teclado3-2.jpg" },
-                    { name: "Iluminación Nocturna", image: "teclado3-3.jpg" },
-                    { name: "Perfil Lateral", image: "teclado3-4.jpg" }
-                ]
-            },
-            {
-                id: 19,
-                title: "Teclado Mini XNI 61 Teclas RGB (Blanco y Negro)",
-                price: "$20.00",
-                numericPrice: 20.00,
-                requiresShippingFee: false,
-                badgeLeft: "XNI Series",
-                badgeRight: "Dual Tone",
-                tagline: "Mini RGB",
-                category: ["tecnologia"],
-                isNew: false,
-                available: true,
-                shortDesc: "Diseño moderno bicolor blanco y negro con iluminación ambiental personalizable.",
-                features: [
-                    "Esquema de color contraste blanco y negro súper elegante.",
-                    "Soporte de control de iluminación libre.",
-                    "Diseño mini ultraligero ideal para oficina y gaming."
-                ],
-                variants: [
-                    { name: "Vista Principal Bicolor", image: "teclado1-principal.jpg" },
-                    { name: "Plano Diagonal", image: "teclado1-2.jpg" },
-                    { name: "Vista Frontal", image: "teclado1-3.jpg" }
-                ]
-            },
-            {
-                id: 20,
-                title: "Teclado Compacto Bicolor AFGVK 65% Membrana",
-                price: "$20.00",
-                numericPrice: 20.00,
-                requiresShippingFee: false,
-                badgeLeft: "AFGVK",
-                badgeRight: "65% Layout",
-                tagline: "Quiet Typing",
-                category: ["tecnologia"],
-                isNew: false,
-                available: true,
-                shortDesc: "Teclado de membrana silenciosa de perfil delgado en combinación de teclas blanco/negro.",
-                features: [
-                    "Membrana Ultra-Thin para un tecleo silencioso y confortable.",
-                    "Layout 65% que ahorra espacio con máximo rendimiento.",
-                    "Estructura duradera con retroiluminación LED moderada."
-                ],
-                variants: [
-                    { name: "Vista Principal Bicolor", image: "teclado4-principal.jpg" },
-                    { name: "Vista Frontal", image: "teclado4-2.jpg" },
-                    { name: "Ángulo de Escritorio", image: "teclado4-3.jpg" },
-                    { name: "Detalle de Teclas", image: "teclado4-4.jpg" }
-                ]
-            },
-            {
-                id: 21,
-                title: "Luz LED de Relleno para Videoconferencias (4\")",
-                price: "$28.00",
-                numericPrice: 28.00,
-                requiresShippingFee: false,
-                badgeLeft: "5 Vistas",
-                badgeRight: "Desk Setup",
-                tagline: "3 Modos USB",
-                category: ["tecnologia"],
-                isNew: false,
-                available: true,
-                shortDesc: "Aro de luz compacto con clip para laptop/monitor, 3 temperaturas de color y brillo regulable.",
-                features: [
-                    "3 modos de luz (Cálida, Neutra, Fría) con niveles de intensidad.",
-                    "Clip de sujeción firme con cabezal orientable.",
-                    "Alimentación directa vía cable USB de 5V."
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "luz-principal.jpg" },
-                    { name: "Temperaturas de Luz", image: "luz-2.jpg" },
-                    { name: "Uso en Laptop", image: "luz-3.jpg" },
-                    { name: "Detalle Clip", image: "luz-4.jpg" },
-                    { name: "Empaque y Accesorios", image: "luz-5.jpg" }
-                ]
-            },
-            {
-                id: 22,
-                title: "Soporte e Impermeable Celular Moto/Bici (Wheel Up)",
-                price: "$25.00",
-                numericPrice: 25.00,
-                requiresShippingFee: false,
-                badgeLeft: "Wheel Up",
-                badgeRight: "Waterproof",
-                tagline: "Urban Rider",
-                category: ["tecnologia", "accesorios"],
-                isNew: false,
-                available: true,
-                shortDesc: "Estuche rígido con protección total contra lluvia, visera antirreflejo y membrana táctil HD.",
-                features: [
-                    "100% Resistente al agua con cremallera laminada sellada.",
-                    "Visera parasol integrada para óptima visión GPS.",
-                    "Pantalla táctil de alta sensibilidad."
-                ],
-                variants: [
-                    { name: "Negro Principal", image: "soportenegro.jpg" },
-                    { name: "Vista Trasera", image: "traserasoportemoto.jpg" },
-                    { name: "Ejemplo de Uso", image: "ejemplosoportemoto.jpg" },
-                    { name: "Variante Rojo", image: "soporterojo.jpg" },
-                    { name: "Variante Azul", image: "soporteazul.jpg" }
-                ]
-            },
-            {
-                id: 23,
-                title: "Cepillo Autolimpiante Quitapelos para Mascotas",
-                price: "$15.00",
-                numericPrice: 15.00,
-                requiresShippingFee: false,
-                badgeLeft: "1-Click Clean",
-                badgeRight: "Pet Care",
-                tagline: "Ergonomic",
-                category: ["accesorios"],
-                isNew: false,
-                available: true,
-                shortDesc: "Peine de agujas de acero inoxidable con botón de retracción para eliminar el pelo en 1 clic.",
-                features: [
-                    "Sistema de retracción 1-Click: retira todo el pelo atrapado al instante.",
-                    "Cerdas de acero inoxidable con puntas protectoras de masaje.",
-                    "Estructura 100% lavable para máxima higiene."
-                ],
-                variants: [
-                    { name: "Vista Principal", image: "cepillo-mascotas-principal.jpg" },
-                    { name: "Uso y Agarre", image: "cepillo-mascotas-secundario.jpg" },
-                    { name: "Detalle Cerdas", image: "cepillo-mascotas-3.jpg" },
-                    { name: "Variante Color 1", image: "cepillo-mascotas-4.jpg" },
-                    { name: "Variante Color 2", image: "cepillo-mascotas-5.jpg" },
-                    { name: "Variante Color 3", image: "cepillo-mascotas-6.jpg" },
-                    { name: "Ficha Informativa", image: "cepillo-mascotas-informacion.jpg" }
-                ]
-            }
-        ];
-
-        // ========== LÓGICA ==========
-        let currentProductIndex = 0;
-        let activeCategory = 'todos';
-        let searchQuery = '';
-        let sortOption = 'default';
-        let searchTimeout = null;
-
-        function debouncedSearch(val) {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => handleSearch(val), 120);
-        }
-
-        function renderVisualFilters() {
-            const container = document.getElementById('visual-filter-hub');
-            container.innerHTML = '';
-            VISUAL_CATEGORIES.forEach(cat => {
-                const count = cat.id === 'todos' ? PRODUCTS.length : PRODUCTS.filter(p => p.category.includes(cat.id)).length;
-                const isActive = activeCategory === cat.id;
-                const btn = document.createElement('button');
-                btn.onclick = () => filterCategory(cat.id);
-                btn.className = `filter-btn ${isActive ? 'active' : ''}`;
-                btn.innerHTML = `
-                        <i class="${cat.icon}"></i>
-                        <span>${cat.label}</span>
-                        <span class="count">${count}</span>
-                    `;
-                container.appendChild(btn);
-            });
-            const clearBtn = document.getElementById('clear-filters-btn');
-            if (activeCategory !== 'todos' || searchQuery !== '') clearBtn.classList.remove('hidden');
-            else clearBtn.classList.add('hidden');
-        }
-
-        function clearAllFilters() {
-            activeCategory = 'todos';
-            searchQuery = '';
-            document.getElementById('desktop-search').value = '';
-            document.getElementById('mobile-search').value = '';
-            renderVisualFilters();
-            renderProductsGrid();
-        }
-
-        function getFilteredProducts() {
-            let list = PRODUCTS.filter(p => {
-                const matchCat = activeCategory === 'todos' || p.category.includes(activeCategory);
-                const matchSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || p.shortDesc.toLowerCase()
-                    .includes(searchQuery.toLowerCase());
-                return matchCat && matchSearch;
-            });
-            if (sortOption === 'price-asc') list.sort((a, b) => a.numericPrice - b.numericPrice);
-            else if (sortOption === 'price-desc') list.sort((a, b) => b.numericPrice - a.numericPrice);
-            return list;
-        }
-
-        function renderProductsGrid() {
-            const grid = document.getElementById('products-grid');
-            const noResults = document.getElementById('no-results');
-            grid.innerHTML = '';
-            const filtered = getFilteredProducts();
-            if (filtered.length === 0) {
-                grid.classList.add('hidden');
-                noResults.classList.remove('hidden');
-            } else {
-                grid.classList.remove('hidden');
-                noResults.classList.add('hidden');
-            }
-            filtered.forEach((p, idx) => {
-                const originalIndex = PRODUCTS.findIndex(prod => prod.id === p.id);
-                const card = document.createElement('div');
-                card.onclick = () => openProductModal(originalIndex);
-                card.style.animationDelay = `${(idx % 9) * 0.04}s`;
-                card.className = `product-card animate-fade-up relative ${!p.available ? 'opacity-60' : ''}`;
-
-                const badgeText = p.badgeRight || p.badgeLeft || '';
-                const badgeHtml = badgeText ? `<span class="product-badge">${badgeText}</span>` : '';
-
-                const shippingHtml = p.requiresShippingFee ?
-                    `<span class="product-shipping-badge"><i class="fa-solid fa-truck-fast"></i> Único flete</span>` :
-                    '';
-
-                card.innerHTML = `
-                        <div class="relative">
-                            ${badgeHtml}
-                            ${shippingHtml}
-                            <img src="${p.variants[0].image}" loading="lazy" alt="${p.title}" class="product-card-image">
-                        </div>
-                        <div class="p-4 space-y-1.5">
-                            <div class="flex items-center justify-between">
-                                <span class="product-price">${p.price}</span>
-                                <span class="product-tagline">${p.tagline}</span>
-                            </div>
-                            <h3 class="product-title">${p.title}</h3>
-                            <div class="product-btn-wrapper pt-2">
-                                <button class="product-btn">
-                                    <i class="fa-regular fa-eye text-[10px]"></i>
-                                    <span>Ver Detalles</span>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                grid.appendChild(card);
-            });
-            document.getElementById('product-count-badge').textContent = `${filtered.length} Piezas en Vista`;
-        }
-
-        function filterCategory(cat) {
-            activeCategory = cat;
-            renderVisualFilters();
-            renderProductsGrid();
-        }
-
-        function handleSortChange(value) {
-            sortOption = value;
-            renderProductsGrid();
-        }
-
-        function handleSearch(val) {
-            searchQuery = val;
-            renderVisualFilters();
-            renderProductsGrid();
-        }
-
-        // ===== MODAL =====
-        function updateModalVariant(variantIndex) {
-            const product = PRODUCTS[currentProductIndex];
-            const variant = product.variants[variantIndex];
-            const mainImg = document.getElementById('modal-main-image');
-            mainImg.style.opacity = '0.3';
-            mainImg.style.transform = 'scale(0.97)';
-            setTimeout(() => {
-                mainImg.src = variant.image;
-                mainImg.style.opacity = '1';
-                mainImg.style.transform = 'scale(1)';
-            }, 100);
-            document.getElementById('selected-variant-name').textContent = variant.name;
-            const btnWhatsApp = document.getElementById('modal-whatsapp-btn');
-            if (product.available) {
-                const shippingText = product.requiresShippingFee ? " (+ tarifa de envío)" : "";
-                const message =
-                    `Hola MultiStock! Me interesa el *${product.title}* [Opción: ${variant.name}] por *${product.price}*${shippingText}.\n\n💡 Quisiera saber cuánto es el costo de envío a mi ubicación y qué otros productos tienen disponibles para aprovechar el mismo viaje.`;
-                btnWhatsApp.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-                btnWhatsApp.className =
-                    "w-full bg-[#0071E3] hover:bg-[#4B9FFF] text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition text-xs tracking-wider uppercase shadow-lg shadow-[#0071E3]/20";
-                btnWhatsApp.innerHTML = `<i class="fa-brands fa-whatsapp text-lg"></i><span>Solicitar por WhatsApp</span>`;
-            } else {
-                btnWhatsApp.href = "javascript:void(0)";
-                btnWhatsApp.className =
-                    "w-full bg-[#2C2C2E] text-[#A1A1A6] font-semibold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 text-xs tracking-wider uppercase cursor-not-allowed";
-                btnWhatsApp.innerHTML = `<i class="fa-solid fa-ban text-sm"></i><span>Producto Agotado</span>`;
-            }
-            const thumbs = document.querySelectorAll('.thumb-btn');
-            thumbs.forEach((btn, idx) => {
-                if (idx === variantIndex) {
-                    btn.classList.add('border-[#0071E3]', 'ring-2', 'ring-[#0071E3]/20', 'opacity-100', 'scale-105');
-                    btn.classList.remove('border-white/10', 'opacity-50');
-                } else {
-                    btn.classList.remove('border-[#0071E3]', 'ring-2', 'ring-[#0071E3]/20', 'opacity-100', 'scale-105');
-                    btn.classList.add('border-white/10', 'opacity-50');
+    function initRevealObserver() {
+        revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in');
+                    revealObserver.unobserve(entry.target);
                 }
             });
+        }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+    }
+
+    function observeReveals(scope) {
+        const nodes = (scope || document).querySelectorAll('.reveal:not(.in)');
+        nodes.forEach(n => revealObserver.observe(n));
+    }
+
+    function debouncedSearch(val) {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => handleSearch(val), 120);
+    }
+
+    function renderVisualFilters() {
+        const container = document.getElementById('visual-filter-hub');
+        container.innerHTML = '';
+        VISUAL_CATEGORIES.forEach(cat => {
+            const count = cat.id === 'todos'
+                ? PRODUCTS.length
+                : PRODUCTS.filter(p => p.category.includes(cat.id)).length;
+            const isActive = activeCategory === cat.id;
+            const btn = document.createElement('button');
+            btn.dataset.cat = cat.id;
+            btn.onclick = () => filterCategory(cat.id);
+            btn.className = `chip ${isActive ? 'active' : ''}`;
+            btn.innerHTML = `
+                <i class="${cat.icon}"></i>
+                <span>${cat.label}</span>
+                <span class="count">${count}</span>
+            `;
+            container.appendChild(btn);
+        });
+
+        const clearBtn = document.getElementById('clear-filters-btn');
+        if (activeCategory !== 'todos' || searchQuery !== '') clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+    }
+
+    function clearAllFilters() {
+        activeCategory = 'todos';
+        searchQuery = '';
+        sortOption = 'default';
+        document.getElementById('desktop-search').value = '';
+        document.getElementById('mobile-search').value = '';
+        document.getElementById('sort-select').value = 'default';
+        renderVisualFilters();
+        renderProductsGrid();
+    }
+
+    function getFilteredProducts() {
+        let list = PRODUCTS.filter(p => {
+            const matchCat = activeCategory === 'todos' || p.category.includes(activeCategory);
+            const q = searchQuery.toLowerCase();
+            const matchSearch = p.title.toLowerCase().includes(q) || p.shortDesc.toLowerCase().includes(q);
+            return matchCat && matchSearch;
+        });
+        if (sortOption === 'price-asc') list.sort((a, b) => a.numericPrice - b.numericPrice);
+        else if (sortOption === 'price-desc') list.sort((a, b) => b.numericPrice - a.numericPrice);
+        return list;
+    }
+
+    function renderProductsGrid() {
+        const grid = document.getElementById('products-grid');
+        const noResults = document.getElementById('no-results');
+        grid.innerHTML = '';
+
+        const filtered = getFilteredProducts();
+
+        if (filtered.length === 0) {
+            grid.classList.add('hidden');
+            noResults.classList.remove('hidden');
+        } else {
+            grid.classList.remove('hidden');
+            noResults.classList.add('hidden');
         }
 
-        function openProductModal(productIndex) {
-            currentProductIndex = productIndex;
-            const product = PRODUCTS[productIndex];
-            document.getElementById('modal-title').textContent = product.title;
-            document.getElementById('modal-price').textContent = product.price;
-            document.getElementById('modal-short-desc').textContent = product.shortDesc;
-            const shippingNote = document.getElementById('modal-shipping-note');
-            shippingNote.textContent = product.requiresShippingFee ? "+ Envío fijo (combina los productos que quieras)" :
-                "";
-            const badgeStatus = document.getElementById('modal-status-badge');
-            if (product.available) {
-                badgeStatus.className =
-                    "text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1 rounded-full font-semibold uppercase tracking-wider";
-                badgeStatus.innerHTML = `<i class="fa-solid fa-box-open mr-1"></i>Disponible`;
-            } else {
-                badgeStatus.className =
-                    "text-[10px] text-red-400 bg-red-950/60 border border-red-800 px-3 py-1 rounded-full font-semibold uppercase tracking-wider";
-                badgeStatus.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i>Agotado`;
-            }
-            const featuresList = document.getElementById('modal-features-list');
-            featuresList.innerHTML = '';
-            product.features.forEach(feat => {
-                const li = document.createElement('li');
-                li.className = 'flex items-start text-xs font-normal text-[#F5F5F7]';
-                li.innerHTML =
-                    `<i class="fa-solid fa-check text-[#0071E3] mr-2 mt-0.5 text-[10px]"></i><span>${feat}</span>`;
-                featuresList.appendChild(li);
-            });
-            const thumbsContainer = document.getElementById('modal-thumbs-container');
-            thumbsContainer.innerHTML = '';
-            product.variants.forEach((v, idx) => {
-                const btn = document.createElement('button');
-                btn.className =
-                    `thumb-btn border border-white/10 rounded-lg overflow-hidden h-12 w-12 sm:w-16 shrink-0 bg-[#2C2C2E] transition-all focus:outline-none cursor-pointer opacity-50 hover:opacity-100 p-1`;
-                btn.innerHTML = `<img src="${v.image}" loading="lazy" alt="${v.name}" class="w-full h-full object-contain">`;
-                btn.onclick = (e) => { e.stopPropagation();
-                    updateModalVariant(idx); };
-                thumbsContainer.appendChild(btn);
-            });
-            updateModalVariant(0);
-            const modal = document.getElementById('product-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => modal.classList.remove('opacity-0'), 10);
-            document.body.style.overflow = 'hidden';
-        }
+        filtered.forEach((p, idx) => {
+            const originalIndex = PRODUCTS.findIndex(prod => prod.id === p.id);
+            const card = document.createElement('article');
+            card.onclick = () => openProductModal(originalIndex);
+            card.style.transitionDelay = `${Math.min(idx, 8) * 0.04}s`;
+            const accent = getAccent(p);
+            card.dataset.accent = accent;
+            card.className = `product-card reveal ${!p.available ? 'opacity-50' : ''}`;
 
-        function closeProductModal() {
-            const modal = document.getElementById('product-modal');
-            modal.classList.add('opacity-0');
-            setTimeout(() => { modal.classList.add('hidden');
-                document.body.style.overflow = 'auto'; }, 250);
-        }
+            const badgeText = p.badgeRight || p.badgeLeft || '';
+            // Badge color by accent
+            let badgeClass = 'pc-badge';
+            if (accent === 'copper') badgeClass += ' copper';
+            if (accent === 'emerald') badgeClass += ' emerald';
+            const badgeHtml = badgeText ? `<span class="${badgeClass}">${badgeText}</span>` : '';
+            const shipHtml = p.requiresShippingFee
+                ? `<span class="pc-ship"><i class="fa-solid fa-truck-fast"></i> Único flete</span>`
+                : '';
 
-        function openSuggestionModal() {
-            const modal = document.getElementById('suggestion-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => modal.classList.remove('opacity-0'), 10);
-            document.body.style.overflow = 'hidden';
-        }
+            card.innerHTML = `
+                <div class="pc-media">
+                    ${badgeHtml}
+                    <img src="${p.variants[0].image}" loading="lazy" alt="${p.title}" class="pc-img">
+                    ${shipHtml}
+                </div>
+                <div class="pc-body">
+                    <span class="pc-tag">${p.tagline}</span>
+                    <h3 class="pc-title">${p.title}</h3>
+                    <div class="pc-foot">
+                        <span class="pc-price">${p.price}</span>
+                        <span class="pc-cta">Ver pieza <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
 
-        function closeSuggestionModal() {
-            const modal = document.getElementById('suggestion-modal');
-            modal.classList.add('opacity-0');
-            setTimeout(() => { modal.classList.add('hidden');
-                document.body.style.overflow = 'auto'; }, 250);
-        }
+        document.getElementById('product-count-badge').textContent =
+            `${filtered.length} ${filtered.length === 1 ? 'pieza' : 'piezas'} en vitrina`;
 
-        function sendSuggestion(e) {
-            e.preventDefault();
-            const name = document.getElementById('sug-name').value;
-            const product = document.getElementById('sug-product').value;
-            const desc = document.getElementById('sug-desc').value;
+        observeReveals(grid);
+    }
+
+    function filterCategory(cat) {
+        activeCategory = cat;
+        renderVisualFilters();
+        renderProductsGrid();
+    }
+
+    function handleSortChange(value) {
+        sortOption = value;
+        renderProductsGrid();
+    }
+
+    function handleSearch(val) {
+        searchQuery = val;
+        renderVisualFilters();
+        renderProductsGrid();
+    }
+
+    function updateModalVariant(variantIndex) {
+        const product = PRODUCTS[currentProductIndex];
+        const variant = product.variants[variantIndex];
+
+        const mainImg = document.getElementById('modal-main-image');
+        mainImg.style.opacity = '0.25';
+        mainImg.style.transform = 'scale(0.97)';
+        setTimeout(() => {
+            mainImg.src = variant.image;
+            mainImg.style.opacity = '1';
+            mainImg.style.transform = 'scale(1)';
+        }, 110);
+
+        document.getElementById('selected-variant-name').textContent = variant.name;
+
+        const btnWhatsApp = document.getElementById('modal-whatsapp-btn');
+        if (product.available) {
+            const shippingText = product.requiresShippingFee ? " (+ tarifa de envío)" : "";
             const message =
-                `Hola MultiStock! Me gustaría sugerir un producto:\n\n👤 *Nombre:* ${name}\n📦 *Producto:* ${product}\n📝 *Detalles:* ${desc}`;
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+                `Hola MultiStock! Me interesa el *${product.title}* [Opción: ${variant.name}] por *${product.price}*${shippingText}.\n\n💡 Quisiera saber cuánto es el costo de envío a mi ubicación y qué otros productos tienen disponibles para aprovechar el mismo viaje.`;
+            btnWhatsApp.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            btnWhatsApp.className = 'btn-gold w-full';
+            btnWhatsApp.innerHTML = `<i class="fa-brands fa-whatsapp text-base"></i><span>Solicitar por WhatsApp</span>`;
+        } else {
+            btnWhatsApp.href = 'javascript:void(0)';
+            btnWhatsApp.className = 'btn-disabled';
+            btnWhatsApp.innerHTML = `<i class="fa-solid fa-ban text-sm"></i><span>Producto Agotado</span>`;
+        }
+
+        document.querySelectorAll('.thumb-btn').forEach((btn, idx) => {
+            btn.classList.toggle('is-active', idx === variantIndex);
+        });
+    }
+
+    function openProductModal(productIndex) {
+        currentProductIndex = productIndex;
+        const product = PRODUCTS[productIndex];
+
+        document.getElementById('modal-title').textContent = product.title;
+        document.getElementById('modal-price').textContent = product.price;
+        document.getElementById('modal-short-desc').textContent = product.shortDesc;
+
+        const shippingNote = document.getElementById('modal-shipping-note');
+        shippingNote.textContent = product.requiresShippingFee
+            ? 'Envío fijo — combina los productos que quieras'
+            : 'Envío incluido en el precio';
+
+        const badgeStatus = document.getElementById('modal-status-badge');
+        if (product.available) {
+            badgeStatus.className =
+                'shrink-0 border border-emerald-800/60 bg-emerald-950/50 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-emerald-400';
+            badgeStatus.innerHTML = `<i class="fa-solid fa-box-open mr-1"></i>Disponible`;
+        } else {
+            badgeStatus.className =
+                'shrink-0 border border-red-900/60 bg-red-950/50 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-red-400';
+            badgeStatus.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i>Agotado`;
+        }
+
+        const featuresList = document.getElementById('modal-features-list');
+        featuresList.innerHTML = '';
+        product.features.forEach(feat => {
+            const li = document.createElement('li');
+            li.className = 'feature-item';
+            li.innerHTML = `<i class="fa-solid fa-diamond"></i><span>${feat}</span>`;
+            featuresList.appendChild(li);
+        });
+
+        const thumbsContainer = document.getElementById('modal-thumbs-container');
+        thumbsContainer.innerHTML = '';
+        product.variants.forEach((v, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'thumb-btn';
+            btn.innerHTML = `<img src="${v.image}" loading="lazy" alt="${v.name}">`;
+            btn.onclick = (e) => { e.stopPropagation(); updateModalVariant(idx); };
+            thumbsContainer.appendChild(btn);
+        });
+
+        updateModalVariant(0);
+
+        const modal = document.getElementById('product-modal');
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductModal() {
+        const modal = document.getElementById('product-modal');
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 260);
+    }
+
+    function openSuggestionModal() {
+        const modal = document.getElementById('suggestion-modal');
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSuggestionModal() {
+        const modal = document.getElementById('suggestion-modal');
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 260);
+    }
+
+    function sendSuggestion(e) {
+        e.preventDefault();
+        const name = document.getElementById('sug-name').value;
+        const product = document.getElementById('sug-product').value;
+        const desc = document.getElementById('sug-desc').value;
+        const message =
+            `Hola MultiStock! Me gustaría sugerir un producto:\n\n👤 *Nombre:* ${name}\n📦 *Producto:* ${product}\n📝 *Detalles:* ${desc}`;
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        closeSuggestionModal();
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeProductModal();
             closeSuggestionModal();
         }
+    });
 
-        // ===== INICIALIZACIÓN =====
-        document.addEventListener('DOMContentLoaded', () => {
-            const navBtn = document.getElementById('nav-whatsapp-btn');
-            navBtn.href =
-                `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola MultiStock! Quisiera consultar sobre el catálogo de productos disponibles.")}`;
-            renderVisualFilters();
-            renderProductsGrid();
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initRevealObserver();
+
+        const navBtn = document.getElementById('nav-whatsapp-btn');
+        navBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola MultiStock! Quisiera consultar sobre el catálogo de productos disponibles.")}`;
+        const footerBtn = document.getElementById('footer-wa-btn');
+        if (footerBtn) footerBtn.href = navBtn.href;
+
+        renderVisualFilters();
+        renderProductsGrid();
+        observeReveals(document);
+    });
+</script>
 
 </body>
 </html>
