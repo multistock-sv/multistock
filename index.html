@@ -67,21 +67,21 @@ tailwind.config = {
         pointer-events: none;
         overflow: hidden;
     }
-    .bg-orbs::before,
-    .bg-orbs::after {
-        content: "";
+    .orb {
         position: absolute;
         border-radius: 999px;
         filter: blur(120px);
+        will-change: transform;
+        transform: translate3d(0, 0, 0);
     }
-    .bg-orbs::before {
+    .orb-1 {
         top: -180px;
         left: -140px;
         width: 620px;
         height: 620px;
         background: radial-gradient(circle, rgba(200,169,106,0.22), transparent 65%);
     }
-    .bg-orbs::after {
+    .orb-2 {
         bottom: -220px;
         right: -140px;
         width: 700px;
@@ -130,6 +130,21 @@ tailwind.config = {
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
+    }
+
+    /* ===== ANIMATED GRADIENT (hero) ===== */
+    .gold-text-anim {
+        background: linear-gradient(100deg, #E3CB96 0%, #C8A96A 18%, #E3CB96 36%, #8F7440 54%, #E3CB96 72%, #C8A96A 90%, #E3CB96 100%);
+        background-size: 220% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: goldShift 7s ease-in-out infinite;
+        will-change: background-position;
+    }
+    @keyframes goldShift {
+        0%, 100% { background-position: 0% 50%; }
+        50%      { background-position: 100% 50%; }
     }
 
     .eyebrow {
@@ -465,7 +480,15 @@ tailwind.config = {
                     border-color .5s cubic-bezier(.16,1,.3,1),
                     box-shadow .6s cubic-bezier(.16,1,.3,1);
         box-shadow: 0 2px 20px -8px rgba(0,0,0,.9);
+        will-change: transform;
     }
+    /* Tilt state: transición rápida solo para transform */
+    .product-card.tilting {
+        transition: transform .12s ease-out,
+                    border-color .5s cubic-bezier(.16,1,.3,1),
+                    box-shadow .6s cubic-bezier(.16,1,.3,1);
+    }
+
     /* category accent line at top */
     .product-card::before {
         content: "";
@@ -716,6 +739,8 @@ tailwind.config = {
         font-weight: 400;
         letter-spacing: -0.03em;
         line-height: 1;
+        display: inline-block;
+        font-variant-numeric: tabular-nums;
     }
 
     /* ===== SELECT ===== */
@@ -841,7 +866,7 @@ tailwind.config = {
     /* ===== REVEAL ===== */
     .reveal {
         opacity: 0;
-        transform: translateY(22px);
+        transform: translateY(22px) scale(0.985);
         transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
     }
     .reveal.in { opacity: 1; transform: none; }
@@ -914,12 +939,32 @@ tailwind.config = {
         color: rgba(200,169,106,.65);
         letter-spacing: .08em;
     }
+
+    /* ===== RESPETO A PREFERS-REDUCED-MOTION ===== */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+        .marquee-track { animation: none !important; }
+        .gold-text-anim { animation: none !important; }
+        .reveal { opacity: 1 !important; transform: none !important; }
+        .pulse-dot { animation: none !important; }
+        .orb { transform: none !important; }
+    }
 </style>
 </head>
 
 <body>
 
-<div class="bg-orbs"></div>
+<div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+</div>
 <div class="grain"></div>
 
 <!-- ===== TICKER ===== -->
@@ -990,7 +1035,7 @@ tailwind.config = {
 
         <h1 class="reveal display mt-9 text-[2.6rem] text-[var(--text)] sm:text-6xl lg:text-[4.8rem]" style="transition-delay:.08s">
             Diseño. Calidad.<br />
-            <em class="gold-text italic">Directo a tu puerta.</em>
+            <em class="gold-text-anim italic">Directo a tu puerta.</em>
         </h1>
 
         <p class="reveal mx-auto mt-8 max-w-lg text-[13.5px] font-light leading-relaxed text-white/50 sm:text-[15px]" style="transition-delay:.16s">
@@ -1114,19 +1159,19 @@ tailwind.config = {
     <div class="stat-band">
         <div class="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-5 sm:grid-cols-4 sm:px-8">
             <div class="reveal text-center">
-                <span class="stat-num gold-text">27</span>
+                <span class="stat-num gold-text" data-count-target="27" data-count-suffix="">27</span>
                 <p class="mono mt-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/40">Piezas curadas</p>
             </div>
             <div class="reveal text-center" style="transition-delay:.08s">
-                <span class="stat-num" style="color:#7EE7A8">1</span>
+                <span class="stat-num" style="color:#7EE7A8" data-count-target="1" data-count-suffix="">1</span>
                 <p class="mono mt-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/40">Envío único</p>
             </div>
             <div class="reveal text-center" style="transition-delay:.16s">
-                <span class="stat-num copper-text">48h</span>
+                <span class="stat-num copper-text" data-count-target="48" data-count-suffix="h">48h</span>
                 <p class="mono mt-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/40">Despacho promedio</p>
             </div>
             <div class="reveal text-center" style="transition-delay:.24s">
-                <span class="stat-num" style="color:#B2A4E0">100%</span>
+                <span class="stat-num" style="color:#B2A4E0" data-count-target="100" data-count-suffix="%">100%</span>
                 <p class="mono mt-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/40">Verificado a mano</p>
             </div>
         </div>
@@ -1408,6 +1453,10 @@ tailwind.config = {
     const WHATSAPP_NUMBER = "+50371323853";
     const WHATSAPP_CHANNEL_URL = "https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42";
 
+    // Detección de capacidades del dispositivo
+    const PREFERS_REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const CAN_TILT = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !PREFERS_REDUCED_MOTION;
+
     const VISUAL_CATEGORIES = [
         { id: 'todos', label: 'Todos', icon: 'fa-solid fa-border-all' },
         { id: 'nuevos', label: 'Novedades', icon: 'fa-solid fa-wand-magic-sparkles' },
@@ -1446,7 +1495,6 @@ tailwind.config = {
         { id: 27, title: "Cepillo Autolimpiante Quitapelos para Mascotas", price: "$15.00", numericPrice: 15.00, requiresShippingFee: false, badgeLeft: "1-Click Clean", badgeRight: "Pet Care", tagline: "Ergonomic", category: ["accesorios"], isNew: false, available: true, shortDesc: "Peine de agujas de acero inoxidable con botón de retracción para eliminar el pelo en 1 clic.", features: ["Sistema de retracción 1-Click: retira todo el pelo atrapado al instante.", "Cerdas de acero inoxidable con puntas protectoras de masaje.", "Estructura 100% lavable para máxima higiene."], variants: [{ name: "Vista Principal", image: "cepillo-mascotas-principal.jpg" }, { name: "Uso y Agarre", image: "cepillo-mascotas-secundario.jpg" }, { name: "Detalle Cerdas", image: "cepillo-mascotas-3.jpg" }, { name: "Variante Color 1", image: "cepillo-mascotas-4.jpg" }, { name: "Variante Color 2", image: "cepillo-mascotas-5.jpg" }, { name: "Variante Color 3", image: "cepillo-mascotas-6.jpg" }, { name: "Ficha Informativa", image: "cepillo-mascotas-informacion.jpg" }] }
     ];
 
-    // Category accent mapping
     const CATEGORY_ACCENT = {
         tecnologia: 'violet',
         accesorios: 'rose',
@@ -1455,7 +1503,6 @@ tailwind.config = {
     };
 
     function getAccent(product) {
-        // Priority: combos > tecnologia > accesorios > nuevos > gold default
         if (product.category.includes('combos')) return 'emerald';
         if (product.category.includes('tecnologia')) return 'violet';
         if (product.category.includes('accesorios')) return 'rose';
@@ -1470,11 +1517,17 @@ tailwind.config = {
     let searchTimeout = null;
     let revealObserver = null;
 
+    /* =========================================================
+       ANIMACIÓN 1 — Reveal con observer
+       ========================================================= */
     function initRevealObserver() {
         revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in');
+                    // Limpiamos el delay inline una vez revelado para no
+                    // afectar transiciones futuras (ej. tilt 3D)
+                    entry.target.style.transitionDelay = '';
                     revealObserver.unobserve(entry.target);
                 }
             });
@@ -1486,6 +1539,110 @@ tailwind.config = {
         nodes.forEach(n => revealObserver.observe(n));
     }
 
+    /* =========================================================
+       ANIMACIÓN 2 — Contadores animados en stats band
+       ========================================================= */
+    function animateCounter(el) {
+        const target = parseInt(el.dataset.countTarget, 10);
+        const suffix = el.dataset.countSuffix || '';
+        if (isNaN(target)) return;
+
+        // Si el usuario prefiere menos movimiento, mostramos el valor final
+        if (PREFERS_REDUCED_MOTION) {
+            el.textContent = target + suffix;
+            return;
+        }
+
+        const duration = 1500;
+        const start = performance.now();
+
+        function step(now) {
+            const t = Math.min((now - start) / duration, 1);
+            // easeOutCubic
+            const eased = 1 - Math.pow(1 - t, 3);
+            const value = Math.round(eased * target);
+            el.textContent = value + suffix;
+            if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
+    function initStatsCounters() {
+        const stats = document.querySelectorAll('[data-count-target]');
+        if (!stats.length) return;
+
+        if (!('IntersectionObserver' in window)) {
+            stats.forEach(animateCounter);
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        stats.forEach(el => observer.observe(el));
+    }
+
+    /* =========================================================
+       ANIMACIÓN 3 — Parallax sutil de los orbes
+       ========================================================= */
+    function initOrbParallax() {
+        if (PREFERS_REDUCED_MOTION) return;
+        const orb1 = document.querySelector('.orb-1');
+        const orb2 = document.querySelector('.orb-2');
+        if (!orb1 || !orb2) return;
+
+        let ticking = false;
+
+        function update() {
+            const y = window.scrollY || window.pageYOffset;
+            // Desplazamientos sutiles en direcciones opuestas
+            orb1.style.transform = `translate3d(0, ${y * 0.14}px, 0)`;
+            orb2.style.transform = `translate3d(0, ${-y * 0.10}px, 0)`;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(update);
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+
+    /* =========================================================
+       ANIMACIÓN 4 — Tilt 3D en tarjetas (solo desktop)
+       ========================================================= */
+    const TILT_MAX_DEG = 6;
+
+    function attachTilt(card) {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;   // 0..1
+            const y = (e.clientY - rect.top) / rect.height;   // 0..1
+            const rx = (0.5 - y) * TILT_MAX_DEG;              // rotateX
+            const ry = (x - 0.5) * TILT_MAX_DEG;              // rotateY
+            card.style.transitionDelay = '0s';
+            card.classList.add('tilting');
+            card.style.transform =
+                `perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-6px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transitionDelay = '';
+            card.classList.remove('tilting');
+            card.style.transform = '';
+        });
+    }
+
+    /* =========================================================
+       BÚSQUEDA
+       ========================================================= */
     function debouncedSearch(val) {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => handleSearch(val), 120);
@@ -1564,7 +1721,6 @@ tailwind.config = {
             card.className = `product-card reveal ${!p.available ? 'opacity-50' : ''}`;
 
             const badgeText = p.badgeRight || p.badgeLeft || '';
-            // Badge color by accent
             let badgeClass = 'pc-badge';
             if (accent === 'copper') badgeClass += ' copper';
             if (accent === 'emerald') badgeClass += ' emerald';
@@ -1588,6 +1744,10 @@ tailwind.config = {
                     </div>
                 </div>
             `;
+
+            // Tilt 3D: solo si el dispositivo lo soporta
+            if (CAN_TILT) attachTilt(card);
+
             grid.appendChild(card);
         });
 
@@ -1614,6 +1774,9 @@ tailwind.config = {
         renderProductsGrid();
     }
 
+    /* =========================================================
+       MODAL DE PRODUCTO
+       ========================================================= */
     function updateModalVariant(variantIndex) {
         const product = PRODUCTS[currentProductIndex];
         const variant = product.variants[variantIndex];
@@ -1742,6 +1905,9 @@ tailwind.config = {
         }
     });
 
+    /* =========================================================
+       INIT
+       ========================================================= */
     document.addEventListener('DOMContentLoaded', () => {
         initRevealObserver();
 
@@ -1753,6 +1919,10 @@ tailwind.config = {
         renderVisualFilters();
         renderProductsGrid();
         observeReveals(document);
+
+        // Iniciar animaciones nuevas
+        initStatsCounters();
+        initOrbParallax();
     });
 </script>
 
