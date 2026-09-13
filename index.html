@@ -1042,30 +1042,33 @@ tailwind.config = {
     </div>
 
     <div class="grid gap-4 lg:grid-cols-2">
-        <!-- Spotlight 1 -->
-        <article class="spotlight reveal cursor-pointer" onclick="openProductModal(8)" style="transition-delay:.06s">
+        <!-- Spotlight 1 — Luces de Cortina LED (index 0) -->
+        <article class="spotlight reveal cursor-pointer" onclick="openProductModal(0)" style="transition-delay:.06s">
             <div class="grid grid-cols-1 sm:grid-cols-5">
                 <div class="spotlight-media sm:col-span-3 aspect-square sm:aspect-auto">
-                    <img src="botella-principal.jpg" alt="Botella Doodle" loading="lazy" />
+                    <img src="luces1-1.jpg" alt="Luces de Cortina LED USB" loading="lazy" />
                 </div>
                 <div class="flex flex-col justify-between p-6 sm:col-span-2 sm:p-7">
                     <div>
-                        <span class="spotlight-tag">
+                        <span class="spotlight-tag" style="color:#E8A583;border-color:rgba(217,136,97,.4);background:rgba(217,136,97,.07)">
                             <i class="fa-solid fa-star"></i>
                             Editor's pick
                         </span>
                         <h3 class="display mt-5 text-xl leading-tight text-[var(--text)] sm:text-2xl">
-                            Botella Térmica<br />
-                            <em class="gold-text italic">Doodle Art · 500ml</em>
+                            Luces de Cortina<br />
+                            <em class="copper-text italic">LED USB · 300 luces</em>
                         </h3>
                         <p class="mt-4 text-[12px] font-light leading-relaxed text-white/50">
-                            Acero inoxidable de doble pared con gráficos estilo Doodle. Mantiene la
-                            temperatura por horas.
+                            Transforma cualquier rincón con 8 modos de iluminación y control remoto.
+                            Alimentación USB, incluye temporizador.
                         </p>
                     </div>
                     <div class="mt-6 flex items-end justify-between border-t border-white/[0.06] pt-5">
-                        <span class="pc-price text-[1.4rem]">$12.00</span>
-                        <span class="mono text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--gold)]">
+                        <span class="pc-price flex items-baseline gap-2 text-[1.4rem]">
+                            <del class="text-[0.6em] font-light text-white/30" style="text-decoration: line-through;">$6.50</del>
+                            <span>$6.00</span>
+                        </span>
+                        <span class="mono text-[9px] font-semibold uppercase tracking-[0.2em]" style="color:#D98861">
                             Ver pieza <i class="fa-solid fa-arrow-right ml-1"></i>
                         </span>
                     </div>
@@ -1073,11 +1076,11 @@ tailwind.config = {
             </div>
         </article>
 
-        <!-- Spotlight 2 -->
-        <article class="spotlight reveal cursor-pointer" onclick="openProductModal(20)" style="transition-delay:.12s">
+        <!-- Spotlight 2 — Cepillo Tech Cleaner (index 4) -->
+        <article class="spotlight reveal cursor-pointer" onclick="openProductModal(4)" style="transition-delay:.12s">
             <div class="grid grid-cols-1 sm:grid-cols-5">
                 <div class="spotlight-media sm:col-span-3 aspect-square sm:aspect-auto">
-                    <img src="teclado2-principal.jpg" alt="Teclado MageGee" loading="lazy" />
+                    <img src="limpieza1-1.jpg" alt="Cepillo Multifuncional Tech Cleaner" loading="lazy" />
                 </div>
                 <div class="flex flex-col justify-between p-6 sm:col-span-2 sm:p-7">
                     <div>
@@ -1086,16 +1089,16 @@ tailwind.config = {
                             Top tech
                         </span>
                         <h3 class="display mt-5 text-xl leading-tight text-[var(--text)] sm:text-2xl">
-                            Teclado MageGee<br />
-                            <em style="font-style:italic;color:#B2A4E0">TS91 · RGB 60%</em>
+                            Cepillo Tech<br />
+                            <em style="font-style:italic;color:#B2A4E0">Cleaner · Multifunción</em>
                         </h3>
                         <p class="mt-4 text-[12px] font-light leading-relaxed text-white/50">
-                            61 teclas mecánicas con retroiluminación RGB dinámica y cable Type-C
-                            desmontable.
+                            Limpia pantallas, auriculares y teclados mecánicos. Incluye herramienta
+                            para extraer teclas sin dañarlas.
                         </p>
                     </div>
                     <div class="mt-6 flex items-end justify-between border-t border-white/[0.06] pt-5">
-                        <span class="pc-price text-[1.4rem]">$25.00</span>
+                        <span class="pc-price text-[1.4rem]">$4.75</span>
                         <span class="mono text-[9px] font-semibold uppercase tracking-[0.2em]" style="color:#B2A4E0">
                             Ver pieza <i class="fa-solid fa-arrow-right ml-1"></i>
                         </span>
