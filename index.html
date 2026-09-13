@@ -131,6 +131,12 @@ tailwind.config = {
         background-clip: text;
         color: transparent;
     }
+    .rose-text {
+        background: linear-gradient(100deg, #E0A3AF 0%, #C96B7A 55%, #A34C5C 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
 
     /* ===== ANIMATED GRADIENT (hero) ===== */
     .gold-text-anim {
@@ -198,9 +204,7 @@ tailwind.config = {
     }
     @media (max-width: 1024px) { .vertical-label { display: none; } }
 
-    /* =========================================================
-       NUEVO: SCROLL PROGRESS BAR
-       ========================================================= */
+    /* ===== SCROLL PROGRESS BAR ===== */
     .scroll-progress {
         position: fixed;
         top: 0;
@@ -221,9 +225,7 @@ tailwind.config = {
         will-change: width;
     }
 
-    /* =========================================================
-       NUEVO: CUSTOM CURSOR (solo desktop)
-       ========================================================= */
+    /* ===== CUSTOM CURSOR (solo desktop) ===== */
     .cursor-dot,
     .cursor-ring {
         position: fixed;
@@ -266,7 +268,6 @@ tailwind.config = {
             border-color: rgba(200,169,106,.9);
             background-color: rgba(200,169,106,.07);
         }
-        /* Ocultamos el cursor nativo salvo en campos de texto */
         body.has-custom-cursor,
         body.has-custom-cursor * { cursor: none !important; }
         body.has-custom-cursor input,
@@ -274,9 +275,7 @@ tailwind.config = {
         body.has-custom-cursor select { cursor: auto !important; }
     }
 
-    /* =========================================================
-       NUEVO: HERO WORD REVEAL
-       ========================================================= */
+    /* ===== HERO WORD REVEAL ===== */
     .hero-word {
         display: inline-block;
         opacity: 0;
@@ -292,9 +291,7 @@ tailwind.config = {
         transform: none;
     }
 
-    /* =========================================================
-       NUEVO: RIPPLE
-       ========================================================= */
+    /* ===== RIPPLE ===== */
     .has-ripple {
         position: relative;
         overflow: hidden;
@@ -1096,10 +1093,10 @@ tailwind.config = {
 
 <body>
 
-<!-- NUEVO: Barra de progreso de scroll -->
+<!-- Barra de progreso de scroll -->
 <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
 
-<!-- NUEVO: Cursor personalizado -->
+<!-- Cursor personalizado -->
 <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
@@ -1175,7 +1172,6 @@ tailwind.config = {
     <div class="mx-auto max-w-3xl text-center">
         <span class="eyebrow reveal">Nueva temporada</span>
 
-        <!-- NUEVO: Hero con reveal escalonado por palabras -->
         <h1 class="hero-words display mt-9 text-[2.6rem] text-[var(--text)] sm:text-6xl lg:text-[4.8rem]">
             <span class="hero-word" style="--i:0">Diseño.</span>
             <span class="hero-word" style="--i:1">Calidad.</span><br />
@@ -1230,32 +1226,33 @@ tailwind.config = {
     </div>
 
     <div class="grid gap-4 lg:grid-cols-2">
-        <article class="spotlight reveal cursor-pointer" onclick="openProductModal(0)" style="transition-delay:.06s">
+        <!-- Spotlight 1: Grupo Capibara / Águila / Robot -->
+        <article class="spotlight reveal cursor-pointer" onclick="openProductModal(3)" style="transition-delay:.06s">
             <div class="grid grid-cols-1 sm:grid-cols-5">
                 <div class="spotlight-media sm:col-span-3 aspect-square sm:aspect-auto">
-                    <img src="luces1-1.jpg" alt="Luces de Cortina LED USB" loading="lazy" />
+                    <img src="peluches3.jpg" alt="Peluches Capibara, Águila y Robot" loading="lazy" />
                 </div>
                 <div class="flex flex-col justify-between p-6 sm:col-span-2 sm:p-7">
                     <div>
-                        <span class="spotlight-tag" style="color:#E8A583;border-color:rgba(217,136,97,.4);background:rgba(217,136,97,.07)">
-                            <i class="fa-solid fa-star"></i>
-                            Editor's pick
+                        <span class="spotlight-tag" style="color:#E0A3AF;border-color:rgba(201,107,122,.4);background:rgba(201,107,122,.07)">
+                            <i class="fa-solid fa-fire"></i>
+                            Viral capibara
                         </span>
                         <h3 class="display mt-5 text-xl leading-tight text-[var(--text)] sm:text-2xl">
-                            Luces de Cortina<br />
-                            <em class="copper-text italic">LED USB · 300 luces</em>
+                            Capibara, Águila<br />
+                            <em class="rose-text italic">y Robot · 20-25cm</em>
                         </h3>
                         <p class="mt-4 text-[12px] font-light leading-relaxed text-white/50">
-                            Transforma cualquier rincón con 8 modos de iluminación y control remoto.
-                            Alimentación USB, incluye temporizador.
+                            El capibara más adorable del momento. Suaves, squishy y perfectos
+                            para regalar. Precio especial de lanzamiento por tiempo limitado.
                         </p>
                     </div>
                     <div class="mt-6 flex items-end justify-between border-t border-white/[0.06] pt-5">
                         <span class="pc-price flex items-baseline gap-2 text-[1.4rem]">
-                            <del class="text-[0.6em] font-light text-white/30" style="text-decoration: line-through;">$6.50</del>
-                            <span>$6.00</span>
+                            <span>$4.00</span>
+                            <span class="text-[0.55em] font-light text-white/40 uppercase tracking-wider">c/u</span>
                         </span>
-                        <span class="mono text-[9px] font-semibold uppercase tracking-[0.2em]" style="color:#D98861">
+                        <span class="mono text-[9px] font-semibold uppercase tracking-[0.2em]" style="color:#E0A3AF">
                             Ver pieza <i class="fa-solid fa-arrow-right ml-1"></i>
                         </span>
                     </div>
@@ -1263,29 +1260,33 @@ tailwind.config = {
             </div>
         </article>
 
-        <article class="spotlight reveal cursor-pointer" onclick="openProductModal(4)" style="transition-delay:.12s">
+        <!-- Spotlight 2: Grupo Cerdito / Búho / Among Us -->
+        <article class="spotlight reveal cursor-pointer" onclick="openProductModal(1)" style="transition-delay:.12s">
             <div class="grid grid-cols-1 sm:grid-cols-5">
                 <div class="spotlight-media sm:col-span-3 aspect-square sm:aspect-auto">
-                    <img src="limpieza1-1.jpg" alt="Cepillo Multifuncional Tech Cleaner" loading="lazy" />
+                    <img src="peluches5.jpg" alt="Peluches Cerdito, Búho y Among Us" loading="lazy" />
                 </div>
                 <div class="flex flex-col justify-between p-6 sm:col-span-2 sm:p-7">
                     <div>
-                        <span class="spotlight-tag" style="color:#8B7BC7;border-color:rgba(139,123,199,.35);background:rgba(139,123,199,.06)">
-                            <i class="fa-solid fa-bolt"></i>
-                            Top tech
+                        <span class="spotlight-tag" style="color:#E0A3AF;border-color:rgba(201,107,122,.4);background:rgba(201,107,122,.07)">
+                            <i class="fa-solid fa-gamepad"></i>
+                            Top virales
                         </span>
                         <h3 class="display mt-5 text-xl leading-tight text-[var(--text)] sm:text-2xl">
-                            Cepillo Tech<br />
-                            <em style="font-style:italic;color:#B2A4E0">Cleaner · Multifunción</em>
+                            Cerdito, Búho<br />
+                            <em class="rose-text italic">y Among Us · 20-25cm</em>
                         </h3>
                         <p class="mt-4 text-[12px] font-light leading-relaxed text-white/50">
-                            Limpia pantallas, auriculares y teclados mecánicos. Incluye herramienta
-                            para extraer teclas sin dañarlas.
+                            Cerdito tierno, búho esponjoso y el famoso tripulante de Among Us.
+                            Colecciónalos a precio de lanzamiento.
                         </p>
                     </div>
                     <div class="mt-6 flex items-end justify-between border-t border-white/[0.06] pt-5">
-                        <span class="pc-price text-[1.4rem]">$4.75</span>
-                        <span class="mono text-[9px] font-semibold uppercase tracking-[0.2em]" style="color:#B2A4E0">
+                        <span class="pc-price flex items-baseline gap-2 text-[1.4rem]">
+                            <span>$4.00</span>
+                            <span class="text-[0.55em] font-light text-white/40 uppercase tracking-wider">c/u</span>
+                        </span>
+                        <span class="mono text-[9px] font-semibold uppercase tracking-[0.2em]" style="color:#E0A3AF">
                             Ver pieza <i class="fa-solid fa-arrow-right ml-1"></i>
                         </span>
                     </div>
@@ -1300,7 +1301,7 @@ tailwind.config = {
     <div class="stat-band">
         <div class="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-5 sm:grid-cols-4 sm:px-8">
             <div class="reveal text-center">
-                <span class="stat-num gold-text" data-count-target="27" data-count-suffix="">27</span>
+                <span class="stat-num gold-text" data-count-target="33" data-count-suffix="">33</span>
                 <p class="mono mt-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/40">Piezas curadas</p>
             </div>
             <div class="reveal text-center" style="transition-delay:.08s">
@@ -1593,7 +1594,6 @@ tailwind.config = {
     const WHATSAPP_NUMBER = "+50371323853";
     const WHATSAPP_CHANNEL_URL = "https://whatsapp.com/channel/0029Vb95qYTCXC3OAlNQIv42";
 
-    // Detección de capacidades del dispositivo
     const PREFERS_REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const CAN_TILT = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !PREFERS_REDUCED_MOTION;
     const CAN_CUSTOM_CURSOR = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !PREFERS_REDUCED_MOTION;
@@ -1607,33 +1607,39 @@ tailwind.config = {
     ];
 
     const PRODUCTS = [
-        { id: 1, title: "Luces de Cortina LED USB con Control Remoto", price: "<del style='text-decoration: line-through; opacity: 0.6; font-size: 0.8em; margin-right: 0.3em;'>$6.50</del> $6.00", numericPrice: 6.00, requiresShippingFee: true, badgeLeft: "300 LED", badgeRight: "Oferta", tagline: "Iluminación Mágica", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Transforma cualquier espacio con estas luces de cortina USB. Incluyen control remoto y 8 modos de iluminación.", features: ["300 luces LED de alta luminosidad.", "Alimentación por USB (compatible con adaptadores y power banks).", "Control remoto con 8 modos de iluminación y temporizador.", "Fácil instalación, ideal para ventanas, cortinas o paredes.", "Perfectas para decoración navideña, fiestas o uso diario."], variants: [{ name: "Cálido", image: "luces1-1.jpg" }, { name: "Blanco", image: "luces1-2.jpg" }, { name: "Multicolor", image: "luces1-3.jpg" }] },
-        { id: 2, title: "Bolso de Maquillaje Acolchado con Lazo Organizador", price: "$4.75", numericPrice: 4.75, requiresShippingFee: true, badgeLeft: "Organizador", badgeRight: "Novedad", tagline: "Viaje & Estilo", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Bolso de maquillaje acolchado con lazo decorativo. Perfecto como organizador de cosméticos, bolsa de aseo o porta brochas. Diseño plegable y compacto.", features: ["Diseño acolchado que protege tus cosméticos y accesorios.", "Interior espacioso con cremallera de fácil apertura.", "Detalle de lazo elegante y femenino.", "Ideal para viajes, bolso de mano o uso diario.", "Disponible en varios colores para elegir."], variants: [{ name: "Rosa", image: "bolso1-rosa.jpg" }, { name: "Negro", image: "bolso1-negro.jpg" }, { name: "Azul", image: "bolso1-azul.jpg" }, { name: "Púrpura", image: "bolso1-purpura.jpg" }, { name: "Interior", image: "bolso1-interior.jpg" }, { name: "Medidas", image: "bolso1-medidas.jpg" }] },
-        { id: 3, title: "Atomizador Portátil de Perfume Recargable 5ml", price: "$1.25", numericPrice: 1.25, requiresShippingFee: true, badgeLeft: "5ml", badgeRight: "Viaje", tagline: "Belleza Portátil", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Frasco recargable para perfume de 5 ml con atomizador portátil. Lleva tu fragancia favorita a cualquier lugar con este práctico diseño de bolsillo.", features: ["Capacidad de 5 ml, tamaño ultra portátil ideal para viajes.", "Fácil sistema de recarga desde tu frasco original.", "Diseño elegante y resistente a fugas.", "Disponible en una amplia variedad de colores (Negro, Rosa, Azul, etc.)."], variants: [{ name: "Negro", image: "atomizador.jpg" }, { name: "Rosa", image: "atomizador1-2.jpg" }] },
-        { id: 4, title: "Inyector de Condimentos para Cocina y BBQ", price: "$3.75", numericPrice: 3.75, requiresShippingFee: true, badgeLeft: "Cocina", badgeRight: "Más Vendido", tagline: "Sabor Profundo", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Inyector ideal para pavo, carnes y barbacoas. Diseño de plástico resistente con aguja de acero inoxidable. No apto para uso médico.", features: ["Ideal para inyectar adobos y salsas en carnes, aves y cortes para BBQ.", "Aguja de acero inoxidable de alta resistencia.", "Cuerpo de plástico transparente con mediciones visibles.", "Fácil de limpiar y desmontar.", "Disponible en colores rojo y negro."], variants: [{ name: "Negro", image: "inyector1-negro.jpg" }, { name: "Rojo", image: "inyector1-rojo.jpg" }, { name: "Medidas", image: "inyector1-medidas.jpg" }, { name: "Vista general", image: "inyector1-1.jpg" }] },
-        { id: 5, title: "Cepillo Multifuncional de Limpieza para Auriculares, Pantallas y Teclados - Incluye Herramienta para Sacar Teclas", price: "$4.75", numericPrice: 4.75, requiresShippingFee: true, badgeLeft: "Multifunción", badgeRight: "Top Calificado", tagline: "Tech Cleaner", category: ["nuevos", "tecnologia"], isNew: true, available: true, shortDesc: "Cepillo de limpieza multifuncional para eliminar el polvo de pantallas de teléfonos, auriculares y teclados. Incluye herramienta para sacar teclas. Solo disponible en color azul.", features: ["Cepillo de cerdas suaves ideal para pantallas y auriculares.", "Incluye herramienta para extraer teclas de teclados mecánicos.", "Diseño ergonómico y portátil para limpieza en cualquier lugar.", "Elimina el polvo y la suciedad de dispositivos electrónicos.", "Disponible en color azul."], variants: [{ name: "Vista Principal", image: "limpieza1-1.jpg" }, { name: "Vista 2", image: "limpieza1-2.jpg" }, { name: "Azul - Ángulo", image: "limpieza1-azul.jpg" }] },
-        { id: 6, title: "Sellador de Bolsas de Snacks Portátil con Batería de Litio y Cable USB", price: "$4.25", numericPrice: 4.25, requiresShippingFee: true, badgeLeft: "USB Recargable", badgeRight: "Más Vendido", tagline: "Snack Sealer", category: ["nuevos", "tecnologia"], isNew: true, available: true, shortDesc: "Set de sellador de bolsas de snacks con batería de litio incorporada y cable de carga USB. Diseño magnético a presión, silencioso y eficiente. Ideal para casa, picnic, excursiones y viajes.", features: ["Batería de litio incorporada, recargable vía USB (incluye cable).", "Diseño magnético a presión para sellado rápido y seguro.", "Bajo consumo de energía, silencioso y eficiente.", "Portátil y ligero, ideal para casa, picnic, excursiones y viajes.", "Sella bolsas de galletas, chips, snacks y otros alimentos."], variants: [{ name: "Vista Principal", image: "sellador1-1.jpg" }, { name: "Vista 2", image: "sellador1-2.jpg" }, { name: "Vista 3", image: "sellador1-3.jpg" }] },
-        { id: 7, title: "Rociador de Aceite de Oliva 220ml/320ml - Alta Presión a Prueba de Fugas", price: "$4.75 - $6.50", numericPrice: 4.75, requiresShippingFee: true, badgeLeft: "220ml / 320ml", badgeRight: "Más Recomprado", tagline: "Spray & Grill", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Rociador de aceite de alta presión, a prueba de fugas, ideal para barbacoa, freidora de aire y camping. Disponible en 220ml y 320ml, colores blanco y negro.", features: ["Diseño a prueba de fugas con alta presión para un rociado uniforme.", "Capacidad de 220ml o 320ml según elección (consultar disponibilidad).", "Ideal para barbacoa, freidora de aire, sartenes y camping.", "Material plástico resistente, ligero y fácil de limpiar.", "Opción de color: Blanco o Negro."], variants: [{ name: "Vista 1", image: "aceite2-1.jpg" }, { name: "Vista 2", image: "aceite2-2.jpg" }, { name: "Vista 3", image: "aceite2-3.jpg" }, { name: "Vista 4", image: "aceite2-4.jpg" }, { name: "Blanco", image: "aceite2-blanco.jpg" }, { name: "Negro", image: "aceite2-negro.jpg" }] },
-        { id: 8, title: "Dispensador de Aceite 2 en 1 con Pulverizador y Vertido - 470ml", price: "$6.00", numericPrice: 6.00, requiresShippingFee: true, badgeLeft: "470ml", badgeRight: "Novedad", tagline: "Spray & Pour", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Botella de aceite portátil 2 en 1 que pulveriza o vierte con precisión. Ideal para cocinar, asar, freír, hornear y ensaladas. Capacidad de 470 ml.", features: ["Diseño 2 en 1: pulverizador y vertido, controla la cantidad de aceite.", "Ideal para cocinar, asar a la parrilla, freír en aire, hornear y ensaladas.", "Botella de plástico resistente, ligera y fácil de limpiar.", "Tapa sellada para evitar derrames y mantener el aceite fresco.", "Disponible en varios colores: negro, amarillo, blanco y verde."], variants: [{ name: "Negro", image: "aceite1-negro.jpg" }, { name: "Amarillo", image: "aceite1-amarillo.jpg" }, { name: "Blanco", image: "aceite1-blanco.jpg" }, { name: "Verde", image: "aceite1-verde.jpg" }, { name: "Vista en uso", image: "aceite1-2.jpg" }] },
-        { id: 9, title: "Botella Térmica de Acero Inoxidable 500ml (Doodle Art)", price: "$12.00", numericPrice: 12.00, requiresShippingFee: false, badgeLeft: "500ml / 17oz", badgeRight: "Disponible", tagline: "Doodle Art", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Termo de acero inoxidable con aislamiento al vacío de doble pared y acabados gráficos estilo Doodle.", features: ["Conservación de temperatura: mantiene frío o caliente por horas.", "Construcción en Acero Inoxidable de alta resistencia.", "Diseño gráfico exclusivo Doodle Art."], variants: [{ name: "Colección Doodle", image: "botella-principal.jpg" }, { name: "Variante Negra", image: "botella-2.jpg" }, { name: "Variante Rosa", image: "botella-3.jpg" }, { name: "Variante Verde", image: "botella-4.jpg" }, { name: "Variante Naranja", image: "botella-5.jpg" }, { name: "Detalle Acabado", image: "botella-6.jpg" }] },
-        { id: 10, title: "Cable de Carga Rápida USB-C a Tipo C (60W Trenzado)", price: "$3.00", numericPrice: 3.00, requiresShippingFee: true, badgeLeft: "Carga 60W", badgeRight: "Novedad", tagline: "Fast Charge", category: ["nuevos", "tecnologia"], isNew: true, available: true, shortDesc: "Cable trenzado de nylon de alta resistencia USB-C a Tipo C, carga rápida de 60W para iPhone 15/16/17, iPad, Samsung y laptops.", features: ["Soporta carga rápida de hasta 60W y transferencia de datos.", "Fabricado en nylon trenzado de alta resistencia contra enredos y desgarros.", "Compatible con iPhone 15/16/17, iPad, Samsung y dispositivos tipo C.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Blanco / Plata", image: "cable-c-1.jpg" }, { name: "Negro", image: "cable-c-2.jpg" }, { name: "Azul", image: "cable-c-azul.jpg" }, { name: "Púrpura", image: "cable-c-purpura.jpg" }, { name: "Verde", image: "cable-c-verde.jpg" }, { name: "Rosa", image: "cable-c-rosa.jpg" }] },
-        { id: 11, title: "Gafas de Moda Vintage con Montura Geométrica para Hombre", price: "$5.00", numericPrice: 5.00, requiresShippingFee: true, badgeLeft: "Varios Estilos", badgeRight: "Novedad", tagline: "Vintage Style", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Gafas de sol de estilo vintage para hombre con montura geométrica media pasta, ideales para el uso diario y protección estilizada.", features: ["Diseño vintage de corte geométrico elegante y moderno.", "Montura ligera y resistente con acabados metálicos y oscuros.", "Disponible en varios colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Marco Dorado/Negro Lente Gris", image: "lentes1-1.jpg" }, { name: "Variante 2", image: "lentes1-2.jpg" }, { name: "Variante 3", image: "lentes1-3.jpg" }, { name: "Variante 4", image: "lentes1-4.jpg" }] },
-        { id: 12, title: "Gafas de Moda Casual Retro para Mujer", price: "$5.00", numericPrice: 5.00, requiresShippingFee: true, badgeLeft: "Varios Estilos", badgeRight: "Novedad", tagline: "Retro Streetwear", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Gafas de sol para mujer con diseño retro casual, marco resistente y patillas texturizadas de estilo urbano.", features: ["Diseño retro de corte urbano perfecto para uso diario.", "Marco elegante con acabado traslúcido y patillas estilo madera.", "Disponible en varios colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Vista Principal", image: "lentes2-1.jpg" }, { name: "Variante 2", image: "lentes2-2.jpg" }, { name: "Variante 3", image: "lentes2-3.jpg" }, { name: "Variante 4", image: "lentes2-4.jpg" }] },
-        { id: 13, title: "Set de Reloj Yolako + Pulsera Elegante de Corazón", price: "$7.00", numericPrice: 7.00, requiresShippingFee: true, badgeLeft: "Set 2 Piezas", badgeRight: "Novedad", tagline: "Glamour Set", category: ["nuevos", "accesorios", "combos"], isNew: true, available: true, shortDesc: "Juego femenino con esfera efecto esmerilado brillante y pulsera ajustable con dijes de corazón.", features: ["Incluye Reloj Yolako + Pulsera combinada de regalo.", "Esfera con acabado esmerilado que destella con la luz.", "Correa cómoda de piel sintética suave.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Set Principal", image: "relog-mujer1-principal.jpg" }, { name: "Detalle Reloj & Esfera", image: "relog-mujer1-2.jpg" }, { name: "Vista Pulsera & Ajuste", image: "relog-mujer1-3.jpg" }] },
-        { id: 14, title: "Cartera Larga Multifuncional (Diseño Triangular)", price: "$8.00", numericPrice: 8.00, requiresShippingFee: true, badgeLeft: "Elegante", badgeRight: "Novedad", tagline: "Moda Dama", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Billetera espaciosa de PU texturizado con broche de solapa triangular metálico y tarjetero múltiple.", features: ["Diseño geométrico moderno con broche metálico resistente.", "Compartimentos organizados para celular, tarjetas y billetes.", "Bolsillo interno con cremallera para monedas.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Vista Principal Solapa", image: "cartera2-principal.jpg" }, { name: "Capacidad Interior", image: "cartera2-2.jpg" }, { name: "Vista Posterior", image: "cartera2-3.jpg" }, { name: "Detalle Broche Metal", image: "cartera2-4.jpg" }, { name: "Perfil Completo", image: "cartera2-5.jpg" }] },
-        { id: 15, title: "Collar Choker de Perlas de Imitación", price: "$3.50", numericPrice: 3.50, requiresShippingFee: true, badgeLeft: "Moda Dama", badgeRight: "Novedad", tagline: "Pearl Choker", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Elegante gargantilla con perlas de imitación ajustables, ideal para complementar cualquier estilo.", features: ["Diseño femenino de alta tendencia.", "Broche y cadena de ajuste seguro.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Vista Principal", image: "collar1-1.jpg" }, { name: "Detalle de Perlas", image: "collar1-2.jpg" }, { name: "Estilo Puesto", image: "collar1-3.jpg" }] },
-        { id: 16, title: "Set de 2 Delineadores de Ojos en Gel Miss Rose", price: "$3.50", numericPrice: 3.50, requiresShippingFee: true, badgeLeft: "Set de 2", badgeRight: "Novedad", tagline: "Smooth Gel", category: ["nuevos", "accesorios", "combos"], isNew: true, available: true, shortDesc: "Delineador y sombra en gel de larga duración en tonos negro y marrón con acabado mate.", features: ["Incluye 2 piezas: Tonos Negro y Marrón.", "Acabado mate de larga duración y fácil aplicación.", "Ideal para ojos de gato y looks ahumados.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Set 2Pcs Principal", image: "delineador1-1.jpg" }, { name: "Presentación Producto", image: "delineador1-2.jpg" }, { name: "Detalle Aplicador", image: "delineador1-3.jpg" }, { name: "Ejemplo de Maquillaje", image: "delineador1-4.jpg" }] },
-        { id: 17, title: "Pulsera Trébol de Moda en Acero Inoxidable", price: "$2.00", numericPrice: 2.00, requiresShippingFee: true, badgeLeft: "Varios Colores", badgeRight: "Novedad", tagline: "Stainless Steel", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Pulsera estilo trébol de alta gama fabricada en acero inoxidable para uso diario.", features: ["Material de acero inoxidable resistente y duradero.", "Disponible en varios colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Colores Disponibles", image: "pulsera1-1.jpg" }] },
-        { id: 18, title: "Reloj Elegante de Cuarzo para Hombre (Estilo Vintage)", price: "$10.00", numericPrice: 10.00, requiresShippingFee: true, badgeLeft: "Varios Estilos", badgeRight: "Novedad", tagline: "SHAARMS / IRLANDY", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Reloj masculino de esfera redonda con correa de aleación y ventana de fecha/día.", features: ["Mecanismo de cuarzo con correa de aleación metálica.", "Diseño retro elegante para uso casual o formal.", "Disponible en varios estilos/colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Esfera Azul Acero", image: "relog-hombre1-1.jpg" }, { name: "Vista Puesto", image: "relog-hombre1-2.jpg" }] },
-        { id: 19, title: "Reloj Elegante Ultra Delgado de Dama", price: "$25.00", numericPrice: 25.00, requiresShippingFee: false, badgeLeft: "6 Variantes", badgeRight: "Edición Dama", tagline: "Ultra-Slim", category: ["accesorios"], isNew: false, available: true, shortDesc: "Diseño minimalista de alta precisión con caja metálica ultradelgada y acabados de lujo.", features: ["Grosor ultradelgado de 7 mm con acabado pulido.", "Mecanismo de cuarzo de alta precisión con batería incluida.", "Extensible cómodo y elegante de alta calidad."], variants: [{ name: "Blanco", image: "blanco.jpg" }, { name: "Vino / Borgoña", image: "marron.jpg" }, { name: "Negro Clásico", image: "negro-carablanca.jpg" }, { name: "Púrpura / Lila", image: "rosa.jpg" }, { name: "Rosa Pastel", image: "rosa2.jpg" }, { name: "Verde Esmeralda", image: "verde.jpg" }] },
-        { id: 20, title: "Cartera Larga Minimalista con Hebilla", price: "$22.00", numericPrice: 22.00, requiresShippingFee: false, badgeLeft: "10 Fotos", badgeRight: "Estilo Coreano", tagline: "High Sense", category: ["accesorios"], isNew: false, available: true, shortDesc: "Diseño estilo coreano con tarjetero amplio, compartimento con cierre y elegante hebilla a contraste.", features: ["Múltiples ranuras para tarjetas y amplio espacio para billetes o móvil.", "Cierre de cremallera metálica suave y broche de hebilla seguro.", "Material de cuero sintético (PU) de alta durabilidad."], variants: [{ name: "Vista Principal", image: "catera-principal.jpg" }, { name: "Rosa Pastel", image: "cartera-rosada.jpg" }, { name: "Negro Clásico", image: "cartera-negra.jpg" }, { name: "Blanco / Crema", image: "cartera-blanca.jpg" }, { name: "Rojo Elegante", image: "cartera-roja.jpg" }, { name: "Azul", image: "cartera-azul.jpg" }, { name: "Amarillo", image: "cartera-amarilla.jpg" }, { name: "Distribución Interior", image: "cartera-interior.jpg" }, { name: "Vista Interior Vacío", image: "cartera-interior-vacio.jpg" }, { name: "Detalle Zipper", image: "cartera-zipper.jpg" }] },
-        { id: 21, title: "Teclado Mecánico Gaming MageGee TS91 RGB (60%)", price: "$25.00", numericPrice: 25.00, requiresShippingFee: false, badgeLeft: "MageGee TS91", badgeRight: "60% Layout", tagline: "Mechanical RGB", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Teclado ultra compacto de 61 teclas con retroiluminación RGB dinámica y cable tipo C extraíble.", features: ["Diseño compacto 60% para máximo espacio en el escritorio.", "Múltiples modos de iluminación RGB con ajuste de brillo y velocidad.", "Conexión estable por cable USB Type-C desmontable."], variants: [{ name: "Vista Principal", image: "teclado2-principal.jpg" }, { name: "Vista Ángulo", image: "teclado2-2.jpg" }, { name: "Detalle Lateral", image: "teclado2-3.jpg" }, { name: "Efecto Iluminación", image: "teclado2-4.jpg" }, { name: "Plano Superior", image: "teclado2-5.jpg" }, { name: "Vista Completa", image: "teclado2-6.jpg" }] },
-        { id: 22, title: "Teclado Gaming 60% RGB con Textura Topográfica", price: "$22.00", numericPrice: 22.00, requiresShippingFee: false, badgeLeft: "Topo Edition", badgeRight: "61 Teclas", tagline: "Custom Texture", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Edición especial con grabado topográfico artístico en las teclas e iluminación RGB translúcida.", features: ["Diseño artístico único con líneas de relieve topográfico en blanco.", "Efecto de luz RGB difuso que resalta el grabado.", "Factor de forma 60% portátil e ideal para transporte."], variants: [{ name: "Textura Blanca Principal", image: "teclado3-principal.jpg" }, { name: "Vista Superior", image: "teclado3-principal2.0.jpg" }, { name: "Detalle Textura", image: "teclado3-2.jpg" }, { name: "Iluminación Nocturna", image: "teclado3-3.jpg" }, { name: "Perfil Lateral", image: "teclado3-4.jpg" }] },
-        { id: 23, title: "Teclado Mini XNI 61 Teclas RGB (Blanco y Negro)", price: "$20.00", numericPrice: 20.00, requiresShippingFee: false, badgeLeft: "XNI Series", badgeRight: "Dual Tone", tagline: "Mini RGB", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Diseño moderno bicolor blanco y negro con iluminación ambiental personalizable.", features: ["Esquema de color contraste blanco y negro súper elegante.", "Soporte de control de iluminación libre.", "Diseño mini ultraligero ideal para oficina y gaming."], variants: [{ name: "Vista Principal Bicolor", image: "teclado1-principal.jpg" }, { name: "Plano Diagonal", image: "teclado1-2.jpg" }, { name: "Vista Frontal", image: "teclado1-3.jpg" }] },
-        { id: 24, title: "Teclado Compacto Bicolor AFGVK 65% Membrana", price: "$20.00", numericPrice: 20.00, requiresShippingFee: false, badgeLeft: "AFGVK", badgeRight: "65% Layout", tagline: "Quiet Typing", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Teclado de membrana silenciosa de perfil delgado en combinación de teclas blanco/negro.", features: ["Membrana Ultra-Thin para un tecleo silencioso y confortable.", "Layout 65% que ahorra espacio con máximo rendimiento.", "Estructura duradera con retroiluminación LED moderada."], variants: [{ name: "Vista Principal Bicolor", image: "teclado4-principal.jpg" }, { name: "Vista Frontal", image: "teclado4-2.jpg" }, { name: "Ángulo de Escritorio", image: "teclado4-3.jpg" }, { name: "Detalle de Teclas", image: "teclado4-4.jpg" }] },
-        { id: 25, title: 'Luz LED de Relleno para Videoconferencias (4")', price: "$28.00", numericPrice: 28.00, requiresShippingFee: false, badgeLeft: "5 Vistas", badgeRight: "Desk Setup", tagline: "3 Modos USB", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Aro de luz compacto con clip para laptop/monitor, 3 temperaturas de color y brillo regulable.", features: ["3 modos de luz (Cálida, Neutra, Fría) con niveles de intensidad.", "Clip de sujeción firme con cabezal orientable.", "Alimentación directa vía cable USB de 5V."], variants: [{ name: "Vista Principal", image: "luz-principal.jpg" }, { name: "Temperaturas de Luz", image: "luz-2.jpg" }, { name: "Uso en Laptop", image: "luz-3.jpg" }, { name: "Detalle Clip", image: "luz-4.jpg" }, { name: "Empaque y Accesorios", image: "luz-5.jpg" }] },
-        { id: 26, title: "Soporte e Impermeable Celular Moto/Bici (Wheel Up)", price: "$25.00", numericPrice: 25.00, requiresShippingFee: false, badgeLeft: "Wheel Up", badgeRight: "Waterproof", tagline: "Urban Rider", category: ["tecnologia", "accesorios"], isNew: false, available: true, shortDesc: "Estuche rígido con protección total contra lluvia, visera antirreflejo y membrana táctil HD.", features: ["100% Resistente al agua con cremallera laminada sellada.", "Visera parasol integrada para óptima visión GPS.", "Pantalla táctil de alta sensibilidad."], variants: [{ name: "Negro Principal", image: "soportenegro.jpg" }, { name: "Vista Trasera", image: "traserasoportemoto.jpg" }, { name: "Ejemplo de Uso", image: "ejemplosoportemoto.jpg" }, { name: "Variante Rojo", image: "soporterojo.jpg" }, { name: "Variante Azul", image: "soporteazul.jpg" }] },
-        { id: 27, title: "Cepillo Autolimpiante Quitapelos para Mascotas", price: "$15.00", numericPrice: 15.00, requiresShippingFee: false, badgeLeft: "1-Click Clean", badgeRight: "Pet Care", tagline: "Ergonomic", category: ["accesorios"], isNew: false, available: true, shortDesc: "Peine de agujas de acero inoxidable con botón de retracción para eliminar el pelo en 1 clic.", features: ["Sistema de retracción 1-Click: retira todo el pelo atrapado al instante.", "Cerdas de acero inoxidable con puntas protectoras de masaje.", "Estructura 100% lavable para máxima higiene."], variants: [{ name: "Vista Principal", image: "cepillo-mascotas-principal.jpg" }, { name: "Uso y Agarre", image: "cepillo-mascotas-secundario.jpg" }, { name: "Detalle Cerdas", image: "cepillo-mascotas-3.jpg" }, { name: "Variante Color 1", image: "cepillo-mascotas-4.jpg" }, { name: "Variante Color 2", image: "cepillo-mascotas-5.jpg" }, { name: "Variante Color 3", image: "cepillo-mascotas-6.jpg" }, { name: "Ficha Informativa", image: "cepillo-mascotas-informacion.jpg" }] }
+        { id: 1, title: "Peluche de Pingüino Kawaii con Bufanda - 20-25cm", price: "$5.00", numericPrice: 5.00, requiresShippingFee: true, badgeLeft: "20-25cm", badgeRight: "Lanzamiento", tagline: "Squishy & Kawaii", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Adorable peluche de pingüino de 20 a 25 cm con bufanda amarilla y diseño kawaii. Textura suave estilo squishy, perfecto para coleccionar o regalar.", features: ["Tamaño mediano ideal: 20-25 cm.", "Diseño kawaii con detalles de bufanda y mejillas sonrojadas.", "Textura ultra suave estilo squishy.", "Perfecto para coleccionar, decorar o regalar."], variants: [{ name: "Pingüino con Bufanda", image: "peluche6.jpg" }] },
+        { id: 2, title: "Peluches Squishy Kawaii de Lanzamiento - Cerdito, Búho y Among Us Rojo", price: "$4.00 c/u", numericPrice: 4.00, requiresShippingFee: true, badgeLeft: "20-25cm", badgeRight: "Lanzamiento", tagline: "Squishy & Kawaii", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Adorables peluches coleccionables de 20 a 25 cm en estilo squishy kawaii. Incluye diseños de Cerdito, Búho y Among Us Rojo. ¡Aprovecha el precio especial de lanzamiento por unidad!", features: ["Tamaño mediano ideal: 20-25 cm.", "Textura ultra suave estilo squishy.", "Diseños variados y coleccionables (Cerdito, Búho, Among Us Rojo).", "Precio especial de lanzamiento por tiempo limitado ($4.00 c/u)."], variants: [{ name: "Cerdito", image: "peluches5.jpg" }, { name: "Búho", image: "peluches5.jpg" }, { name: "Among Us Rojo", image: "peluches5.jpg" }] },
+        { id: 3, title: "Peluches Squishy Kawaii de Lanzamiento - Koala, Oveja y Pitahaya", price: "$4.00 c/u", numericPrice: 4.00, requiresShippingFee: true, badgeLeft: "20-25cm", badgeRight: "Lanzamiento", tagline: "Squishy & Kawaii", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Adorables peluches coleccionables de 20 a 25 cm en estilo squishy kawaii. Incluye diseños de Koala, Oveja y Pitahaya. ¡Aprovecha el precio especial de lanzamiento por unidad!", features: ["Tamaño mediano ideal: 20-25 cm.", "Textura ultra suave estilo squishy.", "Diseños variados y coleccionables (Koala, Oveja, Pitahaya).", "Precio especial de lanzamiento por tiempo limitado ($4.00 c/u)."], variants: [{ name: "Koala", image: "peluches4.jpg" }, { name: "Oveja", image: "peluches4.jpg" }, { name: "Pitahaya", image: "peluches4.jpg" }] },
+        { id: 4, title: "Peluches Squishy Kawaii de Lanzamiento - Águila, Robot y Capibara", price: "$4.00 c/u", numericPrice: 4.00, requiresShippingFee: true, badgeLeft: "20-25cm", badgeRight: "Lanzamiento", tagline: "Squishy & Kawaii", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Adorables peluches coleccionables de 20 a 25 cm en estilo squishy kawaii. Incluye diseños de Águila, Robot y Capibara. ¡Aprovecha el precio especial de lanzamiento por unidad!", features: ["Tamaño mediano ideal: 20-25 cm.", "Textura ultra suave estilo squishy.", "Diseños variados y coleccionables (Águila, Robot, Capibara).", "Precio especial de lanzamiento por tiempo limitado ($4.00 c/u)."], variants: [{ name: "Águila", image: "peluches3.jpg" }, { name: "Robot", image: "peluches3.jpg" }, { name: "Capibara", image: "peluches3.jpg" }] },
+        { id: 5, title: "Peluches Squishy Kawaii de Lanzamiento - Perro, Oso y Loro", price: "$4.00 c/u", numericPrice: 4.00, requiresShippingFee: true, badgeLeft: "20-25cm", badgeRight: "Lanzamiento", tagline: "Squishy & Kawaii", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Adorables peluches coleccionables de 20 a 25 cm en estilo squishy kawaii. Incluye diseños de Perro, Oso y Loro. ¡Aprovecha el precio especial de lanzamiento por unidad!", features: ["Tamaño mediano ideal: 20-25 cm.", "Textura ultra suave estilo squishy.", "Diseños variados y coleccionables (Perro, Oso, Loro).", "Precio especial de lanzamiento por tiempo limitado ($4.00 c/u)."], variants: [{ name: "Perro", image: "peluches2.jpg" }, { name: "Oso", image: "peluches2.jpg" }, { name: "Loro", image: "peluches2.jpg" }] },
+        { id: 6, title: "Peluches Squishy Kawaii de Lanzamiento - Taco, Pingüino y Mono", price: "$4.00 c/u", numericPrice: 4.00, requiresShippingFee: true, badgeLeft: "20-25cm", badgeRight: "Lanzamiento", tagline: "Squishy & Kawaii", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Adorables peluches coleccionables de 20 a 25 cm en estilo squishy kawaii. Incluye diseños de Taco, Pingüino y Mono. ¡Aprovecha el precio especial de lanzamiento por unidad!", features: ["Tamaño mediano ideal: 20-25 cm.", "Textura ultra suave estilo squishy.", "Diseños variados y coleccionables (Taco, Pingüino, Mono).", "Precio especial de lanzamiento por tiempo limitado ($4.00 c/u)."], variants: [{ name: "Taco", image: "peluches1.jpg" }, { name: "Pingüino", image: "peluches1.jpg" }, { name: "Mono", image: "peluches1.jpg" }] },
+        { id: 7, title: "Luces de Cortina LED USB con Control Remoto", price: "<del style='text-decoration: line-through; opacity: 0.6; font-size: 0.8em; margin-right: 0.3em;'>$6.50</del> $6.00", numericPrice: 6.00, requiresShippingFee: true, badgeLeft: "300 LED", badgeRight: "Oferta", tagline: "Iluminación Mágica", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Transforma cualquier espacio con estas luces de cortina USB. Incluyen control remoto y 8 modos de iluminación.", features: ["300 luces LED de alta luminosidad.", "Alimentación por USB (compatible con adaptadores y power banks).", "Control remoto con 8 modos de iluminación y temporizador.", "Fácil instalación, ideal para ventanas, cortinas o paredes.", "Perfectas para decoración navideña, fiestas o uso diario."], variants: [{ name: "Cálido", image: "luces1-1.jpg" }, { name: "Blanco", image: "luces1-2.jpg" }, { name: "Multicolor", image: "luces1-3.jpg" }] },
+        { id: 8, title: "Bolso de Maquillaje Acolchado con Lazo Organizador", price: "$4.75", numericPrice: 4.75, requiresShippingFee: true, badgeLeft: "Organizador", badgeRight: "Novedad", tagline: "Viaje & Estilo", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Bolso de maquillaje acolchado con lazo decorativo. Perfecto como organizador de cosméticos, bolsa de aseo o porta brochas. Diseño plegable y compacto.", features: ["Diseño acolchado que protege tus cosméticos y accesorios.", "Interior espacioso con cremallera de fácil apertura.", "Detalle de lazo elegante y femenino.", "Ideal para viajes, bolso de mano o uso diario.", "Disponible en varios colores para elegir."], variants: [{ name: "Rosa", image: "bolso1-rosa.jpg" }, { name: "Negro", image: "bolso1-negro.jpg" }, { name: "Azul", image: "bolso1-azul.jpg" }, { name: "Púrpura", image: "bolso1-purpura.jpg" }, { name: "Interior", image: "bolso1-interior.jpg" }, { name: "Medidas", image: "bolso1-medidas.jpg" }] },
+        { id: 9, title: "Atomizador Portátil de Perfume Recargable 5ml", price: "$1.25", numericPrice: 1.25, requiresShippingFee: true, badgeLeft: "5ml", badgeRight: "Viaje", tagline: "Belleza Portátil", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Frasco recargable para perfume de 5 ml con atomizador portátil. Lleva tu fragancia favorita a cualquier lugar con este práctico diseño de bolsillo.", features: ["Capacidad de 5 ml, tamaño ultra portátil ideal para viajes.", "Fácil sistema de recarga desde tu frasco original.", "Diseño elegante y resistente a fugas.", "Disponible en una amplia variedad de colores (Negro, Rosa, Azul, etc.)."], variants: [{ name: "Negro", image: "atomizador.jpg" }, { name: "Rosa", image: "atomizador1-2.jpg" }] },
+        { id: 10, title: "Inyector de Condimentos para Cocina y BBQ", price: "$3.75", numericPrice: 3.75, requiresShippingFee: true, badgeLeft: "Cocina", badgeRight: "Más Vendido", tagline: "Sabor Profundo", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Inyector ideal para pavo, carnes y barbacoas. Diseño de plástico resistente con aguja de acero inoxidable. No apto para uso médico.", features: ["Ideal para inyectar adobos y salsas en carnes, aves y cortes para BBQ.", "Aguja de acero inoxidable de alta resistencia.", "Cuerpo de plástico transparente con mediciones visibles.", "Fácil de limpiar y desmontar.", "Disponible en colores rojo y negro."], variants: [{ name: "Negro", image: "inyector1-negro.jpg" }, { name: "Rojo", image: "inyector1-rojo.jpg" }, { name: "Medidas", image: "inyector1-medidas.jpg" }, { name: "Vista general", image: "inyector1-1.jpg" }] },
+        { id: 11, title: "Cepillo Multifuncional de Limpieza para Auriculares, Pantallas y Teclados - Incluye Herramienta para Sacar Teclas", price: "$4.75", numericPrice: 4.75, requiresShippingFee: true, badgeLeft: "Multifunción", badgeRight: "Top Calificado", tagline: "Tech Cleaner", category: ["nuevos", "tecnologia"], isNew: true, available: true, shortDesc: "Cepillo de limpieza multifuncional para eliminar el polvo de pantallas de teléfonos, auriculares y teclados. Incluye herramienta para sacar teclas. Solo disponible en color azul.", features: ["Cepillo de cerdas suaves ideal para pantallas y auriculares.", "Incluye herramienta para extraer teclas de teclados mecánicos.", "Diseño ergonómico y portátil para limpieza en cualquier lugar.", "Elimina el polvo y la suciedad de dispositivos electrónicos.", "Disponible en color azul."], variants: [{ name: "Vista Principal", image: "limpieza1-1.jpg" }, { name: "Vista 2", image: "limpieza1-2.jpg" }, { name: "Azul - Ángulo", image: "limpieza1-azul.jpg" }] },
+        { id: 12, title: "Sellador de Bolsas de Snacks Portátil con Batería de Litio y Cable USB", price: "$4.25", numericPrice: 4.25, requiresShippingFee: true, badgeLeft: "USB Recargable", badgeRight: "Más Vendido", tagline: "Snack Sealer", category: ["nuevos", "tecnologia"], isNew: true, available: true, shortDesc: "Set de sellador de bolsas de snacks con batería de litio incorporada y cable de carga USB. Diseño magnético a presión, silencioso y eficiente. Ideal para casa, picnic, excursiones y viajes.", features: ["Batería de litio incorporada, recargable vía USB (incluye cable).", "Diseño magnético a presión para sellado rápido y seguro.", "Bajo consumo de energía, silencioso y eficiente.", "Portátil y ligero, ideal para casa, picnic, excursiones y viajes.", "Sella bolsas de galletas, chips, snacks y otros alimentos."], variants: [{ name: "Vista Principal", image: "sellador1-1.jpg" }, { name: "Vista 2", image: "sellador1-2.jpg" }, { name: "Vista 3", image: "sellador1-3.jpg" }] },
+        { id: 13, title: "Rociador de Aceite de Oliva 220ml/320ml - Alta Presión a Prueba de Fugas", price: "$4.75 - $6.50", numericPrice: 4.75, requiresShippingFee: true, badgeLeft: "220ml / 320ml", badgeRight: "Más Recomprado", tagline: "Spray & Grill", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Rociador de aceite de alta presión, a prueba de fugas, ideal para barbacoa, freidora de aire y camping. Disponible en 220ml y 320ml, colores blanco y negro.", features: ["Diseño a prueba de fugas con alta presión para un rociado uniforme.", "Capacidad de 220ml o 320ml según elección (consultar disponibilidad).", "Ideal para barbacoa, freidora de aire, sartenes y camping.", "Material plástico resistente, ligero y fácil de limpiar.", "Opción de color: Blanco o Negro."], variants: [{ name: "Vista 1", image: "aceite2-1.jpg" }, { name: "Vista 2", image: "aceite2-2.jpg" }, { name: "Vista 3", image: "aceite2-3.jpg" }, { name: "Vista 4", image: "aceite2-4.jpg" }, { name: "Blanco", image: "aceite2-blanco.jpg" }, { name: "Negro", image: "aceite2-negro.jpg" }] },
+        { id: 14, title: "Dispensador de Aceite 2 en 1 con Pulverizador y Vertido - 470ml", price: "$6.00", numericPrice: 6.00, requiresShippingFee: true, badgeLeft: "470ml", badgeRight: "Novedad", tagline: "Spray & Pour", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Botella de aceite portátil 2 en 1 que pulveriza o vierte con precisión. Ideal para cocinar, asar, freír, hornear y ensaladas. Capacidad de 470 ml.", features: ["Diseño 2 en 1: pulverizador y vertido, controla la cantidad de aceite.", "Ideal para cocinar, asar a la parrilla, freír en aire, hornear y ensaladas.", "Botella de plástico resistente, ligera y fácil de limpiar.", "Tapa sellada para evitar derrames y mantener el aceite fresco.", "Disponible en varios colores: negro, amarillo, blanco y verde."], variants: [{ name: "Negro", image: "aceite1-negro.jpg" }, { name: "Amarillo", image: "aceite1-amarillo.jpg" }, { name: "Blanco", image: "aceite1-blanco.jpg" }, { name: "Verde", image: "aceite1-verde.jpg" }, { name: "Vista en uso", image: "aceite1-2.jpg" }] },
+        { id: 15, title: "Botella Térmica de Acero Inoxidable 500ml (Doodle Art)", price: "$12.00", numericPrice: 12.00, requiresShippingFee: false, badgeLeft: "500ml / 17oz", badgeRight: "Disponible", tagline: "Doodle Art", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Termo de acero inoxidable con aislamiento al vacío de doble pared y acabados gráficos estilo Doodle.", features: ["Conservación de temperatura: mantiene frío o caliente por horas.", "Construcción en Acero Inoxidable de alta resistencia.", "Diseño gráfico exclusivo Doodle Art."], variants: [{ name: "Colección Doodle", image: "botella-principal.jpg" }, { name: "Variante Negra", image: "botella-2.jpg" }, { name: "Variante Rosa", image: "botella-3.jpg" }, { name: "Variante Verde", image: "botella-4.jpg" }, { name: "Variante Naranja", image: "botella-5.jpg" }, { name: "Detalle Acabado", image: "botella-6.jpg" }] },
+        { id: 16, title: "Cable de Carga Rápida USB-C a Tipo C (60W Trenzado)", price: "$3.00", numericPrice: 3.00, requiresShippingFee: true, badgeLeft: "Carga 60W", badgeRight: "Novedad", tagline: "Fast Charge", category: ["nuevos", "tecnologia"], isNew: true, available: true, shortDesc: "Cable trenzado de nylon de alta resistencia USB-C a Tipo C, carga rápida de 60W para iPhone 15/16/17, iPad, Samsung y laptops.", features: ["Soporta carga rápida de hasta 60W y transferencia de datos.", "Fabricado en nylon trenzado de alta resistencia contra enredos y desgarros.", "Compatible con iPhone 15/16/17, iPad, Samsung y dispositivos tipo C.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Blanco / Plata", image: "cable-c-1.jpg" }, { name: "Negro", image: "cable-c-2.jpg" }, { name: "Azul", image: "cable-c-azul.jpg" }, { name: "Púrpura", image: "cable-c-purpura.jpg" }, { name: "Verde", image: "cable-c-verde.jpg" }, { name: "Rosa", image: "cable-c-rosa.jpg" }] },
+        { id: 17, title: "Gafas de Moda Vintage con Montura Geométrica para Hombre", price: "$5.00", numericPrice: 5.00, requiresShippingFee: true, badgeLeft: "Varios Estilos", badgeRight: "Novedad", tagline: "Vintage Style", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Gafas de sol de estilo vintage para hombre con montura geométrica media pasta, ideales para el uso diario y protección estilizada.", features: ["Diseño vintage de corte geométrico elegante y moderno.", "Montura ligera y resistente con acabados metálicos y oscuros.", "Disponible en varios colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Marco Dorado/Negro Lente Gris", image: "lentes1-1.jpg" }, { name: "Variante 2", image: "lentes1-2.jpg" }, { name: "Variante 3", image: "lentes1-3.jpg" }, { name: "Variante 4", image: "lentes1-4.jpg" }] },
+        { id: 18, title: "Gafas de Moda Casual Retro para Mujer", price: "$5.00", numericPrice: 5.00, requiresShippingFee: true, badgeLeft: "Varios Estilos", badgeRight: "Novedad", tagline: "Retro Streetwear", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Gafas de sol para mujer con diseño retro casual, marco resistente y patillas texturizadas de estilo urbano.", features: ["Diseño retro de corte urbano perfecto para uso diario.", "Marco elegante con acabado traslúcido y patillas estilo madera.", "Disponible en varios colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Vista Principal", image: "lentes2-1.jpg" }, { name: "Variante 2", image: "lentes2-2.jpg" }, { name: "Variante 3", image: "lentes2-3.jpg" }, { name: "Variante 4", image: "lentes2-4.jpg" }] },
+        { id: 19, title: "Set de Reloj Yolako + Pulsera Elegante de Corazón", price: "$7.00", numericPrice: 7.00, requiresShippingFee: true, badgeLeft: "Set 2 Piezas", badgeRight: "Novedad", tagline: "Glamour Set", category: ["nuevos", "accesorios", "combos"], isNew: true, available: true, shortDesc: "Juego femenino con esfera efecto esmerilado brillante y pulsera ajustable con dijes de corazón.", features: ["Incluye Reloj Yolako + Pulsera combinada de regalo.", "Esfera con acabado esmerilado que destella con la luz.", "Correa cómoda de piel sintética suave.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Set Principal", image: "relog-mujer1-principal.jpg" }, { name: "Detalle Reloj & Esfera", image: "relog-mujer1-2.jpg" }, { name: "Vista Pulsera & Ajuste", image: "relog-mujer1-3.jpg" }] },
+        { id: 20, title: "Cartera Larga Multifuncional (Diseño Triangular)", price: "$8.00", numericPrice: 8.00, requiresShippingFee: true, badgeLeft: "Elegante", badgeRight: "Novedad", tagline: "Moda Dama", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Billetera espaciosa de PU texturizado con broche de solapa triangular metálico y tarjetero múltiple.", features: ["Diseño geométrico moderno con broche metálico resistente.", "Compartimentos organizados para celular, tarjetas y billetes.", "Bolsillo interno con cremallera para monedas.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Vista Principal Solapa", image: "cartera2-principal.jpg" }, { name: "Capacidad Interior", image: "cartera2-2.jpg" }, { name: "Vista Posterior", image: "cartera2-3.jpg" }, { name: "Detalle Broche Metal", image: "cartera2-4.jpg" }, { name: "Perfil Completo", image: "cartera2-5.jpg" }] },
+        { id: 21, title: "Collar Choker de Perlas de Imitación", price: "$3.50", numericPrice: 3.50, requiresShippingFee: true, badgeLeft: "Moda Dama", badgeRight: "Novedad", tagline: "Pearl Choker", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Elegante gargantilla con perlas de imitación ajustables, ideal para complementar cualquier estilo.", features: ["Diseño femenino de alta tendencia.", "Broche y cadena de ajuste seguro.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Vista Principal", image: "collar1-1.jpg" }, { name: "Detalle de Perlas", image: "collar1-2.jpg" }, { name: "Estilo Puesto", image: "collar1-3.jpg" }] },
+        { id: 22, title: "Set de 2 Delineadores de Ojos en Gel Miss Rose", price: "$3.50", numericPrice: 3.50, requiresShippingFee: true, badgeLeft: "Set de 2", badgeRight: "Novedad", tagline: "Smooth Gel", category: ["nuevos", "accesorios", "combos"], isNew: true, available: true, shortDesc: "Delineador y sombra en gel de larga duración en tonos negro y marrón con acabado mate.", features: ["Incluye 2 piezas: Tonos Negro y Marrón.", "Acabado mate de larga duración y fácil aplicación.", "Ideal para ojos de gato y looks ahumados.", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Set 2Pcs Principal", image: "delineador1-1.jpg" }, { name: "Presentación Producto", image: "delineador1-2.jpg" }, { name: "Detalle Aplicador", image: "delineador1-3.jpg" }, { name: "Ejemplo de Maquillaje", image: "delineador1-4.jpg" }] },
+        { id: 23, title: "Pulsera Trébol de Moda en Acero Inoxidable", price: "$2.00", numericPrice: 2.00, requiresShippingFee: true, badgeLeft: "Varios Colores", badgeRight: "Novedad", tagline: "Stainless Steel", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Pulsera estilo trébol de alta gama fabricada en acero inoxidable para uso diario.", features: ["Material de acero inoxidable resistente y duradero.", "Disponible en varios colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Colores Disponibles", image: "pulsera1-1.jpg" }] },
+        { id: 24, title: "Reloj Elegante de Cuarzo para Hombre (Estilo Vintage)", price: "$10.00", numericPrice: 10.00, requiresShippingFee: true, badgeLeft: "Varios Estilos", badgeRight: "Novedad", tagline: "SHAARMS / IRLANDY", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Reloj masculino de esfera redonda con correa de aleación y ventana de fecha/día.", features: ["Mecanismo de cuarzo con correa de aleación metálica.", "Diseño retro elegante para uso casual o formal.", "Disponible en varios estilos/colores (se consulta existencia al pedir).", "Mismo envío si agregas más productos a tu compra."], variants: [{ name: "Esfera Azul Acero", image: "relog-hombre1-1.jpg" }, { name: "Vista Puesto", image: "relog-hombre1-2.jpg" }] },
+        { id: 25, title: "Reloj Elegante Ultra Delgado de Dama", price: "$25.00", numericPrice: 25.00, requiresShippingFee: false, badgeLeft: "6 Variantes", badgeRight: "Edición Dama", tagline: "Ultra-Slim", category: ["accesorios"], isNew: false, available: true, shortDesc: "Diseño minimalista de alta precisión con caja metálica ultradelgada y acabados de lujo.", features: ["Grosor ultradelgado de 7 mm con acabado pulido.", "Mecanismo de cuarzo de alta precisión con batería incluida.", "Extensible cómodo y elegante de alta calidad."], variants: [{ name: "Blanco", image: "blanco.jpg" }, { name: "Vino / Borgoña", image: "marron.jpg" }, { name: "Negro Clásico", image: "negro-carablanca.jpg" }, { name: "Púrpura / Lila", image: "rosa.jpg" }, { name: "Rosa Pastel", image: "rosa2.jpg" }, { name: "Verde Esmeralda", image: "verde.jpg" }] },
+        { id: 26, title: "Cartera Larga Minimalista con Hebilla", price: "$22.00", numericPrice: 22.00, requiresShippingFee: false, badgeLeft: "10 Fotos", badgeRight: "Estilo Coreano", tagline: "High Sense", category: ["accesorios"], isNew: false, available: true, shortDesc: "Diseño estilo coreano con tarjetero amplio, compartimento con cierre y elegante hebilla a contraste.", features: ["Múltiples ranuras para tarjetas y amplio espacio para billetes o móvil.", "Cierre de cremallera metálica suave y broche de hebilla seguro.", "Material de cuero sintético (PU) de alta durabilidad."], variants: [{ name: "Vista Principal", image: "catera-principal.jpg" }, { name: "Rosa Pastel", image: "cartera-rosada.jpg" }, { name: "Negro Clásico", image: "cartera-negra.jpg" }, { name: "Blanco / Crema", image: "cartera-blanca.jpg" }, { name: "Rojo Elegante", image: "cartera-roja.jpg" }, { name: "Azul", image: "cartera-azul.jpg" }, { name: "Amarillo", image: "cartera-amarilla.jpg" }, { name: "Distribución Interior", image: "cartera-interior.jpg" }, { name: "Vista Interior Vacío", image: "cartera-interior-vacio.jpg" }, { name: "Detalle Zipper", image: "cartera-zipper.jpg" }] },
+        { id: 27, title: "Teclado Mecánico Gaming MageGee TS91 RGB (60%)", price: "$25.00", numericPrice: 25.00, requiresShippingFee: false, badgeLeft: "MageGee TS91", badgeRight: "60% Layout", tagline: "Mechanical RGB", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Teclado ultra compacto de 61 teclas con retroiluminación RGB dinámica y cable tipo C extraíble.", features: ["Diseño compacto 60% para máximo espacio en el escritorio.", "Múltiples modos de iluminación RGB con ajuste de brillo y velocidad.", "Conexión estable por cable USB Type-C desmontable."], variants: [{ name: "Vista Principal", image: "teclado2-principal.jpg" }, { name: "Vista Ángulo", image: "teclado2-2.jpg" }, { name: "Detalle Lateral", image: "teclado2-3.jpg" }, { name: "Efecto Iluminación", image: "teclado2-4.jpg" }, { name: "Plano Superior", image: "teclado2-5.jpg" }, { name: "Vista Completa", image: "teclado2-6.jpg" }] },
+        { id: 28, title: "Teclado Gaming 60% RGB con Textura Topográfica", price: "$22.00", numericPrice: 22.00, requiresShippingFee: false, badgeLeft: "Topo Edition", badgeRight: "61 Teclas", tagline: "Custom Texture", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Edición especial con grabado topográfico artístico en las teclas e iluminación RGB translúcida.", features: ["Diseño artístico único con líneas de relieve topográfico en blanco.", "Efecto de luz RGB difuso que resalta el grabado.", "Factor de forma 60% portátil e ideal para transporte."], variants: [{ name: "Textura Blanca Principal", image: "teclado3-principal.jpg" }, { name: "Vista Superior", image: "teclado3-principal2.0.jpg" }, { name: "Detalle Textura", image: "teclado3-2.jpg" }, { name: "Iluminación Nocturna", image: "teclado3-3.jpg" }, { name: "Perfil Lateral", image: "teclado3-4.jpg" }] },
+        { id: 29, title: "Teclado Mini XNI 61 Teclas RGB (Blanco y Negro)", price: "$20.00", numericPrice: 20.00, requiresShippingFee: false, badgeLeft: "XNI Series", badgeRight: "Dual Tone", tagline: "Mini RGB", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Diseño moderno bicolor blanco y negro con iluminación ambiental personalizable.", features: ["Esquema de color contraste blanco y negro súper elegante.", "Soporte de control de iluminación libre.", "Diseño mini ultraligero ideal para oficina y gaming."], variants: [{ name: "Vista Principal Bicolor", image: "teclado1-principal.jpg" }, { name: "Plano Diagonal", image: "teclado1-2.jpg" }, { name: "Vista Frontal", image: "teclado1-3.jpg" }] },
+        { id: 30, title: "Teclado Compacto Bicolor AFGVK 65% Membrana", price: "$20.00", numericPrice: 20.00, requiresShippingFee: false, badgeLeft: "AFGVK", badgeRight: "65% Layout", tagline: "Quiet Typing", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Teclado de membrana silenciosa de perfil delgado en combinación de teclas blanco/negro.", features: ["Membrana Ultra-Thin para un tecleo silencioso y confortable.", "Layout 65% que ahorra espacio con máximo rendimiento.", "Estructura duradera con retroiluminación LED moderada."], variants: [{ name: "Vista Principal Bicolor", image: "teclado4-principal.jpg" }, { name: "Vista Frontal", image: "teclado4-2.jpg" }, { name: "Ángulo de Escritorio", image: "teclado4-3.jpg" }, { name: "Detalle de Teclas", image: "teclado4-4.jpg" }] },
+        { id: 31, title: 'Luz LED de Relleno para Videoconferencias (4")', price: "$28.00", numericPrice: 28.00, requiresShippingFee: false, badgeLeft: "5 Vistas", badgeRight: "Desk Setup", tagline: "3 Modos USB", category: ["tecnologia"], isNew: false, available: true, shortDesc: "Aro de luz compacto con clip para laptop/monitor, 3 temperaturas de color y brillo regulable.", features: ["3 modos de luz (Cálida, Neutra, Fría) con niveles de intensidad.", "Clip de sujeción firme con cabezal orientable.", "Alimentación directa vía cable USB de 5V."], variants: [{ name: "Vista Principal", image: "luz-principal.jpg" }, { name: "Temperaturas de Luz", image: "luz-2.jpg" }, { name: "Uso en Laptop", image: "luz-3.jpg" }, { name: "Detalle Clip", image: "luz-4.jpg" }, { name: "Empaque y Accesorios", image: "luz-5.jpg" }] },
+        { id: 32, title: "Soporte e Impermeable Celular Moto/Bici (Wheel Up)", price: "$25.00", numericPrice: 25.00, requiresShippingFee: false, badgeLeft: "Wheel Up", badgeRight: "Waterproof", tagline: "Urban Rider", category: ["tecnologia", "accesorios"], isNew: false, available: true, shortDesc: "Estuche rígido con protección total contra lluvia, visera antirreflejo y membrana táctil HD.", features: ["100% Resistente al agua con cremallera laminada sellada.", "Visera parasol integrada para óptima visión GPS.", "Pantalla táctil de alta sensibilidad."], variants: [{ name: "Negro Principal", image: "soportenegro.jpg" }, { name: "Vista Trasera", image: "traserasoportemoto.jpg" }, { name: "Ejemplo de Uso", image: "ejemplosoportemoto.jpg" }, { name: "Variante Rojo", image: "soporterojo.jpg" }, { name: "Variante Azul", image: "soporteazul.jpg" }] },
+        { id: 33, title: "Cepillo Autolimpiante Quitapelos para Mascotas", price: "$15.00", numericPrice: 15.00, requiresShippingFee: false, badgeLeft: "1-Click Clean", badgeRight: "Pet Care", tagline: "Ergonomic", category: ["accesorios"], isNew: false, available: true, shortDesc: "Peine de agujas de acero inoxidable con botón de retracción para eliminar el pelo en 1 clic.", features: ["Sistema de retracción 1-Click: retira todo el pelo atrapado al instante.", "Cerdas de acero inoxidable con puntas protectoras de masaje.", "Estructura 100% lavable para máxima higiene."], variants: [{ name: "Vista Principal", image: "cepillo-mascotas-principal.jpg" }, { name: "Uso y Agarre", image: "cepillo-mascotas-secundario.jpg" }, { name: "Detalle Cerdas", image: "cepillo-mascotas-3.jpg" }, { name: "Variante Color 1", image: "cepillo-mascotas-4.jpg" }, { name: "Variante Color 2", image: "cepillo-mascotas-5.jpg" }, { name: "Variante Color 3", image: "cepillo-mascotas-6.jpg" }, { name: "Ficha Informativa", image: "cepillo-mascotas-informacion.jpg" }] }
     ];
 
     const CATEGORY_ACCENT = {
@@ -1658,9 +1664,6 @@ tailwind.config = {
     let searchTimeout = null;
     let revealObserver = null;
 
-    /* =========================================================
-       ANIMACIÓN 1 — Reveal con observer
-       ========================================================= */
     function initRevealObserver() {
         revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1678,9 +1681,6 @@ tailwind.config = {
         nodes.forEach(n => revealObserver.observe(n));
     }
 
-    /* =========================================================
-       ANIMACIÓN 2 — Contadores animados
-       ========================================================= */
     function animateCounter(el) {
         const target = parseInt(el.dataset.countTarget, 10);
         const suffix = el.dataset.countSuffix || '';
@@ -1725,9 +1725,6 @@ tailwind.config = {
         stats.forEach(el => observer.observe(el));
     }
 
-    /* =========================================================
-       ANIMACIÓN 3 — Parallax de orbes
-       ========================================================= */
     function initOrbParallax() {
         if (PREFERS_REDUCED_MOTION) return;
         const orb1 = document.querySelector('.orb-1');
@@ -1751,9 +1748,6 @@ tailwind.config = {
         }, { passive: true });
     }
 
-    /* =========================================================
-       ANIMACIÓN 4 — Tilt 3D
-       ========================================================= */
     const TILT_MAX_DEG = 6;
 
     function attachTilt(card) {
@@ -1776,9 +1770,6 @@ tailwind.config = {
         });
     }
 
-    /* =========================================================
-       NUEVA ANIMACIÓN 5 — Barra de progreso de scroll
-       ========================================================= */
     function initScrollProgress() {
         const bar = document.getElementById('scrollProgressBar');
         if (!bar) return;
@@ -1801,9 +1792,6 @@ tailwind.config = {
         update();
     }
 
-    /* =========================================================
-       NUEVA ANIMACIÓN 6 — Cursor personalizado (solo desktop)
-       ========================================================= */
     function initCustomCursor() {
         if (!CAN_CUSTOM_CURSOR) return;
         const dot = document.getElementById('cursorDot');
@@ -1843,8 +1831,6 @@ tailwind.config = {
         }
         animate();
 
-        // Detección de elementos interactivos con delegación (para no perder
-        // los elementos dinámicos que se crean al filtrar/buscar)
         const INTERACTIVE_SEL = 'a, button, [role="button"], input, select, textarea, .product-card, .chip, .spotlight, .float-btn, .thumb-btn, .select-lux';
         document.addEventListener('mouseover', (e) => {
             if (e.target.closest(INTERACTIVE_SEL)) ring.classList.add('grow');
@@ -1854,19 +1840,12 @@ tailwind.config = {
         });
     }
 
-    /* =========================================================
-       NUEVA ANIMACIÓN 7 — Hero word reveal
-       ========================================================= */
     function initHeroWords() {
         const hero = document.querySelector('.hero-words');
         if (!hero) return;
-        // Pequeño delay para que se dibuje el layout inicial
         setTimeout(() => hero.classList.add('in'), 180);
     }
 
-    /* =========================================================
-       NUEVA ANIMACIÓN 8 — Ripple al hacer clic
-       ========================================================= */
     function attachRipple(el) {
         if (!el || el.dataset.rippleAttached) return;
         el.dataset.rippleAttached = '1';
@@ -1894,9 +1873,6 @@ tailwind.config = {
             .forEach(attachRipple);
     }
 
-    /* =========================================================
-       BÚSQUEDA
-       ========================================================= */
     function debouncedSearch(val) {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => handleSearch(val), 120);
@@ -1926,7 +1902,6 @@ tailwind.config = {
         if (activeCategory !== 'todos' || searchQuery !== '') clearBtn.classList.remove('hidden');
         else clearBtn.classList.add('hidden');
 
-        // Ripple para los chips recién creados
         if (!PREFERS_REDUCED_MOTION) initRipples(container);
     }
 
@@ -2030,9 +2005,6 @@ tailwind.config = {
         renderProductsGrid();
     }
 
-    /* =========================================================
-       MODAL DE PRODUCTO
-       ========================================================= */
     function updateModalVariant(variantIndex) {
         const product = PRODUCTS[currentProductIndex];
         const variant = product.variants[variantIndex];
@@ -2113,7 +2085,6 @@ tailwind.config = {
 
         updateModalVariant(0);
 
-        // Ripple para las miniaturas
         if (!PREFERS_REDUCED_MOTION) initRipples(thumbsContainer);
 
         const modal = document.getElementById('product-modal');
@@ -2165,9 +2136,6 @@ tailwind.config = {
         }
     });
 
-    /* =========================================================
-       INIT
-       ========================================================= */
     document.addEventListener('DOMContentLoaded', () => {
         initRevealObserver();
 
@@ -2180,7 +2148,6 @@ tailwind.config = {
         renderProductsGrid();
         observeReveals(document);
 
-        // Todas las animaciones
         initStatsCounters();
         initOrbParallax();
         initScrollProgress();
@@ -2188,7 +2155,6 @@ tailwind.config = {
         initHeroWords();
         initRipples(document);
 
-        // Ripple en el botón de sugerir del header flotante
         const floatingSuggest = document.querySelector('.float-gold');
         if (floatingSuggest && !PREFERS_REDUCED_MOTION) attachRipple(floatingSuggest);
     });
