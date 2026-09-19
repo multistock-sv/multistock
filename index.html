@@ -4,7 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#0A0A0C" />
-<title>MultiStock | Boutique & Tech Store</title>
+<link rel="icon" type="image/png" href="logo-angel.png">
+<title>Angel's Signature | Boutique & Tech Store</title>
 
 <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1890,6 +1891,7 @@ video {
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
     .float-btn { display: inline-flex; align-items: center; gap: .6rem; padding: .85rem 1rem; border-radius: 2px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; transition: all .45s cubic-bezier(.16,1,.3,1); box-shadow: 0 18px 40px -16px rgba(0,0,0,.9); position: relative; overflow: hidden; backface-visibility: hidden; }
+    .float-btn.fixed { position: fixed; }
     .float-btn:hover { transform: translateY(-3px); }
     .float-emerald { background: linear-gradient(160deg, #0F3D2E, #0A2A1F); border: 1px solid rgba(74,222,128,.35); color: #D1FAE5; }
     .float-emerald:hover { border-color: rgba(74,222,128,.65); box-shadow: 0 24px 50px -18px rgba(74,222,128,.5); }
@@ -1988,9 +1990,9 @@ video {
     <div class="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div class="flex h-[74px] items-center justify-between gap-6">
             <a href="#" class="group flex items-center gap-3.5 shrink-0">
-                <span class="monogram">M</span>
+                <img src="logo-angel.png" alt="Angel's Signature" style="width:42px;height:42px;object-fit:contain;">
                 <span class="leading-none">
-                    <span class="block display text-[17px] font-medium tracking-[0.02em] text-[var(--text)]">MultiStock</span>
+                    <span class="block display text-[17px] font-medium tracking-[0.02em] text-[var(--text)]">Angel's Signature</span>
                     <span class="mono mt-1.5 block text-[8px] font-medium tracking-[0.38em] text-[var(--gold)]/85 uppercase">Boutique &amp; Tech</span>
                 </span>
             </a>
@@ -2078,7 +2080,6 @@ video {
     </div>
 
     <div class="grid gap-4 lg:grid-cols-2">
-        <!-- Spotlight 1: Peluches Águila/Robot/Capibara (nuevo índice 15) -->
         <article class="spotlight reveal cursor-pointer" onclick="openProductModal(15)" style="transition-delay:.06s">
             <div class="grid grid-cols-1 sm:grid-cols-5">
                 <div class="spotlight-media sm:col-span-3 aspect-square sm:aspect-auto">
@@ -2112,7 +2113,6 @@ video {
             </div>
         </article>
 
-        <!-- Spotlight 2: Peluches Cerdito/Búho/Among Us (nuevo índice 13) -->
         <article class="spotlight reveal cursor-pointer" onclick="openProductModal(13)" style="transition-delay:.12s">
             <div class="grid grid-cols-1 sm:grid-cols-5">
                 <div class="spotlight-media sm:col-span-3 aspect-square sm:aspect-auto">
@@ -2183,7 +2183,7 @@ video {
                 </span>
                 <div>
                     <span class="eyebrow em !text-[8px] !tracking-[0.3em]">Canal oficial</span>
-                    <h3 class="display mt-2 text-lg text-[var(--text)]">MultiStock Sv</h3>
+                    <h3 class="display mt-2 text-lg text-[var(--text)]">Angel's Signature Sv</h3>
                     <p class="mt-1.5 flex items-center justify-center gap-2 text-[11.5px] font-light text-white/45 sm:justify-start">
                         <span class="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
                         Nuevos ingresos y ofertas antes que nadie.
@@ -2373,9 +2373,9 @@ video {
 
             <div class="lg:col-span-5">
                 <div class="flex items-center gap-3.5">
-                    <span class="monogram">M</span>
+                    <img src="logo-angel.png" alt="Angel's Signature" style="width:42px;height:42px;object-fit:contain;">
                     <span class="text-left leading-none">
-                        <span class="block display text-[17px] font-medium tracking-[0.02em] text-[var(--text)]">MultiStock</span>
+                        <span class="block display text-[17px] font-medium tracking-[0.02em] text-[var(--text)]">Angel's Signature</span>
                         <span class="mono mt-1.5 block text-[8px] font-medium tracking-[0.38em] text-[var(--gold)]/85 uppercase">Boutique &amp; Tech</span>
                     </span>
                 </div>
@@ -2418,7 +2418,7 @@ video {
         <div class="rule mt-14"></div>
 
         <div class="mono mt-6 flex flex-col items-center justify-between gap-3 text-[9.5px] font-medium uppercase tracking-[0.26em] text-white/30 sm:flex-row">
-            <span>© 2026 MultiStock El Salvador</span>
+            <span>© 2026 Angel's Signature El Salvador</span>
             <span class="flex items-center gap-3">
                 <span class="text-[var(--gold)]">◆</span>
                 Hecho con cuidado · MMXXVI
@@ -2447,13 +2447,11 @@ video {
     ];
 
     const PRODUCTS = [
-        // ============ NUEVOS (5) ============
         { id: 1, title: "Set de 2 Collares con Piedra Lunar y Cuarzo Rosa - Acero Inoxidable", price: "$4.50", numericPrice: 4.50, requiresShippingFee: true, badgeLeft: "Set 2 Piezas", badgeRight: "Más Vendido", tagline: "Crystal Duo", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Juego de 2 collares con piedra lunar y cuarzo rosa, con cadena de acero inoxidable y dije en forma de corazón. Perfecto como regalo para mejores amigas o para combinar con atuendos diarios y de fiesta.", features: ["Set de 2 collares: Piedra Lunar y Cuarzo Rosa.", "Cadenas de acero inoxidable de alta durabilidad.", "Dijes con forma de corazón con acabado elegante.", "Ideales para regalo o para uso en pareja/mejores amigas.", "Combinan con atuendos diarios y de fiesta."], variants: [{ name: "Vista Principal", image: "collares1-1.jpg" }, { name: "Vista 2", image: "collares1-2.jpg" }, { name: "Medidas", image: "collares1-medidas.jpg" }] },
         { id: 2, title: "Parches para Acné Hidrocoloides - Estrellas Multicolor (280 o 1680 Piezas)", price: "$3.00 - $5.50", numericPrice: 3.00, requiresShippingFee: true, badgeLeft: "Hidrocoloide", badgeRight: "Top Belleza", tagline: "Pimple Patch", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Parches hidrocoloides en forma de estrella multicolor que cubren imperfecciones y protegen la piel. Suaves, no irritantes, waterproof y actúan como cobertura protectora. Disponibles en 280 o 1680 piezas.", features: ["7 colores de estrellas para elegir según tu mood.", "Tecnología hidrocoloide que absorbe impurezas.", "Waterproof y actúa como cobertura protectora.", "Suaves y no irritantes, aptos para todo tipo de piel.", "Presentaciones: 280 piezas ($3.00) o 1680 piezas ($5.50)."], variants: [{ name: "280 Piezas - $3.00", image: "parches1-280.jpg" }, { name: "1680 Piezas - $5.50", image: "parches1-1680.jpg" }, { name: "Vista General", image: "parches1-1.jpg" }] },
         { id: 3, title: "Palitos de Madera para Manicura y Arte de Uñas - 100 Piezas", price: "$3.00", numericPrice: 3.00, requiresShippingFee: true, badgeLeft: "100 Piezas", badgeRight: "Top Ventas", tagline: "Nail Art", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Set de 100 palitos de madera para manicura, perfectos para arte de uñas, corrección de detalles y limpieza. Herramienta esencial para salones de belleza y uso profesional.", features: ["100 piezas de madera de alta calidad.", "Ideal para arte de uñas, corrección de esmalte y limpieza.", "Punta fina para precisión.", "Sin alcohol, seguro para uso profesional.", "Medidas: 7 cm / 2.76 in."], variants: [{ name: "Vista Principal", image: "palitos1-1.jpg" }, { name: "Vista 2", image: "palitos1-2.jpg" }, { name: "Vista 3", image: "palitos1-3.jpg" }, { name: "Medidas", image: "palitos1-medidas.jpg" }] },
         { id: 4, title: "Diadema Premium Antideslizante con Bandas Texturizadas", price: "$2.00 c/u", numericPrice: 2.00, requiresShippingFee: true, badgeLeft: "Antideslizante", badgeRight: "Más Vendido", tagline: "Hair Style", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Diadema premium antideslizante diseñada para mujeres, con bandas texturizadas que sujetan el cabello firmemente sin maltratarlo. Ideal para lavado de cara, maquillaje o uso diario.", features: ["Diseño antideslizante con dientes texturizados que sujetan el cabello sin resbalar.", "No daña ni deja marcas en el cabello.", "Perfecta para lavado de cara, rutina de skincare o maquillaje.", "Ligera, cómoda y resistente.", "Disponible en varios colores."], variants: [{ name: "Negro", image: "diadema1-negro.jpg" }, { name: "Marrón", image: "diadema1-marron.jpg" }, { name: "Blanco", image: "diadema1-blanco.jpg" }, { name: "Rosa", image: "diadema1-rosa.jpg" }, { name: "Medidas", image: "diadema1-medidas.jpg" }, { name: "Vista General", image: "diadema1-1.jpg" }] },
         { id: 5, title: "Rizador de Pestañas Eléctrico Recargable con Calor - USB", price: "$6.00", numericPrice: 6.00, requiresShippingFee: true, badgeLeft: "USB Recargable", badgeRight: "Novedad", tagline: "Beauty Tech", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Rizador de pestañas eléctrico recargable con calefacción constante. Diseño ergonómico y seguro que proporciona un rizo duradero por horas sin dañar las pestañas.", features: ["Calentamiento rápido para un rizo de larga duración.", "Batería recargable vía USB (no requiere pilas).", "Diseño ergonómico y seguro, ideal para uso diario.", "Disponible en dos colores: Blanco y Rosa."], variants: [{ name: "Rosa", image: "rizador1-rosa.jpg" }, { name: "Blanco", image: "rizador1-blanco.jpg" }, { name: "Medidas", image: "rizador1-medidas.jpg" }, { name: "Vista General", image: "rizador1-1.jpg" }] },
-        // ============ EXISTENTES (40) ============
         { id: 6, title: "Barra de Sombra de Ojos con Reflejos Brillantes HUASURV", price: "$3.75", numericPrice: 3.75, requiresShippingFee: true, badgeLeft: "HUASURV", badgeRight: "Novedad", tagline: "Glitter Eyes", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Barra de sombra de ojos color rosa con reflejos brillantes. Fórmula duradera e impermeable, fácil de aplicar. Ideal para ojos, rostro y clavícula.", features: ["Sombra de ojos en barra con reflejos brillantes.", "Fórmula duradera e impermeable, fácil de aplicar.", "Acabado rosa encantador y brillante.", "Apta para ojos, rostro y clavícula.", "Perfecta para fiestas, citas y bailes."], variants: [{ name: "Vista Principal", image: "sombra1-1.jpg" }, { name: "Aplicación en Ojos", image: "sombra1-2.jpg" }, { name: "Detalle de Brillo", image: "sombra1-3.jpg" }] },
         { id: 7, title: "Guirnalda de Luces Navideñas Solar IP54 para Exteriores", price: "$3.00", numericPrice: 3.00, requiresShippingFee: true, badgeLeft: "IP54", badgeRight: "Novedad", tagline: "Solar Christmas", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Guirnalda de luces navideñas de alto brillo con alimentación solar, certificación IP54. Perfecta para patios, terrazas, bodas y decoración de escenas festivas.", features: ["Alimentación 100% solar con panel incluido.", "Certificación IP54, resistente a la intemperie.", "Disponible en longitudes y precios: 5M ($3.00), 7M ($4.50), 12M ($6.00), 22M ($10.00).", "Colores: Cálido, Blanco, Multicolor, Verde, Rojo, Azul, Rosa y Púrpura.", "Ideal para patios, terrazas, bodas y decoración navideña."], variants: [{ name: "Vista 1", image: "luces2-1.jpg" }, { name: "Vista 2", image: "luces2-2.jpg" }, { name: "Vista 3", image: "luces2-3.jpg" }] },
         { id: 8, title: "Conjunto de Collar y Aretes de Gota con Cristales de Lujo", price: "$3.00", numericPrice: 3.00, requiresShippingFee: true, badgeLeft: "Set Completo", badgeRight: "Novedad", tagline: "Lujo Ligero", category: ["nuevos", "accesorios"], isNew: true, available: true, shortDesc: "Elegante conjunto de collar con colgante de gota de agua y aretes de botón. Estilo coreano y japonés, con cadena para la clavícula. Ideal para vestidos de novia o eventos especiales.", features: ["Incluye collar, aretes y cadena para la clavícula.", "Diseño de gota de agua con cristales brillantes.", "Estilo coreano y japonés de lujo ligero.", "Disponible en colores: Rosa Roja, Azul Real, Púrpura y Amarillo.", "Perfecto para vestidos de novia o eventos especiales."], variants: [{ name: "Vista Principal", image: "collar2-1.jpg" }, { name: "Rosa Roja", image: "collar2-rosa.jpg" }, { name: "Azul Real", image: "collar2-azul.jpg" }, { name: "Púrpura", image: "collar2-purpura.jpg" }, { name: "Amarillo", image: "collar2-amarillo.jpg" }, { name: "Medidas", image: "collar2-medidas.jpg" }] },
@@ -2905,7 +2903,7 @@ video {
         const btnWhatsApp = document.getElementById('modal-whatsapp-btn');
         if (product.available) {
             const shippingText = product.requiresShippingFee ? " (+ tarifa de envío)" : "";
-            const message = `Hola MultiStock! Me interesa el *${product.title}* [Opción: ${variant.name}] por *${product.price}*${shippingText}.\n\n💡 Quisiera saber cuánto es el costo de envío a mi ubicación y qué otros productos tienen disponibles para aprovechar el mismo viaje.`;
+            const message = `Hola Angel's Signature! Me interesa el *${product.title}* [Opción: ${variant.name}] por *${product.price}*${shippingText}.\n\n💡 Quisiera saber cuánto es el costo de envío a mi ubicación y qué otros productos tienen disponibles para aprovechar el mismo viaje.`;
             btnWhatsApp.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
             btnWhatsApp.className = 'btn-gold w-full';
             btnWhatsApp.innerHTML = `<i class="fa-brands fa-whatsapp text-base"></i><span>Solicitar por WhatsApp</span>`;
@@ -2991,7 +2989,7 @@ video {
         const name = document.getElementById('sug-name').value;
         const product = document.getElementById('sug-product').value;
         const desc = document.getElementById('sug-desc').value;
-        const message = `Hola MultiStock! Me gustaría sugerir un producto:\n\n👤 *Nombre:* ${name}\n📦 *Producto:* ${product}\n📝 *Detalles:* ${desc}`;
+        const message = `Hola Angel's Signature! Me gustaría sugerir un producto:\n\n👤 *Nombre:* ${name}\n📦 *Producto:* ${product}\n📝 *Detalles:* ${desc}`;
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
         closeSuggestionModal();
     }
@@ -3008,7 +3006,7 @@ video {
         });
 
         const navBtn = document.getElementById('nav-whatsapp-btn');
-        navBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola MultiStock! Quisiera consultar sobre el catálogo de productos disponibles.")}`;
+        navBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola Angel's Signature! Quisiera consultar sobre el catálogo de productos disponibles.")}`;
         const footerBtn = document.getElementById('footer-wa-btn');
         if (footerBtn) footerBtn.href = navBtn.href;
 
